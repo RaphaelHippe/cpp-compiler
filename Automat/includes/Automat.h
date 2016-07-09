@@ -9,9 +9,13 @@
 #define Automat_H_
 
 class Automat {
+private:
+	State* _state;
 public:
 	Automat();
 	virtual ~Automat();
+	void setState(State* state);
+	void Handle();
 };
 
 #endif /* Automat_H_ */
