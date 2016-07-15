@@ -9,7 +9,7 @@
 Automat::Automat() {
 	// TODO Auto-generated constructor stub
   // set init state...
-  // _state = new InitState(this);
+  _state = new Initstate(this);
 }
 
 Automat::~Automat() {
@@ -20,6 +20,6 @@ void Automat::setState(State* state) {
   _state = state;
 }
 
-void Automat::Handle(){
-  _state->Handle();
+void Automat::Handle(char c){
+  _state->Handle(char c);
 }

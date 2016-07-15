@@ -5,15 +5,15 @@
  *      Author: Raphael Hippe
  */
 
-#ifndef Ifstate_H_
-#define Ifstate_H_
+#ifndef Initstate_H_
+#define Initstate_H_
 
-class Ifstate: public State {
+class Initstate: public State {
 private:
   Automat* _context;
 public:
-  Ifstate(Automat* context);
+  Initstate(Automat* context);
   void Handle(char c);
 }
 
-#endif /* Ifstate_H_ */
+#endif /* Initstate_H_ */

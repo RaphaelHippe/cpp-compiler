@@ -17,7 +17,7 @@ Ifstate::~Ifstate() {
 	// TODO Auto-generated destructor stub
 }
 
-void Ifstate::Handle(){
+void Ifstate::Handle(char c){
   // logic of the state....
 
   // set next state:

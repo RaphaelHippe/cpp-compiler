@@ -17,9 +17,16 @@ Identifierstate::~Identifierstate() {
 	// TODO Auto-generated destructor stub
 }
 
-void Identifierstate::Handle(){
-  // logic of the state....
-
-  // set next state:
-  // _context->setState( new Signstate(_context));
+/*
+* Identifierstate needs to check whether the Identifier is build further or not
+* Check if c is an Integer or letter if yes, stay in this state, if not go to Initstate
+*
+* Needs also to check for special Identifier if/IF and while/WHILE
+*/
+void Identifierstate::Handle(char c){
+  if (isdigit(c) || isalpha(c)) {
+    /* Stay in Identifierstate */
+  } else {
+    _context->setState( new Initstate(_context));
+  }
 }

@@ -15,7 +15,7 @@ public:
 	Automat();
 	virtual ~Automat();
 	void setState(State* state);
-	void Handle();
+	void Handle(char c);
 };
 
 #endif /* Automat_H_ */

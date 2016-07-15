@@ -17,7 +17,7 @@ Whilestate::~Whilestate() {
 	// TODO Auto-generated destructor stub
 }
 
-void Whilestate::Handle(){
+void Whilestate::Handle(char c){
   // logic of the state....
 
   // set next state:

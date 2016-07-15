@@ -17,7 +17,7 @@ Signstate::~Signstate() {
 	// TODO Auto-generated destructor stub
 }
 
-void Signstate::Handle(){
+void Signstate::Handle(char c){
   // logic of the state....
 
   // set next state:

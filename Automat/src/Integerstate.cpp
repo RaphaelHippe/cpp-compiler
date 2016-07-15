@@ -17,9 +17,14 @@ Integerstate::~Integerstate() {
 	// TODO Auto-generated destructor stub
 }
 
-void Integerstate::Handle(){
-  // logic of the state....
-
-  // set next state:
-  // _context->setState( new Signstate(_context));
+/*
+* Integerstate needs to check whether the Integer is build further or not
+* Check if c is an Integer if yes, stay in this state, if not go to Initstate
+*/
+void Integerstate::Handle(char c){
+  if (isdigit(c)) {
+    /* stay in Integerstate */
+  } else {
+    _context->setState( new Initstate(_context));
+  }
 }
