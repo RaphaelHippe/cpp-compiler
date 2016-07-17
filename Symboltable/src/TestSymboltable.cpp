@@ -6,5 +6,6 @@ int main(int argc, char **argv) {
 
 	symboltable = new Symboltable();
 
+	//TODO tests
 
 }
