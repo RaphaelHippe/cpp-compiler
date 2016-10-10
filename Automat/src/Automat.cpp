@@ -20,6 +20,13 @@ void Automat::setState(State* state) {
   _state = state;
 }
 
-void Automat::Handle(char c){
-  _state->Handle(char c);
+int Automat::handle(char c){
+
+  if (c == '\0') {
+    return Automat::UNDEFINED;
+  } else {
+    return Automat::INIT;
+  }
+
+  // return _state->handle(char c);
 }

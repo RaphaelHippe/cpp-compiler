@@ -13,7 +13,7 @@ private:
   Automat* _context;
 public:
   Signstate(Automat* context);
-  void Handle(char c);
+  void handle(char c);
 }
 
 #endif /* Signstate_H_ */

@@ -13,7 +13,7 @@ private:
   Automat* _context;
 public:
   Identifierstate(Automat* context);
-  void Handle(char c);
+  void handle(char c);
 }
 
 #endif /* Identifierstate_H_ */

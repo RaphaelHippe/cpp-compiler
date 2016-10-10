@@ -23,7 +23,7 @@ Identifierstate::~Identifierstate() {
 *
 * Needs also to check for special Identifier if/IF and while/WHILE
 */
-void Identifierstate::Handle(char c){
+int Identifierstate::handle(char c){
   if (isdigit(c) || isalpha(c)) {
     /* Stay in Identifierstate */
   } else {

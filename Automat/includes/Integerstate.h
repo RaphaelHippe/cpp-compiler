@@ -13,7 +13,7 @@ private:
   Automat* _context;
 public:
   Integerstate(Automat* context);
-  void Handle(char c);
+  void handle(char c);
 }
 
 #endif /* Integerstate_H_ */
