@@ -9,24 +9,29 @@
 #include "../../Automat/includes/Automat.h"
 
 Scanner::Scanner() {
-	// TODO Auto-generated constructor stub
-	// Automat* automat;
-	// Buffer*  buffer;
-
+	buffer = new Buffer("testinput");
+	automat = new Automat();
 }
 
 Scanner::~Scanner() {
 	// TODO Auto-generated destructor stub
 }
 
-void Scanner::nextToken(){
+// returns token
+Token* Scanner::nextToken(){
 	char c;
-	buffer = new Buffer("testinput");
-	automat = new Automat();
+	char token;
+	char lexem;
 	do {
+		// Lesen bis zum Lexem
 		c = buffer.getChar();
 		// nur so aus spaß
 		cout << c;
 	} while (automat.handle(c) != Automat::UNDEFINED)
+	// Wir haben ein Lexem!
+	lexem = automat.getLexem();
+	if (lexem.length == 0) {
+		// lexem is empty -> no token
+	}
 
 }

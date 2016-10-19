@@ -6,17 +6,19 @@
  */
 
  #include "./../../Buffer/includes/Buffer.h"
+ #include "./../../Automat/includes/Automat.h"
+ #include "./../../Symboltable/includes/Token.h"
 
 #ifndef SCANNER_H_
 #define SCANNER_H_
 
 class Scanner {
 private:
-
+int counter;
 public:
 	Scanner();
 	virtual ~Scanner();
-	void nextToken();
+	Token* nextToken();
 };
 
 #endif /* SCANNER_H_ */
