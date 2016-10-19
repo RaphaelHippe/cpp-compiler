@@ -11,6 +11,7 @@
 Scanner::Scanner() {
 	buffer = new Buffer("testinput");
 	automat = new Automat();
+	this->counter = 0;
 }
 
 Scanner::~Scanner() {
@@ -20,18 +21,19 @@ Scanner::~Scanner() {
 // returns token
 Token* Scanner::nextToken(){
 	char c;
-	char token;
-	char lexem;
 	do {
 		// Lesen bis zum Lexem
 		c = buffer.getChar();
+		if (c != '\0') {
+			counter++;
+		}
 		// nur so aus spaß
 		cout << c;
 	} while (automat.handle(c) != Automat::UNDEFINED)
 	// Wir haben ein Lexem!
-	lexem = automat.getLexem();
-	if (lexem.length == 0) {
-		// lexem is empty -> no token
+	if (counter == 0) {
+		// nichts gelesen! Kein Token
+		return NULL;
 	}
-
+	return new Token(automat.gettype(), automat.getline(), automat.getcolumn(), automat.getvalue(), automat.getinformation());
 }
