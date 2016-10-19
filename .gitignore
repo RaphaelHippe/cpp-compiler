@@ -1,0 +1,19 @@
+# Automat
+Automat/debug/AutomatTest
+Automat/debug/TestAutomat.o
+Automat/objs/Automat.o
+
+# Buffer
+Buffer/debug/BufferTest
+Buffer/debug/TestBuffer.o
+Buffer/objs/Buffer.o
+
+# Scanner
+Scanner/debug/ScannerTest
+Scanner/debug/TestScanner.o
+Scanner/objs/Scanner.o
+
+# Symboltabelle
+Symboltabelle/debug/SyboltableTest
+Symboltabelle/debug/TestSymboltable
+Symboltabelle/objs/Symboltable.o
