@@ -23,9 +23,9 @@ Initstate::~Initstate() {
 * Since its the first character of any Token it will only switch to Integer-,
 * Identifier- or Signstate
 */
-void Initstate::Handle(char c){
+int Initstate::handle(char c){
   if (isdigit(c)) {
-    /* Character is a digit - since its a starting character set state Integer */
+    /* Character is a digit - since its a starting character, set state Integer */
     _context->setState( new Integerstate(_context));
   } else if (isalpha(c)) {
     /* Character is a letter - set Identifierstate */

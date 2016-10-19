@@ -21,7 +21,7 @@ Integerstate::~Integerstate() {
 * Integerstate needs to check whether the Integer is build further or not
 * Check if c is an Integer if yes, stay in this state, if not go to Initstate
 */
-void Integerstate::Handle(char c){
+void Integerstate::handle(char c){
   if (isdigit(c)) {
     /* stay in Integerstate */
   } else {

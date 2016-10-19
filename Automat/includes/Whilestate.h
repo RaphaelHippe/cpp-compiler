@@ -13,7 +13,7 @@ private:
   Automat* _context;
 public:
   Whilestate(Automat* context);
-  void Handle(char c);
+  void handle(char c);
 }
 
 #endif /* Whilestate_H_ */

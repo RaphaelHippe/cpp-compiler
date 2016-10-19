@@ -5,8 +5,11 @@
  *      Author: knad0001
  */
 
+#include "State.h"
+
 #ifndef Automat_H_
 #define Automat_H_
+
 
 class Automat {
 private:
@@ -15,7 +18,11 @@ public:
 	Automat();
 	virtual ~Automat();
 	void setState(State* state);
-	void Handle(char c);
+	int handle(char c);
+	enum States {
+		INIT,
+		UNDEFINED
+	};
 };
 
 #endif /* Automat_H_ */
