@@ -6,6 +6,8 @@
  */
 
 #include "State.h"
+#include "./../../Symboltable/includes/Information.h"
+// #include "Initstate.h"
 
 #ifndef Automat_H_
 #define Automat_H_
@@ -19,6 +21,11 @@ public:
 	virtual ~Automat();
 	void setState(State* state);
 	int handle(char c);
+	int gettype();
+	int getline();
+	int getcolumn();
+  int getvalue();
+	Information* getinformation();
 	enum States {
 		INIT,
 		UNDEFINED

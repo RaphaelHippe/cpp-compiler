@@ -1,7 +1,11 @@
 #include "../includes/Token.h"
+#include <iostream>
 
-Token::Token(int type, int line, int column, long int value, Information* inf)
+using namespace std;
+
+Token::Token(int type, int line, int column, int value, Information* inf)
 {
+    // TODO: implement error type
     this->type = type;
     this->line = line;
     this->column = column;
@@ -24,7 +28,7 @@ int Token::getType()
     return type;
 }
 
-long int Token::getValue()
+int Token::getValue()
 {
     return value;
 }
@@ -33,3 +37,11 @@ Information* Token::getInformation()
 {
     return information;
 }
+// 
+// std::string Token::getTokenString(){
+//   return "Token xyz";
+// }
+
+// TODO: implement a getString method
+// Token identifier Line: x Column: y Lexem z
+// Token Integer Line: x Column: y value z

@@ -5,6 +5,9 @@
  *      Author: Raphael Hippe
  */
 
+#include "State.h"
+#include "Automat.h"
+
 #ifndef Initstate_H_
 #define Initstate_H_
 
@@ -13,7 +16,8 @@ private:
   Automat* _context;
 public:
   Initstate(Automat* context);
-  void handle(char c);
-}
+  virtual ~Initstate();
+  int handle(char c);
+};
 
 #endif /* Initstate_H_ */

@@ -14,7 +14,9 @@
 
 class Scanner {
 private:
-int counter;
+  int counter;
+  Buffer* buffer;
+  Automat* automat;
 public:
 	Scanner();
 	virtual ~Scanner();

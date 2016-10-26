@@ -4,7 +4,8 @@
  */
 
 #include "../includes/Automat.h"
-
+#include "../includes/Initstate.h"
+#include <cstddef>
 
 Automat::Automat() {
 	// TODO Auto-generated constructor stub
@@ -29,4 +30,20 @@ int Automat::handle(char c){
   }
 
   // return _state->handle(char c);
+}
+
+int Automat::gettype(){
+  return 1;
+}
+int Automat::getline(){
+  return 1;
+}
+int Automat::getcolumn(){
+  return 1;
+}
+int Automat::getvalue(){
+  return 1;
+}
+Information* Automat::getinformation(){
+  return NULL;
 }

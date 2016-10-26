@@ -10,7 +10,7 @@
 
 class State {
 public:
-  virtual void handle(char c);
+  virtual int handle(char c);
 };
 
 #endif /* State_H_ */

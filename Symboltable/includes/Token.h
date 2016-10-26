@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Information.h"
+#include <iostream>
 
-class Token
-{
+using namespace std;
+
+class Token {
 private:
     int line;
     int column;
@@ -12,14 +14,14 @@ private:
     Information* information;
 
 public:
-    Token(int, int, int, long int, Information*);
+    Token(int, int, int, int, Information*);
 
     int getLine();
     int getColumn();
     int getType();
-    long int getValue();
+    int getValue();
     Information* getInformation();
-    std::string getTokenName(int);
+    string getTokenString();
 
     enum Type
     {

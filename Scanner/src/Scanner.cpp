@@ -19,21 +19,23 @@ Scanner::~Scanner() {
 }
 
 // returns token
-Token* Scanner::nextToken(){
+Token* Scanner::nextToken() {
 	char c;
 	do {
 		// Lesen bis zum Lexem
-		c = buffer.getChar();
+		c = buffer->getChar();
 		if (c != '\0') {
 			counter++;
 		}
 		// nur so aus spaß
 		cout << c;
-	} while (automat.handle(c) != Automat::UNDEFINED)
+	} while (automat->handle(c) != Automat::UNDEFINED);
 	// Wir haben ein Lexem!
 	if (counter == 0) {
 		// nichts gelesen! Kein Token
-		return NULL;
+		// TODO: NULL TOKEN
+		return new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());;
 	}
-	return new Token(automat.gettype(), automat.getline(), automat.getcolumn(), automat.getvalue(), automat.getinformation());
+	// TODO: if identifier ===> symboletable
+	return new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());
 }

@@ -24,14 +24,15 @@ Initstate::~Initstate() {
 * Identifier- or Signstate
 */
 int Initstate::handle(char c){
-  if (isdigit(c)) {
-    /* Character is a digit - since its a starting character, set state Integer */
-    _context->setState( new Integerstate(_context));
-  } else if (isalpha(c)) {
-    /* Character is a letter - set Identifierstate */
-    _context->setState( new Identifierstate(_context));
-  } else {
-    /* Character is a sign - set Signstate */
-    _context->setState( new Signstate(_context));
-  }
+  return 1;
+  // if (isdigit(c)) {
+  //   /* Character is a digit - since its a starting character, set state Integer */
+  //   _context->setState( new Integerstate(_context));
+  // } else if (isalpha(c)) {
+  //   /* Character is a letter - set Identifierstate */
+  //   _context->setState( new Identifierstate(_context));
+  // } else {
+  //   /* Character is a sign - set Signstate */
+  //   _context->setState( new Signstate(_context));
+  // }
 }
