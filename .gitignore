@@ -1,5 +1,6 @@
 #IDE
 .idea
+CMakeLists.txt
 
 # Automat
 Automat/debug/AutomatTest
