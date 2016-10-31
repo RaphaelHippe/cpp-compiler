@@ -1,3 +1,6 @@
+#IDE
+.idea
+
 # Automat
 Automat/debug/AutomatTest
 Automat/debug/TestAutomat.o
