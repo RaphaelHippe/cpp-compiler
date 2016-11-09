@@ -10,7 +10,8 @@
 Automat::Automat() {
 	// TODO Auto-generated constructor stub
   // set init state...
-  _state = new Initstate(this);
+  // WHY CANT I FUCKING CREATE THIS OBJECT HERE
+  // _state = new Initstate(this);
 }
 
 Automat::~Automat() {
@@ -23,13 +24,14 @@ void Automat::setState(State* state) {
 
 int Automat::handle(char c){
 
-  if (c == '\0') {
-    return Automat::UNDEFINED;
-  } else {
-    return Automat::INIT;
-  }
+  // if (c == '\0') {
+  //   return Automat::UNDEFINED;
+  // } else {
+  //   return Automat::INIT;
+  // }
 
-  // return _state->handle(char c);
+  // return _state->handle(c);
+  return 76;
 }
 
 int Automat::gettype(){

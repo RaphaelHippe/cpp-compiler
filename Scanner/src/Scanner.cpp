@@ -21,6 +21,7 @@ Scanner::~Scanner() {
 // returns token
 Token* Scanner::nextToken() {
 	char c;
+	Token* t;
 	do {
 		// Lesen bis zum Lexem
 		c = buffer->getChar();
@@ -31,11 +32,13 @@ Token* Scanner::nextToken() {
 		cout << c;
 	} while (automat->handle(c) != Automat::UNDEFINED);
 	// Wir haben ein Lexem!
-	if (counter == 0) {
+	if (counter != 0) {
 		// nichts gelesen! Kein Token
-		// TODO: NULL TOKEN
-		return new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());;
+		// TODO: if identifier ===> symboletable
+		// // TODO: NULL TOKEN
+		// t = new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());;
+		// return t;
 	}
-	// TODO: if identifier ===> symboletable
-	return new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());
+	t = new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());;
+	return t;
 }

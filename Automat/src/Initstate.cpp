@@ -24,7 +24,7 @@ Initstate::~Initstate() {
 * Identifier- or Signstate
 */
 int Initstate::handle(char c){
-  return 1;
+  return 5;
   // if (isdigit(c)) {
   //   /* Character is a digit - since its a starting character, set state Integer */
   //   _context->setState( new Integerstate(_context));

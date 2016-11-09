@@ -7,8 +7,7 @@
 # -g --> debug Informationen erzeugen
 # -o --> name des output-files
 
-makeTestAutomat: AutomatTarget TestAutomatTarget InitstateTarget
-	# g++ -g objs/Initstate.o debug/TestInitstate.o -o debug/InitstateTest
+makeTestAutomat: InitstateTarget AutomatTarget TestAutomatTarget
 	g++ -g objs/Automat.o debug/TestAutomat.o -o debug/AutomatTest
 
 
@@ -29,6 +28,9 @@ TestAutomatTarget :  src/TestAutomat.cpp includes/Automat.h
 InitstateTarget :  src/Initstate.cpp includes/Initstate.h
 	g++ -g  -c -Wall src/Initstate.cpp -o objs/Initstate.o
 
+BuildExecutable :
+	g++ -g objs/Automat.o debug/TestAutomat.o -o debug/AutomatTest
+
 # # TestAutomat.o ist abhängig von src/TestAutomat.cpp und src/Automat.h
 # TestInitstateTarget :  src/TestInitstate.cpp includes/Initstate.h
 # 	g++ -g  -c -Wall src/TestInitstate.cpp  -o debug/TestInitstate.o
@@ -40,7 +42,7 @@ InitstateTarget :  src/Initstate.cpp includes/Initstate.h
 cleanAutomat:
 	rm -f objs/*.o
 	rm -f debug/*
-	$(MAKE) makeTestAutomat
+	# $(MAKE) makeTestAutomat
 
 
 # dieses Target wird vom makefile des Gesamtprojekts verwendet
