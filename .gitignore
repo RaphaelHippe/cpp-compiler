@@ -1,3 +1,7 @@
+# IDE
+.idea
+CMakeLists.txt
+
 # Automat
 Automat/debug/AutomatTest
 Automat/debug/TestAutomat.o
