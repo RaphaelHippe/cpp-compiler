@@ -7,9 +7,11 @@
 # -g --> debug Informationen erzeugen
 # -o --> name des output-files
 
-makeTestAutomat: InitstateTarget AutomatTarget TestAutomatTarget
-	g++ -g objs/Automat.o debug/TestAutomat.o -o debug/AutomatTest
+makeTestAutomat: StateTarget InitstateTarget AutomatTarget TestAutomatTarget
+	g++ -g objs/State.o objs/Initstate.o objs/Automat.o debug/TestAutomat.o -o debug/AutomatTest
 
+
+# in makeTestAutomat include all new objs ;)
 
 # compilieren des Files Automat.cpp zu Automat.o,
 # das Objekt-File ist abhängig von src/Automat.cpp und src/Automat.h
@@ -18,14 +20,17 @@ makeTestAutomat: InitstateTarget AutomatTarget TestAutomatTarget
 # -g --> debug Informationen erzeugen
 # -Wall --> alle meldungen erzeugen (Warning all)
 
-AutomatTarget :  src/Automat.cpp includes/Automat.h
+AutomatTarget: src/Automat.cpp includes/Automat.h
 	g++ -g  -c -Wall src/Automat.cpp -o objs/Automat.o
 
 # TestAutomat.o ist abhängig von src/TestAutomat.cpp und src/Automat.h
-TestAutomatTarget :  src/TestAutomat.cpp includes/Automat.h
-	g++ -g  -c -Wall src/TestAutomat.cpp  -o debug/TestAutomat.o
+TestAutomatTarget: src/TestAutomat.cpp includes/Automat.h
+	g++ -g  -c -Wall src/TestAutomat.cpp -o debug/TestAutomat.o
 
-InitstateTarget :  src/Initstate.cpp includes/Initstate.h
+StateTarget: src/State.cpp includes/State.h
+	g++ -g  -c -Wall src/State.cpp -o objs/State.o
+
+InitstateTarget: src/Initstate.cpp includes/Initstate.h
 	g++ -g  -c -Wall src/Initstate.cpp -o objs/Initstate.o
 
 BuildExecutable :

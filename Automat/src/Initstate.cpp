@@ -9,9 +9,9 @@
 
 #include <ctype.h>
 
-Initstate::Initstate(Automat* context) {
+Initstate::Initstate() {
 	// TODO Auto-generated constructor stub
-  _context = context;
+  // _context = context;
 }
 
 Initstate::~Initstate() {

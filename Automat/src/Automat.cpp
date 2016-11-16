@@ -4,7 +4,6 @@
  */
 
 #include "../includes/Automat.h"
-#include "../includes/Initstate.h"
 #include <cstddef>
 
 Automat::Automat() {
@@ -12,16 +11,17 @@ Automat::Automat() {
   // set init state...
   // WHY CANT I FUCKING CREATE THIS OBJECT HERE
   // _state = new Initstate(this);
+  _state = new Initstate();
 }
 
 Automat::~Automat() {
 	// TODO Auto-generated destructor stub
 }
 
-void Automat::setState(State* state) {
-  _state = state;
-}
-
+// void Automat::setState(State* state) {
+//   _state = state;
+// }
+//
 int Automat::handle(char c){
 
   // if (c == '\0') {
@@ -29,23 +29,23 @@ int Automat::handle(char c){
   // } else {
   //   return Automat::INIT;
   // }
-
+  // _state = _state->handle(c)
   // return _state->handle(c);
   return 76;
 }
-
-int Automat::gettype(){
-  return 1;
-}
-int Automat::getline(){
-  return 1;
-}
-int Automat::getcolumn(){
-  return 1;
-}
-int Automat::getvalue(){
-  return 1;
-}
-Information* Automat::getinformation(){
-  return NULL;
-}
+//
+// int Automat::gettype(){
+//   return 1;
+// }
+// int Automat::getline(){
+//   return 1;
+// }
+// int Automat::getcolumn(){
+//   return 1;
+// }
+// int Automat::getvalue(){
+//   return 1;
+// }
+// Information* Automat::getinformation(){
+//   return NULL;
+// }
