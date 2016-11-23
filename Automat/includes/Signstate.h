@@ -8,12 +8,14 @@
 #ifndef Signstate_H_
 #define Signstate_H_
 
-class Signstate: public State {
+class Signstate {
 private:
-  Automat* _context;
+  char one;
+  char two;
 public:
-  Signstate(Automat* context);
-  void handle(char c);
-}
+  Signstate();
+  virtual ~Signstate();
+  int handle(char c);
+};
 
 #endif /* Signstate_H_ */

@@ -4,17 +4,12 @@
  *  Created on: Jul 9, 2016
  *      Author: Raphael Hippe
  */
-#pragma once
-
-#include "State.h"
-// #include "Automat.h"
 
 #ifndef Initstate_H_
 #define Initstate_H_
 
-class Initstate: public State {
+class Initstate {
 private:
-  // Automat* _context;
 public:
   Initstate();
   virtual ~Initstate();

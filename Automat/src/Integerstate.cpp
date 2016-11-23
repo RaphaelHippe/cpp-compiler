@@ -6,11 +6,11 @@
  */
 
 #include "../includes/Integerstate.h"
+#include <ctype.h>
 
 
-Integerstate::Integerstate(Automat* context) {
+Integerstate::Integerstate() {
 	// TODO Auto-generated constructor stub
-  _context = context;
 }
 
 Integerstate::~Integerstate() {
@@ -21,10 +21,10 @@ Integerstate::~Integerstate() {
 * Integerstate needs to check whether the Integer is build further or not
 * Check if c is an Integer if yes, stay in this state, if not go to Initstate
 */
-void Integerstate::handle(char c){
+int Integerstate::handle(char c){
   if (isdigit(c)) {
-    /* stay in Integerstate */
+    return 1;
   } else {
-    _context->setState( new Initstate(_context));
+    return 0;
   }
 }

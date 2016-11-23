@@ -6,11 +6,11 @@
  */
 
 #include "../includes/Identifierstate.h"
+#include <ctype.h>
 
 
-Identifierstate::Identifierstate(Automat* context) {
+Identifierstate::Identifierstate() {
 	// TODO Auto-generated constructor stub
-  _context = context;
 }
 
 Identifierstate::~Identifierstate() {
@@ -25,8 +25,8 @@ Identifierstate::~Identifierstate() {
 */
 int Identifierstate::handle(char c){
   if (isdigit(c) || isalpha(c)) {
-    /* Stay in Identifierstate */
+    return 1;
   } else {
-    _context->setState( new Initstate(_context));
+    return 0;
   }
 }

@@ -8,12 +8,12 @@
 #ifndef Identifierstate_H_
 #define Identifierstate_H_
 
-class Identifierstate: public State {
+class Identifierstate {
 private:
-  Automat* _context;
 public:
-  Identifierstate(Automat* context);
-  void handle(char c);
-}
+  Identifierstate();
+  virtual ~Identifierstate();
+  int handle(char c);
+};
 
 #endif /* Identifierstate_H_ */

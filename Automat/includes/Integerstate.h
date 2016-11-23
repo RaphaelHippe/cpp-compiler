@@ -8,12 +8,12 @@
 #ifndef Integerstate_H_
 #define Integerstate_H_
 
-class Integerstate: public State {
+class Integerstate {
 private:
-  Automat* _context;
 public:
-  Integerstate(Automat* context);
-  void handle(char c);
-}
+  Integerstate();
+  virtual ~Integerstate();
+  int handle(char c);
+};
 
 #endif /* Integerstate_H_ */
