@@ -41,12 +41,6 @@ StateTarget: src/State.cpp includes/State.h
 InitstateTarget: src/Initstate.cpp includes/Initstate.h
 	g++ -g  -c -Wall src/Initstate.cpp -o objs/Initstate.o
 
-CreateDirectories:
-	rm -rf debug
-	rm -rf objs
-	mkdir debug
-	mkdir objs
-
 BuildExecutable:
 	g++ -g objs/Automat.o debug/TestAutomat.o -o debug/AutomatTest
 
@@ -63,6 +57,11 @@ cleanAutomat:
 	rm -f debug/*
 	# $(MAKE) makeTestAutomat
 
+CreateDirectories:
+	rm -rf debug
+	rm -rf objs
+	mkdir debug
+	mkdir objs
 
 # dieses Target wird vom makefile des Gesamtprojekts verwendet
 # objs fuer Gesamtprojekt loeschen und dann neu erzeugen
