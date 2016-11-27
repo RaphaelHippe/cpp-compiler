@@ -7,9 +7,8 @@
 # -g --> debug Informationen erzeugen
 # -o --> name des output-files
 
-makeTestAutomat: SignTarget IntegerTarget IdentifierTarget InitstateTarget AutomatTarget TestAutomatTarget
+makeTestAutomat: CreateDirectories SignTarget IntegerTarget IdentifierTarget InitstateTarget AutomatTarget TestAutomatTarget
 	g++ -g objs/Initstate.o objs/Signstate.o objs/Integerstate.o objs/Identifierstate.o objs/Automat.o debug/TestAutomat.o -o debug/AutomatTest
-
 
 # in makeTestAutomat include all new objs ;)
 
@@ -42,7 +41,13 @@ StateTarget: src/State.cpp includes/State.h
 InitstateTarget: src/Initstate.cpp includes/Initstate.h
 	g++ -g  -c -Wall src/Initstate.cpp -o objs/Initstate.o
 
-BuildExecutable :
+CreateDirectories:
+	rm -rf debug
+	rm -rf objs
+	mkdir debug
+	mkdir objs
+
+BuildExecutable:
 	g++ -g objs/Automat.o debug/TestAutomat.o -o debug/AutomatTest
 
 # # TestAutomat.o ist abhängig von src/TestAutomat.cpp und src/Automat.h
