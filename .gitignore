@@ -3,9 +3,8 @@
 CMakeLists.txt
 
 # Automat
-Automat/debug/AutomatTest
-Automat/debug/TestAutomat.o
-Automat/objs/Automat.o
+Automat/debug
+Automat/objs
 
 # Buffer
 Buffer/debug/BufferTest
