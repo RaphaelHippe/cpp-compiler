@@ -1,26 +1,17 @@
-/*
- * Signstate.cpp
- *
- *  Created on: Jul 9, 2016
- *  Author: Raphael Hippe
- */
-
 #include "../includes/Signstate.h"
 
-
 Signstate::Signstate() {
-	// TODO Auto-generated constructor stub
   one = '0';
   two = '0';
 }
 
 Signstate::~Signstate() {
-	// TODO Auto-generated destructor stub
 }
 
 int Signstate::handle(char c){
   // logic of the state....
 
+  // einteilige Zeichen
   if (c == '+' || c == '-' || c == '<' || c == '>' || c == '(' || c == ')' ||
       c == '{' || c == '}' || c == '[' || c == ']' || c == '!' || c == ';') {
         // check if its the first sign or 2nd one
@@ -32,6 +23,8 @@ int Signstate::handle(char c){
           // second one
           return 0;
         }
+
+  // mehrteilige Zeichen
   } else {
     // switch (c) {
     //   case ':':

@@ -1,18 +1,11 @@
-/*
- * Automat.cpp
- *
- */
-
 #include "../includes/Automat.h"
 #include <cstddef>
 
 Automat::Automat() {
-	// TODO Auto-generated constructor stub
   _state = INIT;
 }
 
 Automat::~Automat() {
-	// TODO Auto-generated destructor stub
 }
 
 void Automat::setState(int stateresult) {
