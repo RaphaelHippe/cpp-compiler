@@ -25,7 +25,7 @@ makeTestBuffer: CreateDirectories BufferTarget TestBufferTarget
 # -Wall --> alle meldungen erzeugen (Warning all)
 
 BufferTarget :  $(SRCDIR)/Buffer.cpp $(INCLUDESDIR)/Buffer.h
-	g++ -g  -c -Wall  $(SRCDIR)/Buffer.cpp -o $(DEBUGDIR)/Buffer.o
+	g++ -g  -c -Wall  $(SRCDIR)/Buffer.cpp -o $(OBJSDIR)/Buffer.o
 
 #TestBuffer.o ist abhaengig von TestBuffer.cpp und Buffer.h
 TestBufferTarget :  $(TESTSDIR)/TestBuffer.cpp $(INCLUDESDIR)/Buffer.h
