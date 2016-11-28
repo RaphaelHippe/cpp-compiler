@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
 
 	Buffer*  buffer;
 
-	buffer = new Buffer("testinput");
+	buffer = new Buffer("../tests/testinput");
 
 	char c = '1';
 

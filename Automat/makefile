@@ -22,9 +22,9 @@ makeTestAutomat: CreateDirectories SignTarget IntegerTarget IdentifierTarget Ini
 AutomatTarget: src/Automat.cpp includes/Automat.h
 	g++ -g  -c -Wall src/Automat.cpp -o objs/Automat.o
 
-# TestAutomat.o ist abhängig von src/TestAutomat.cpp und src/Automat.h
-TestAutomatTarget: src/TestAutomat.cpp includes/Automat.h
-	g++ -g  -c -Wall src/TestAutomat.cpp -o debug/TestAutomat.o
+# TestAutomat.o ist abhängig von tests/TestAutomat.cpp und src/Automat.h
+TestAutomatTarget: tests/TestAutomat.cpp includes/Automat.h
+	g++ -g  -c -Wall tests/TestAutomat.cpp -o debug/TestAutomat.o
 
 IdentifierTarget: src/Identifierstate.cpp includes/Identifierstate.h
 	g++ -g  -c -Wall src/Identifierstate.cpp -o objs/Identifierstate.o
