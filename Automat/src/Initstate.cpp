@@ -2,12 +2,10 @@
 #include <ctype.h>
 
 Initstate::Initstate() {
-	// TODO Auto-generated constructor stub
   // _context = context;
 }
 
 Initstate::~Initstate() {
-	// TODO Auto-generated destructor stub
 }
 
 /*
