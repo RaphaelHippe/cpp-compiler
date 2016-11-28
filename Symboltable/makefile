@@ -32,7 +32,7 @@ OBJS = $(OBJDIR)/Symboltable.o \
 #	g++ -g $(OBJDIR)/Symboltable.o $(OBJDIR)/TestSymboltable.o -o $(BINDIR)/SymboltableTest
 #   cp $(OBJDIR)/Symboltable.o ../projectOBJs
 #
-#	
+#
 ## compilieren der Source-files
 #
 #$(OBJDIR)/Symboltable.o :  $(SRCDIR)/Symboltable.cpp $(HEADERDIR)/Symboltable.h
@@ -48,7 +48,7 @@ OBJS = $(OBJDIR)/Symboltable.o \
 
 # Variante mit guten Makefile-Kenntnissen
 
-makeTestSymboltable: SymboltableTarget TestSymboltableTarget
+makeTestSymboltable: CreateDirectories SymboltableTarget TestSymboltableTarget
 	g++ -g $(OBJDIR)/*.o $(BINDIRTEST)/TestSymboltable.o  -o $(BINDIRTEST)/SymboltableTest
 
 SymboltableTarget: $(OBJS)
@@ -64,8 +64,8 @@ $(OBJDIR)/%.o :  $(SRCDIR)/%.cpp $(HEADERDIR)/%.h
 
 
 TestSymboltableTarget: $(SRCDIR)/TestSymboltable.cpp $(HEADERDIR)/Symboltable.h
-	g++ -g  -c -Wall $(SRCDIR)/TestSymboltable.cpp -o $(BINDIRTEST)/TestSymboltable.o  
-	
+	g++ -g  -c -Wall $(SRCDIR)/TestSymboltable.cpp -o $(BINDIRTEST)/TestSymboltable.o
+
 
 
 # loeschen aller files im verzeichnis $(OBJDIR) und $(BINDIRTEST) und neu compilieren
@@ -74,11 +74,13 @@ cleanSymboltable:
 	rm -rf $(OBJDIR)/*.o
 	rm -rf $(BINDIRTEST)/*
 	$(MAKE) makeTestSymboltable
-	
-	
-	
+
+CreateDirectories:
+	rm -rf debug
+	rm -rf objs
+	mkdir debug
+	mkdir objs
+
 ## objs fuer GesamtProjekt neu erzeugen
 SymboltableOBJTarget:
 	$(MAKE) SymboltableTarget
-
-	

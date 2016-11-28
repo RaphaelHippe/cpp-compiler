@@ -15,6 +15,5 @@ Scanner/debug
 Scanner/objs
 
 # Symboltabelle
-Symboltable/debug/SymboltableTest
-Symboltable/debug/TestSymboltable.o
-Symboltable/objs/Symboltable.o
+Symboltable/debug
+Symboltable/objs
