@@ -1,18 +1,9 @@
 # Definition der Variablen
-
-# enthaelt die Header Files
-HEADERDIR = includes
-
-# enthaelt die Source Files
+INCLUDESDIR = includes
 SRCDIR = src
-
-# enthaelt die Obj Files fuer das Gesamtprojekt
-OBJDIR = objs
-
-# enthaelt die Objectfiles und das ausfuehrbare File zum Testen des Teilprojekts
-BINDIRTEST = debug
-
-TESTDIR = test
+OBJSDIR = objs
+DEBUGDIR = debug
+TESTSDIR = tests
 
 #
 #		Targets zum Bauen des Tests
@@ -24,7 +15,7 @@ TESTDIR = test
 # -o --> name des output-files
 
 makeTestBuffer: CreateDirectories BufferTarget TestBufferTarget
-	g++ -g $(OBJDIR)/Buffer.o $(BINDIRTEST)/TestBuffer.o -o $(BINDIRTEST)/BufferTest
+	g++ -g $(OBJSDIR)/Buffer.o $(DEBUGDIR)/TestBuffer.o -o $(DEBUGDIR)/BufferTest
 
 # compilieren der Source-files
 # Buffer.o ist abhaengig von Buffer.cpp und Buffer.h
@@ -33,25 +24,25 @@ makeTestBuffer: CreateDirectories BufferTarget TestBufferTarget
 # -g --> debug Informationen erzeugen
 # -Wall --> alle meldungen erzeugen (Warning all)
 
-BufferTarget :  $(SRCDIR)/Buffer.cpp $(HEADERDIR)/Buffer.h
-	g++ -g  -c -Wall  $(SRCDIR)/Buffer.cpp -o $(OBJDIR)/Buffer.o
+BufferTarget :  $(SRCDIR)/Buffer.cpp $(INCLUDESDIR)/Buffer.h
+	g++ -g  -c -Wall  $(SRCDIR)/Buffer.cpp -o $(DEBUGDIR)/Buffer.o
 
 #TestBuffer.o ist abhaengig von TestBuffer.cpp und Buffer.h
-TestBufferTarget :  $(TESTDIR)/TestBuffer.cpp $(HEADERDIR)/Buffer.h
-	g++ -g  -c -Wall $(TESTDIR)/TestBuffer.cpp -o $(BINDIRTEST)/TestBuffer.o
+TestBufferTarget :  $(TESTSDIR)/TestBuffer.cpp $(INCLUDESDIR)/Buffer.h
+	g++ -g  -c -Wall $(TESTSDIR)/TestBuffer.cpp -o $(DEBUGDIR)/TestBuffer.o
 
 # loeschen aller files im verzeichnis $(OBJDIR) und $(BINDIRTEST) und neu compilieren
 
 cleanBuffer:
-	rm -f $(OBJDIR)/*.o
-	rm -f $(BINDIRTEST)/*
+	rm -f $(OBJSDIR)/*.o
+	rm -f $(DEBUGDIR)/*
 	$(MAKE) makeTestBuffer
 
 CreateDirectories:
-	rm -rf debug
-	rm -rf objs
-	mkdir debug
-	mkdir objs
+	rm -rf $(DEBUGDIR)
+	rm -rf $(OBJSDIR)
+	mkdir $(DEBUGDIR)
+	mkdir $(OBJSDIR)
 
 # dieses Target wird vom makefile des Gesamtprojekts verwendet
 # objs fuer GesamtProjekt loeschen und dann neu erzeugen
