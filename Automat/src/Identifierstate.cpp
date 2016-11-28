@@ -1,10 +1,3 @@
-/*
- * Identifierstate.cpp
- *
- *  Created on: Jul 9, 2016
- *  Author: Raphael Hippe
- */
-
 #include "../includes/Identifierstate.h"
 #include <ctype.h>
 

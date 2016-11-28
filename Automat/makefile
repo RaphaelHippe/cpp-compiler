@@ -10,15 +10,11 @@ OBJSDIR = objs
 DEBUGDIR = debug
 TESTSDIR = tests
 
-
+# in makeTestAutomat include all new objs! ;)
 makeTestAutomat: CreateDirectories SignTarget IntegerTarget IdentifierTarget InitstateTarget AutomatTarget TestAutomatTarget
 	g++ -g $(OBJSDIR)/Initstate.o $(OBJSDIR)/Signstate.o $(OBJSDIR)/Integerstate.o $(OBJSDIR)/Identifierstate.o $(OBJSDIR)/Automat.o $(DEBUGDIR)/TestAutomat.o -o $(DEBUGDIR)/AutomatTest
 
-# in makeTestAutomat include all new objs ;)
-
 # compilieren des Files Automat.cpp zu Automat.o,
-# das Objekt-File ist abhängig von $(SRCDIR)/Automat.cpp und $(SRCDIR)/Automat.h
-# flag:
 # -c --> nur compilieren
 # -g --> debug Informationen erzeugen
 # -Wall --> alle meldungen erzeugen (Warning all)
@@ -53,9 +49,7 @@ BuildExecutable:
 # 	g++ -g  -c -Wall $(SRCDIR)/TestInitstate.cpp  -o $(DEBUGDIR)/TestInitstate.o
 
 
-
 # loeschen aller files im verzeichnis obj und debug, dann neu erzeugen
-
 cleanAutomat:
 	rm -f $(OBJSDIR)/*.o
 	rm -f $(DEBUGDIR)/*

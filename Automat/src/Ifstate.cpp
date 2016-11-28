@@ -1,12 +1,4 @@
-/*
- * Ifstate.cpp
- *
- *  Created on: Jul 9, 2016
- *  Author: Raphael Hippe
- */
-
 #include "../includes/Ifstate.h"
-
 
 Ifstate::Ifstate(Automat* context) {
 	// TODO Auto-generated constructor stub

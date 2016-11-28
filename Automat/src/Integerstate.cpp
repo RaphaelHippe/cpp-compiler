@@ -1,20 +1,11 @@
-/*
- * Integerstate.cpp
- *
- *  Created on: Jul 9, 2016
- *  Author: Raphael Hippe
- */
-
 #include "../includes/Integerstate.h"
 #include <ctype.h>
 
-
 Integerstate::Integerstate() {
-	// TODO Auto-generated constructor stub
+
 }
 
 Integerstate::~Integerstate() {
-	// TODO Auto-generated destructor stub
 }
 
 /*

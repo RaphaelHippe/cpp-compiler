@@ -1,24 +1,12 @@
 # Definition der Variablen
-
-# enthaelt die Header Files
 HEADERDIR = includes
-
-# enthaelt die Source Files
 SRCDIR = src
-
-# enthaelt die Obj Files zum Testen
 OBJDIR = objs
-
-# enthaelt das ausfuehrbare File zum Testen
 BINDIRTEST = debug
-
-TESTDIR = test
-
+TESTDIR = tests
 
 AUTOMATDIR = ../Automat
-
 BUFFERDIR = ../Buffer
-
 SYMBOLTABLEDIR = ../Symboltable
 
 
@@ -28,7 +16,6 @@ SYMBOLTABLEDIR = ../Symboltable
 OBJS = $(OBJDIR)/Scanner.o \
 	#$(OBJDIR)/xx1.o \
 	#$(OBJDIR)/xxn.o
-
 
 ## Variante mit wenig Makefile-Kenntnissen
 #
@@ -49,7 +36,6 @@ OBJS = $(OBJDIR)/Scanner.o \
 #	g++ -g  -c -Wall  -o $(OBJDIR)/TestScanner.o  $(SRCDIR)/TestScanner.cpp
 #
 
-
 # Variante mit guten Makefile-Kenntnissen
 makeTestScanner: CreateDirectories $(OBJS) ScannerTest
 
@@ -61,7 +47,6 @@ $(OBJDIR)/%.o :  $(SRCDIR)/%.cpp $(HEADERDIR)/%.h
 #
 # $@ name des object files
 # $< erste abhaengigkeit
-
 
 ScannerTest: $(TESTDIR)/TestScanner.cpp $(HEADERDIR)/Scanner.h
 	g++ -g  -c -Wall $(TESTDIR)/TestScanner.cpp -o $(BINDIRTEST)/TestScanner.o

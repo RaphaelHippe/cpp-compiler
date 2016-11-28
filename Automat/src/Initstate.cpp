@@ -1,12 +1,4 @@
-/*
- * Initstate.cpp
- *
- *  Created on: Jul 9, 2016
- *  Author: Raphael Hippe
- */
-
 #include "../includes/Initstate.h"
-
 #include <ctype.h>
 
 Initstate::Initstate() {

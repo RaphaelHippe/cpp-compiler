@@ -5,10 +5,6 @@ OBJSDIR = objs
 DEBUGDIR = debug
 TESTSDIR = tests
 
-#
-#		Targets zum Bauen des Tests
-#
-
 # Linken der Object-files, abhaengig von BufferTarget und TestBufferTarget
 # flag:
 # -g --> debug Informationen erzeugen
@@ -31,8 +27,7 @@ BufferTarget :  $(SRCDIR)/Buffer.cpp $(INCLUDESDIR)/Buffer.h
 TestBufferTarget :  $(TESTSDIR)/TestBuffer.cpp $(INCLUDESDIR)/Buffer.h
 	g++ -g  -c -Wall $(TESTSDIR)/TestBuffer.cpp -o $(DEBUGDIR)/TestBuffer.o
 
-# loeschen aller files im verzeichnis $(OBJDIR) und $(BINDIRTEST) und neu compilieren
-
+# cleanen und neu compilieren
 cleanBuffer:
 	rm -f $(OBJSDIR)/*.o
 	rm -f $(DEBUGDIR)/*
