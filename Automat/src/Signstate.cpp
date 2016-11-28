@@ -15,18 +15,19 @@ int Signstate::handle(char c){
   if (c == '+' || c == '-' || c == '<' || c == '>' || c == '(' || c == ')' ||
       c == '{' || c == '}' || c == '[' || c == ']' || c == '!' || c == ';') {
         // check if its the first sign or 2nd one
-        if (one == '0') {
-          // first one
-          one = c;
-          return 1;
-        } else {
-          // second one
-          return 0;
-        }
+        // if (one == '0') {
+        //   // first one
+        //   one = c;
+        //   return 1;
+        // } else {
+        //   // second one
+        //   return 0;
+        // }
+        return 0;
 
   // mehrteilige Zeichen
   } else {
-    // switch (c) {
+    switch (c) {
     //   case ':':
     //     if (one == '0') {
     //       one = c;
@@ -50,20 +51,19 @@ int Signstate::handle(char c){
     //     } else {
     //       return -1;
     //     }
-    //   case '&':
-    //     if (one == '0') {
-    //       one = c;
-    //       return 1;
-    //     } else if (one == '&') {
-    //       one = '0';
-    //       return 0;
-    //     } else {
-    //       return -1;
-    //     }
-    //   default:
-    //     return -1;
-    // }
-    return -1;
+      // case '&':
+      //   if (one == '0') {
+      //     one = c;
+      //     return 1;
+      //   } else if (one == '&') {
+      //     one = '0';
+      //     return 0;
+      //   } else {
+      //     return -1;
+      //   }
+      default:
+        return 0;
+    }
   }
 
 }
