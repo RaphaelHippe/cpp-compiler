@@ -12,7 +12,7 @@ OBJDIR = objs
 # enthaelt die Objectfiles und das ausfuehrbare File zum Testen des Teilprojekts
 BINDIRTEST = debug
 
-TESTDIR = tests
+TESTDIR = test
 
 #
 #		Targets zum Bauen des Tests

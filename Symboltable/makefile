@@ -12,6 +12,7 @@ OBJDIR = objs
 # enthaelt das ausfuehrbare File zum Testen
 BINDIRTEST = debug
 
+TESTDIR = test
 
 ## hier alle Object Files eintragen, ausser das File mit der Mainmethode
 ## darauf achten, dass letzte Zeile ohne "\" eingetragen wird
@@ -51,7 +52,7 @@ OBJS = $(OBJDIR)/Symboltable.o \
 makeTestSymboltable: CreateDirectories SymboltableTarget TestSymboltableTarget
 	g++ -g $(OBJDIR)/*.o $(BINDIRTEST)/TestSymboltable.o  -o $(BINDIRTEST)/SymboltableTest
 
-SymboltableTarget: $(OBJS)
+SymboltableTarget: CreateDirectories $(OBJS)
 
 # $@ name des object files = name auf der linken Seite vom Doppelpunkt des Targets
 # $< erste abhaengigkeit, $< das erste Element in der Liste der Abhaengigkeiten
@@ -63,8 +64,8 @@ $(OBJDIR)/%.o :  $(SRCDIR)/%.cpp $(HEADERDIR)/%.h
 
 
 
-TestSymboltableTarget: $(SRCDIR)/TestSymboltable.cpp $(HEADERDIR)/Symboltable.h
-	g++ -g  -c -Wall $(SRCDIR)/TestSymboltable.cpp -o $(BINDIRTEST)/TestSymboltable.o
+TestSymboltableTarget: CreateDirectories $(TESTDIR)/TestSymboltable.cpp $(HEADERDIR)/Symboltable.h
+	g++ -g  -c -Wall $(TESTDIR)/TestSymboltable.cpp -o $(BINDIRTEST)/TestSymboltable.o
 
 
 

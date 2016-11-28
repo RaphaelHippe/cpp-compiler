@@ -23,8 +23,8 @@ AutomatTarget: src/Automat.cpp includes/Automat.h
 	g++ -g  -c -Wall src/Automat.cpp -o objs/Automat.o
 
 # TestAutomat.o ist abhängig von tests/TestAutomat.cpp und src/Automat.h
-TestAutomatTarget: tests/TestAutomat.cpp includes/Automat.h
-	g++ -g  -c -Wall tests/TestAutomat.cpp -o debug/TestAutomat.o
+TestAutomatTarget: test/TestAutomat.cpp includes/Automat.h
+	g++ -g  -c -Wall test/TestAutomat.cpp -o debug/TestAutomat.o
 
 IdentifierTarget: src/Identifierstate.cpp includes/Identifierstate.h
 	g++ -g  -c -Wall src/Identifierstate.cpp -o objs/Identifierstate.o
