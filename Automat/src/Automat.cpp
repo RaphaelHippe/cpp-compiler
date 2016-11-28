@@ -39,6 +39,7 @@ int Automat::handle(char c){
     break;
   }
   setState(stateresult);
+
   // wenn stateresult != 0 bauen wir am aktuellem lexem weiter, wenn 0 dann nicht
   // if (stateresult != 0) {
   //   return 1;
