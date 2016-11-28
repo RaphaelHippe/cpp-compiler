@@ -12,6 +12,8 @@ OBJDIR = objs
 # enthaelt das ausfuehrbare File zum Testen
 BINDIRTEST = debug
 
+TESTDIR = tests
+
 
 AUTOMATDIR = ../Automat
 
@@ -61,8 +63,8 @@ $(OBJDIR)/%.o :  $(SRCDIR)/%.cpp $(HEADERDIR)/%.h
 # $< erste abhaengigkeit
 
 
-ScannerTest: $(SRCDIR)/TestScanner.cpp $(HEADERDIR)/Scanner.h
-	g++ -g  -c -Wall src/TestScanner.cpp -o $(BINDIRTEST)/TestScanner.o
+ScannerTest: $(TESTDIR)/TestScanner.cpp $(HEADERDIR)/Scanner.h
+	g++ -g  -c -Wall $(TESTDIR)/TestScanner.cpp -o $(BINDIRTEST)/TestScanner.o
 	g++ -g $(BINDIRTEST)/TestScanner.o $(OBJDIR)/*.o $(AUTOMATDIR)/$(OBJDIR)/*.o $(BUFFERDIR)/$(OBJDIR)/*.o $(SYMBOLTABLEDIR)/$(OBJDIR)/*.o -o $(BINDIRTEST)/ScannerTest
 
 # loeschen aller files im verzeichnis $(OBJDIR) und $(BINDIRTEST) und neu erstellen
