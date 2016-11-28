@@ -7,14 +7,12 @@ Automat/debug
 Automat/objs
 
 # Buffer
-Buffer/debug/BufferTest
-Buffer/debug/TestBuffer.o
-Buffer/objs/Buffer.o
+Buffer/debug
+Buffer/objs
 
 # Scanner
-Scanner/debug/ScannerTest
-Scanner/debug/TestScanner.o
-Scanner/objs/Scanner.o
+Scanner/debug
+Scanner/objs
 
 # Symboltabelle
 Symboltable/debug/SymboltableTest
