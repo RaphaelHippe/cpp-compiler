@@ -10,6 +10,8 @@ States return these numbers:
 
 
 SIGN STATES
+returns 20 / 21
+
 
 return -1 error (not a sign e.g. . , \)
 return 0 for each single sign
