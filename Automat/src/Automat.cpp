@@ -3,6 +3,8 @@
 
 Automat::Automat() {
   _state = INIT;
+  _column = 0;
+  _line = 1;
 }
 
 Automat::~Automat() {
@@ -11,6 +13,8 @@ Automat::~Automat() {
 void Automat::setState(int stateresult) {
   switch (stateresult) {
     // TODO: DELETE this and move to checkLexem()
+    case 21:
+    case 20:
     case 0: _state = INIT;
     break;
     case 10: _state = INTEGER;
@@ -19,15 +23,21 @@ void Automat::setState(int stateresult) {
     break;
     case 12: _state = SIGN;
     break;
+    case 13: _state = NEWLINE;
+    break;
+    default:
+    break;
   }
 }
 
 int Automat::handle(char c){
   int stateresult = 0;
-  switch (_state) {
-    case INIT:
+
+  if (_state == INIT) {
     stateresult = initstate.handle(c);
-    break;
+    setState(stateresult);
+  }
+  switch (_state) {
     case INTEGER:
     stateresult = integerstate.handle(c);
     break;
@@ -37,16 +47,58 @@ int Automat::handle(char c){
     case SIGN:
     stateresult = signstate.handle(c);
     break;
+    case NEWLINE:
+    _column = 0;
+    _line++;
+    stateresult = 0;
+    break;
   }
   setState(stateresult);
-
-  // wenn stateresult != 0 bauen wir am aktuellem lexem weiter, wenn 0 dann nicht
-  // if (stateresult != 0) {
-  //   return 1;
-  // } else {
-  //   return 0;
-  // }
+  if (stateresult != 0) {
+    _column ++;
+  }
   return stateresult;
+}
+
+int Automat::checkLexem(char s[]){
+  // if, IF,
+  // while, WHILE
+  // &&
+  // int result = 0;
+  //
+  // if (_state == INTEGER) {
+  //   // bau nen Iteger
+  // }
+  //
+  // if (_state == IDENTIFIER) {
+  //   // bau nen Identifier
+  //   if (s == 'while' || s == 'WHILE') {
+  //     // baue WHILE lexem
+  //   } else if (s == 'if' || s == 'IF') {
+  //     // baue IF Lexem
+  //   } else {
+  //     // baue normales Lexem
+  //   }
+  //
+  // }
+  //
+  // if (_state == SIGN) {
+  //   /* code */
+  //   if (s[0] == '&') {
+  //     if (s[1] == '&') {
+  //       //bau Lexem
+  //     } else {
+  //       //s[0] --> Error
+  //     }
+  //   }
+  // }
+  //
+  // // if (_state == ERROR) {
+  // //   /* code */
+  // // }
+  //
+  // _state == INIT;
+  // return result;
 }
 
 // TODO: IF und WHILE handlen (checkLexem())
@@ -60,9 +112,9 @@ int Automat::handle(char c){
 // int Automat::getline(){
 //   return 1;
 // }
-// int Automat::getcolumn(){
-//   return 1;
-// }
+int Automat::getcolumn(){
+  return _column;
+}
 // int Automat::getvalue(){
 //   return 1;
 // }

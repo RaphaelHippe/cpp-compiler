@@ -21,21 +21,25 @@ private:
 		IDENTIFIER,
 		INTEGER,
 		SIGN,
-		UNDEFINED
+		UNDEFINED,
+		NEWLINE
 	};
 	States _state;
 	Initstate initstate;
 	Identifierstate identifierstate;
 	Integerstate integerstate;
 	Signstate signstate;
+	int _column;
+	int _line;
 public:
 	Automat();
 	virtual ~Automat();
 	void setState(int stateresult);
 	int handle(char c);
+	int checkLexem(char s[]);
 	// int gettype();
 	// int getline();
-	// int getcolumn();
+	int getcolumn();
   // int getvalue();
 	// Information* getinformation();
 };
