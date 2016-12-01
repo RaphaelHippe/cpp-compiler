@@ -7,9 +7,11 @@
 
 #include "../includes/Scanner.h"
 #include "../../Automat/includes/Automat.h"
+#include <iostream>
 
+using namespace std;
 Scanner::Scanner() {
-	buffer = new Buffer("testinput");
+	buffer = new Buffer("../tests/testinput");
 	automat = new Automat();
 	this->counter = 0;
 }
@@ -19,26 +21,62 @@ Scanner::~Scanner() {
 }
 
 // returns token
-Token* Scanner::nextToken() {
+// Token* Scanner::nextToken() {
+int Scanner::nextToken() {
 	char c;
-	Token* t;
+	int automat_result;
+	// Token* t;
 	do {
 		// Lesen bis zum Lexem
 		c = buffer->getChar();
+		cout << c;
 		if (c != '\0') {
+			// TODO: is this correct?
 			counter++;
 		}
-		// nur so aus spaß
-		cout << c;
-	} while (automat->handle(c) != Automat::UNDEFINED);
+		automat_result = automat->handle(c);
+		// 0 -> checkLexem und Step Back
+		// 20 -> checkLexem kein Step Back
+		// -1 -> Error Token
+		// -99 -> End of File
+	} while (automat_result != 0 && automat_result != 20 && automat_result != -1 && automat_result != -99);
 	// Wir haben ein Lexem!
-	if (counter != 0) {
+	if (counter == 0) {
 		// nichts gelesen! Kein Token
 		// TODO: if identifier ===> symboletable
 		// // TODO: NULL TOKEN
 		// t = new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());;
 		// return t;
+	} else {
+		switch (automat_result) {
+			case 0:
+				cout << "Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() << " Counter: " << counter;
+				cout << '\n';
+				// automat->checkLexem("test");
+				buffer->stepBack(1);
+				counter = 0;
+				return 1;
+			case 20:
+				cout << "Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() << " Counter: " << counter;
+				cout << '\n';
+				// automat->checkLexem("test");
+				counter = 0;
+				return 1;
+			case -1:
+				cout << "Error-Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() << " Counter: " << counter;
+				cout << '\n';
+				// automat->checkLexem("test");
+				counter = 0;
+				return 1;
+			case -99:
+				cout << "End of File. Exiting...";
+				cout << '\n';
+				return 0;
+			default:
+				cout << "Unexpected Error. Exiting...";
+				return 0;
+		}
 	}
-	t = new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());;
-	return t;
+	// t = new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());;
+	// return t;
 }

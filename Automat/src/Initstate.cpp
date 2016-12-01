@@ -25,10 +25,15 @@ int Initstate::handle(char c){
              c == '&' || c == '=' || c == ':' || c == '*') {
     /* Character is a sign - set Signstate */
     return 12;
-  }else if(c == ' ') {
+  } else if(c == ' ') {
+    // space
     return 22;
-  }else if(c == '\n') {
+  } else if(c == '\n') {
+    // new line
     return 14;
+  } else if(c == '\0') {
+    // end of file
+    return -99;
   } else {
     /* unknown character --> error */
     return -1;

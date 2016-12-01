@@ -22,6 +22,7 @@ private:
 		INTEGER,
 		SIGN,
 		UNDEFINED,
+		DEFINED,
 		NEWLINE
 	};
 	States _state;
@@ -37,8 +38,8 @@ public:
 	void setState(int stateresult);
 	int handle(char c);
 	int checkLexem(char s[]);
-	// int gettype();
-	// int getline();
+	int gettype();
+	int getline();
 	int getcolumn();
   // int getvalue();
 	// Information* getinformation();

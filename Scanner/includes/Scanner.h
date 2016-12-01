@@ -7,7 +7,7 @@
 
  #include "./../../Buffer/includes/Buffer.h"
  #include "./../../Automat/includes/Automat.h"
- #include "./../../Symboltable/includes/Token.h"
+ // #include "./../../Symboltable/includes/Token.h"
 
 #ifndef SCANNER_H_
 #define SCANNER_H_
@@ -20,7 +20,8 @@ private:
 public:
 	Scanner();
 	virtual ~Scanner();
-	Token* nextToken();
+	// Token* nextToken();
+	int nextToken();
 };
 
 #endif /* SCANNER_H_ */

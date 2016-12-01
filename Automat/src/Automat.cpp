@@ -23,7 +23,7 @@ void Automat::setState(int stateresult) {
     break;
     case 12: _state = SIGN;
     break;
-    case 13: _state = NEWLINE;
+    case 14: _state = NEWLINE;
     break;
     default:
     break;
@@ -61,6 +61,8 @@ int Automat::handle(char c){
 }
 
 int Automat::checkLexem(char s[]){
+  // _state = INIT;
+  // return 1;
   // if, IF,
   // while, WHILE
   // &&
@@ -106,12 +108,12 @@ int Automat::checkLexem(char s[]){
 // TODO: getter für Token richtig bauen
 
 //
-// int Automat::gettype(){
-//   return 1;
-// }
-// int Automat::getline(){
-//   return 1;
-// }
+int Automat::gettype(){
+  return _state;
+}
+int Automat::getline(){
+  return _line;
+}
 int Automat::getcolumn(){
   return _column;
 }
