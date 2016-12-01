@@ -1,10 +1,14 @@
 #include "../includes/Automat.h"
 #include <cstddef>
+#include <iostream>
+using namespace std;
 
 Automat::Automat() {
   _state = INIT;
-  _column = 0;
-  _line = 1;
+  // TODO: check if _column starts at 0 or 1?!
+  _column = 1;
+  // TODO: check if _column starts at 0 or 1?!
+  _line = 0;
 }
 
 Automat::~Automat() {
@@ -48,14 +52,21 @@ int Automat::handle(char c){
     stateresult = signstate.handle(c);
     break;
     case NEWLINE:
-    _column = 0;
-    _line++;
-    stateresult = 0;
-    break;
+      _column = 0;
+      _line++;
+      stateresult = 0;
+      break;
   }
   setState(stateresult);
   if (stateresult != 0) {
     _column ++;
+  }
+  if (c == '\n') {
+    cout << "NEW LINE \n";
+    cout << "state " << _state << "\n";
+    _line++;
+    // _column = 0;
+    // stateresult = 0;
   }
   return stateresult;
 }
@@ -115,7 +126,9 @@ int Automat::getline(){
   return _line;
 }
 int Automat::getcolumn(){
-  return _column;
+  int myColumn = _column;
+  _column = 1;
+  return myColumn;
 }
 // int Automat::getvalue(){
 //   return 1;
