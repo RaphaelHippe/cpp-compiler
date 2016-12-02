@@ -14,7 +14,7 @@ Scanner::Scanner() {
 	// buffer = new Buffer("../tests/testinput");
 	buffer = new Buffer("../tests/tryit.txt");
 	automat = new Automat();
-	this->counter = 0;
+	this->counter = 1;
 }
 
 Scanner::~Scanner() {
@@ -30,13 +30,21 @@ int Scanner::nextToken() {
 	do {
 		// Lesen bis zum Lexem
 		c = buffer->getChar();
-		cout << c;
-		cout << '\n';
 		if (c != '\0' && c != '\n') {
 			// TODO: is this correct?
 			counter++;
 		}
 		automat_result = automat->handle(c);
+		// if (automat_result != 0 && automat_result != 20 &&
+		// 		automat_result != -99 && automat_result != -1) {
+		// 	// TODO: Check if this is a better approach
+		// 	counter++;
+		// }
+
+		// cout << c;
+		// cout << " - automat_result: " << automat_result << " Automat State: " << automat->gettype();
+		// cout << '\n';
+
 		// 0 -> checkLexem und Step Back
 		// 20 -> checkLexem kein Step Back
 		// -1 -> Error Token
@@ -53,20 +61,22 @@ int Scanner::nextToken() {
 	// } else {
 		switch (automat_result) {
 			case 0:
-				cout << "Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter;
+				counter--;
+				cout << "Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
 				cout << '\n';
 				// automat->checkLexem("test");
-				// buffer->stepBack(1);
+				buffer->stepBack(1);
+				automat->decreaseColumn();
 				counter = 0;
 				return 1;
 			case 20:
-				cout << "Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter;
+				cout << "Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
 				cout << '\n';
 				// automat->checkLexem("test");
 				counter = 0;
 				return 1;
 			case -1:
-				cout << "Error-Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter;
+				cout << "Error-Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
 				cout << '\n';
 				// automat->checkLexem("test");
 				counter = 0;

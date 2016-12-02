@@ -26,6 +26,7 @@ private:
 		NEWLINE
 	};
 	States _state;
+	States _tokenState;
 	Initstate initstate;
 	Identifierstate identifierstate;
 	Integerstate integerstate;
@@ -41,6 +42,7 @@ public:
 	int gettype();
 	int getline();
 	int getcolumn();
+	void decreaseColumn();
   // int getvalue();
 	// Information* getinformation();
 };

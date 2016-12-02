@@ -5,10 +5,12 @@ using namespace std;
 
 Automat::Automat() {
   _state = INIT;
+  _tokenState = INIT;
   // TODO: check if _column starts at 0 or 1?!
-  _column = 1;
-  // TODO: check if _column starts at 0 or 1?!
-  _line = 0;
+  // TODO: Why does it work with _column being 2 here and 1 on new line ...?!
+  _column = 2;
+  // TODO: check if _line starts at 0 or 1?!
+  _line = 1;
 }
 
 Automat::~Automat() {
@@ -19,16 +21,25 @@ void Automat::setState(int stateresult) {
     // TODO: DELETE this and move to checkLexem()
     case 21:
     case 20:
-    case 0: _state = INIT;
-    break;
-    case 10: _state = INTEGER;
-    break;
-    case 11: _state = IDENTIFIER;
-    break;
-    case 12: _state = SIGN;
-    break;
-    case 14: _state = NEWLINE;
-    break;
+    case 0:
+      _state = INIT;
+      break;
+    case 10:
+      _state = INTEGER;
+      _tokenState = INTEGER;
+      break;
+    case 11:
+      _state = IDENTIFIER;
+      _tokenState = IDENTIFIER;
+      break;
+    case 12:
+      _state = SIGN;
+      _tokenState = SIGN;
+      break;
+    case 14:
+      _state = NEWLINE;
+      // _tokenState = NEWLINE;
+      break;
     default:
     break;
   }
@@ -54,19 +65,15 @@ int Automat::handle(char c){
     case NEWLINE:
       _column = 0;
       _line++;
-      stateresult = 0;
+      stateresult = 21;
       break;
   }
   setState(stateresult);
-  if (stateresult != 0) {
+  if (stateresult != 0 && stateresult != 14 &&
+      stateresult != 21 && stateresult != 22 &&
+      stateresult != -1 && stateresult != -99) {
+        // cout << "\nstateresult: " << stateresult << " char: " << c << "\n";
     _column ++;
-  }
-  if (c == '\n') {
-    cout << "NEW LINE \n";
-    cout << "state " << _state << "\n";
-    _line++;
-    // _column = 0;
-    // stateresult = 0;
   }
   return stateresult;
 }
@@ -120,15 +127,18 @@ int Automat::checkLexem(char s[]){
 
 //
 int Automat::gettype(){
-  return _state;
+  States myState = _tokenState;
+  _tokenState = INIT;
+  return myState;
 }
 int Automat::getline(){
   return _line;
 }
 int Automat::getcolumn(){
-  int myColumn = _column;
-  _column = 1;
-  return myColumn;
+  return _column;
+}
+void Automat::decreaseColumn(){
+  _column--;
 }
 // int Automat::getvalue(){
 //   return 1;
