@@ -15,6 +15,12 @@ makeTestAutomat: CreateDirectories SignTarget IntegerTarget IdentifierTarget Ini
 	g++ -g $(OBJSDIR)/Initstate.o $(OBJSDIR)/Signstate.o $(OBJSDIR)/Integerstate.o $(OBJSDIR)/Identifierstate.o $(OBJSDIR)/Automat.o $(DEBUGDIR)/TestAutomat.o -o $(DEBUGDIR)/AutomatTest
 
 # compilieren des Files Automat.cpp zu Automat.o,
+
+# in makeTestAutomat include all new objs ;)
+
+# compilieren des Files Automat.cpp zu Automat.o,
+# das Objekt-File ist abhängig von src/Automat.cpp und src/Automat.h
+# flag:
 # -c --> nur compilieren
 # -g --> debug Informationen erzeugen
 # -Wall --> alle meldungen erzeugen (Warning all)
@@ -28,6 +34,10 @@ TestAutomatTarget: $(TESTSDIR)/TestAutomat.cpp $(INCLUDESDIR)/Automat.h
 
 IdentifierTarget: $(SRCDIR)/Identifierstate.cpp includes/Identifierstate.h
 	g++ -g  -c -Wall $(SRCDIR)/Identifierstate.cpp -o $(OBJSDIR)/Identifierstate.o
+
+# # TestAutomat.o ist abhängig von src/TestAutomat.cpp und src/Automat.h
+# TestInitstateTarget :  src/TestInitstate.cpp includes/Initstate.h
+# 	g++ -g  -c -Wall src/TestInitstate.cpp  -o debug/TestInitstate.o
 
 SignTarget: $(SRCDIR)/Signstate.cpp includes/Signstate.h
 	g++ -g  -c -Wall $(SRCDIR)/Signstate.cpp -o $(OBJSDIR)/Signstate.o
@@ -60,6 +70,7 @@ CreateDirectories:
 	rm -rf $(OBJSDIR)
 	mkdir $(DEBUGDIR)
 	mkdir $(OBJSDIR)
+	# $(MAKE) makeTestAutomat
 
 # dieses Target wird vom makefile des Gesamtprojekts verwendet
 # objs fuer Gesamtprojekt loeschen und dann neu erzeugen
