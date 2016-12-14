@@ -8,7 +8,7 @@ Automat::Automat() {
   _tokenState = INIT;
   // TODO: check if _column starts at 0 or 1?!
   // TODO: Why does it work with _column being 2 here and 1 on new line ...?!
-  _column = 2;
+  _column = 1;
   // TODO: check if _line starts at 0 or 1?!
   _line = 1;
 }
@@ -63,17 +63,17 @@ int Automat::handle(char c){
     stateresult = signstate.handle(c);
     break;
     case NEWLINE:
-      _column = 0;
+      _column = 1;
       _line++;
       stateresult = 21;
       break;
   }
   setState(stateresult);
   if (stateresult != 0 && stateresult != 14 &&
-      stateresult != 21 && stateresult != 22 &&
-      stateresult != -1 && stateresult != -99) {
+      stateresult != 21 && stateresult != -1 &&
+      stateresult != -99) {
         // cout << "\nstateresult: " << stateresult << " char: " << c << "\n";
-    _column ++;
+    _column++;
   }
   return stateresult;
 }

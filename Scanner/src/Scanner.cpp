@@ -14,7 +14,7 @@ Scanner::Scanner() {
 	// buffer = new Buffer("../tests/testinput");
 	buffer = new Buffer("../tests/tryit.txt");
 	automat = new Automat();
-	this->counter = 1;
+	this->counter = 0;
 }
 
 Scanner::~Scanner() {
@@ -30,7 +30,8 @@ int Scanner::nextToken() {
 	do {
 		// Lesen bis zum Lexem
 		c = buffer->getChar();
-		if (c != '\0' && c != '\n') {
+		if (c != '\0' && c != '\n' && c != ' ') {
+		// if (c != '\0') {
 			// TODO: is this correct?
 			counter++;
 		}
@@ -61,16 +62,20 @@ int Scanner::nextToken() {
 	// } else {
 		switch (automat_result) {
 			case 0:
+				if (c == '\n' || c == ' ') {
+					counter++;
+				}
 				counter--;
-				cout << "Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
+				// automat->decreaseColumn();
+				cout << "Token(0): Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
 				cout << '\n';
 				// automat->checkLexem("test");
 				buffer->stepBack(1);
-				automat->decreaseColumn();
 				counter = 0;
 				return 1;
 			case 20:
-				cout << "Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
+				// counter--;
+				cout << "Token(20): Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
 				cout << '\n';
 				// automat->checkLexem("test");
 				counter = 0;
