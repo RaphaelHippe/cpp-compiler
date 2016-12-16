@@ -3,7 +3,7 @@ Das Projekt wurde in 4 Teilprojekte aufgeteilt:
 	- Automat
 	- Buffer
 	- Symboltabelle
-	
+
 	- Scanner
 
 
@@ -13,14 +13,14 @@ Jedes Teilprojekt hat die Verzeichnisstruktur:
 	- includes		enthaelt die Headerfiles
 	- objs			enthaelt die Objektfiles, die notwenig fuer das Gesamtprojekt sind
 	- debug			enthaelt die Objektfiles und das ausfuehrbare File zum Testen  des Teilprojekts
-	
+
 
 Jedes Teilprojekt enthaelt ein eigenes Makefile und eine eigene Main-Klasse, um die Funktionalitaet zu testen.
-	
-	
+
+
 Makefiles werden benoetigt, um das Compilieren und Linken automatisiert durch das Tool make ausfuehren zu lassen.
- 
-Level: ohne Makefile Kenntnisse	
+
+Level: ohne Makefile Kenntnisse
 Im Makefile im Teilprojekt Automat sind alle Schritte zum Compilieren und Linken ausfuehrlich aufgelistet.
 
 
@@ -34,8 +34,8 @@ Im Makefile im Teilprojekt Symboltable und Scanner wird auch die Liste der zu co
 
 Aufbau des Makefiles:
 	Definition der Variablen
-	Targets zum Bauen des Tests, Targets sind Sprungziele, die durch make ausgefuehrt werden können 
-	
+	Targets zum Bauen des Tests, Targets sind Sprungziele, die durch make ausgefuehrt werden können
+
 Im Terminalfenster können die targets so aufgerufen werden: make target
 
 In der Eclipse View "Make Targets" erscheinen die Targets der einzelnen Makefiles, die dann mit einem Doppelklick ausgefuehrt werden können.
@@ -60,10 +60,10 @@ classA.o: classA.cpp classA.h
 
 classB.o: classB.cpp classB.h classA.h
     [tab] g++ -c -g classB.cpp -o classB.o
-    
+
 # target classB.o ist abhaengig von der Source Datei classB.cpp, classB.h und classA.h
-# g++ Compiler 
-# das File classB.cpp wird nur compiliert (-c) und in das Outputfile (-o) classB.o geschrieben    
+# g++ Compiler
+# das File classB.cpp wird nur compiliert (-c) und in das Outputfile (-o) classB.o geschrieben
 
 
 # Link command:
@@ -71,12 +71,12 @@ my_program: classA.o classB.o
    [tab] g++ -g classA.o classB.o -o my_program
 
 # target my_program ist abhaengig von den Objektdateien classA.o und classB.o
-# g++ Linker 
+# g++ Linker
 
 # options:
-#		-c			Kompilieren ohne zu linken. 
+#		-c			Kompilieren ohne zu linken.
 #		-g 			debugging infos erzeugen
-#		-o file     object-file name 
+#		-o file     object-file name
 #
 
 
@@ -87,3 +87,30 @@ http://mrbook.org/blog/tutorials/make/
 http://de.wikipedia.org/wiki/Make
 
 http://www.sethi.org/classes/cet375/lab_notes/lab_04_makefile_and_compilation.html
+
+
+
+
+
+States return these numbers:
+1 --> same state
+0 --> init state
+10 --> Integer State
+11 --> Identifer State
+12 --> Sign State
+
+
+
+
+SIGN STATES
+returns 20 / 21
+
+
+return -1 error (not a sign e.g. . , \)
+return 0 for each single sign
+return 1 for the special signs:
+:=
+:*
+*:
+=:=
+&&
