@@ -87,30 +87,3 @@ http://mrbook.org/blog/tutorials/make/
 http://de.wikipedia.org/wiki/Make
 
 http://www.sethi.org/classes/cet375/lab_notes/lab_04_makefile_and_compilation.html
-
-
-
-
-
-States return these numbers:
-1 --> same state
-0 --> init state
-10 --> Integer State
-11 --> Identifer State
-12 --> Sign State
-
-
-
-
-SIGN STATES
-returns 20 / 21
-
-
-return -1 error (not a sign e.g. . , \)
-return 0 for each single sign
-return 1 for the special signs:
-:=
-:*
-*:
-=:=
-&&
