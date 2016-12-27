@@ -50,7 +50,7 @@ int Scanner::nextToken() {
 		// 20 -> checkLexem kein Step Back
 		// -1 -> Error Token
 		// -99 -> End of File
-	} while (automat_result != 0 && automat_result != 20 && automat_result != -1 && automat_result != -99);
+	} while (automat_result != 0 && automat_result != 20 && automat_result != -1 && automat_result != -99 && automat_result != 24);
 	// Wir haben ein Lexem!
 	// if (counter == 0) {
 		// cout << "Counter is 0";
@@ -61,6 +61,11 @@ int Scanner::nextToken() {
 		// return t;
 	// } else {
 		switch (automat_result) {
+			case 24:
+				// cout << "End of Comment \n";
+				counter = 0;
+				return 1;
+				break;
 			case 0:
 				if (c == '\n' || c == ' ') {
 					counter++;
@@ -81,7 +86,7 @@ int Scanner::nextToken() {
 				counter = 0;
 				return 1;
 			case -1:
-				cout << "Error-Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
+				cout << "Error-Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn() << c;
 				cout << '\n';
 				// automat->checkLexem("test");
 				counter = 0;

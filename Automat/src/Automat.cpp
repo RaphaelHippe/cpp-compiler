@@ -19,6 +19,7 @@ Automat::~Automat() {
 void Automat::setState(int stateresult) {
   switch (stateresult) {
     // TODO: DELETE this and move to checkLexem()
+    case 24:
     case 21:
     case 20:
     case 0:
@@ -69,12 +70,19 @@ int Automat::handle(char c){
       break;
   }
   setState(stateresult);
+
+  if (stateresult == 23) {
+    // new line in comment
+    _column = 1;
+    _line++;
+  }
+
   if (stateresult != 0 && stateresult != 14 &&
-      stateresult != 21 && stateresult != -1 &&
-      stateresult != -99) {
+    stateresult != -99 && stateresult != 23) {
         // cout << "\nstateresult: " << stateresult << " char: " << c << "\n";
     _column++;
   }
+  // cout << "Automat Stateresult: " << stateresult << "\n";
   return stateresult;
 }
 
