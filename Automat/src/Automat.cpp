@@ -78,7 +78,8 @@ int Automat::handle(char c){
   }
 
   if (stateresult != 0 && stateresult != 14 &&
-    stateresult != -99 && stateresult != 23) {
+      stateresult != -99 && stateresult != 23 &&
+      stateresult != 21) {
         // cout << "\nstateresult: " << stateresult << " char: " << c << "\n";
     _column++;
   }
