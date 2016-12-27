@@ -1,11 +1,8 @@
-#include "../includes/Symboltable.h"
+// #include "../includes/Symboltable.h"
+#include "../includes/Information.h"
 
 int main(int argc, char **argv) {
 
-	Symboltable* symboltable;
-
-	symboltable = new Symboltable();
-
-	//TODO tests
+	return 1;
 
 }

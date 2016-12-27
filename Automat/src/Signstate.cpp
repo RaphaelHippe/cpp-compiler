@@ -1,5 +1,9 @@
 #include "../includes/Signstate.h"
 
+#include <iostream>
+
+using namespace std;
+
 Signstate::Signstate() {
   one = '0';
   two = '0';
@@ -14,18 +18,23 @@ int Signstate::handle(char c){
 
   if (comment == 1) {
     // Im Kommentar
+    // cout << "in the comment " << c << "\n";
     if (c == ':' && one == '*') {
       // raus aus Kommentar
+      // cout << "exit comment " << c << "\n";
       comment = 0;
       one = '0';
       two = '0';
-      return 21;
+      return 24;
     } else {
       one = '0';
       two = '0';
     }
     if (c == '*') {
       one = c;
+    }
+    if (c == '\n') {
+      return 23;
     }
     return 22;
   }

@@ -9,13 +9,15 @@
 #include <iostream>
 #include <stdio.h>
 
+using namespace std;
+
 Information::Information(char word[]) {
 	// TODO Auto-generated constructor stub
   for (int j = 0; j < 1024; j++) {
     lexem[j] = '\0';
   }
   int i = 0;
-  while (i < 1024 || word[i] != '\0') {
+  while (i < 1024 && word[i] != '\0') {
     lexem[i] = word[i];
     i++;
   }
@@ -32,7 +34,11 @@ char Information::getLexemPointer(){
 }
 
 void Information::incrementLexemPointer(){
-  *lexemPointer++;
+  lexemPointer++;
+}
+
+void Information::resetLexemPointer(){
+  lexemPointer = lexem;
 }
 
 char Information::getType(){
@@ -57,10 +63,12 @@ bool Information::compairLexem(char word[]){
 void Information::printLexem(){
   lexemPointer = lexem;
   while (*lexemPointer != '\0') {
-    printf("%c\n", *lexemPointer);
+    // printf("%c\n", *lexemPointer);
+    cout << *lexemPointer;
     *lexemPointer++;
   }
-  printf("%s\n", "All printed!");
+  // printf("%s\n", "All printed!");
+    cout << '\n';
 }
 
 int Information::calcHashValue(){
