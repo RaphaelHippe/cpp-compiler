@@ -6,11 +6,14 @@
  *  Edited:
  *      Author: Raphael Hippe
  */
+ #include "../includes/List.h"
+ #include "../includes/Key.h"
+ #include "../includes/Information.h"
 
 #ifndef SYMBOLTABLE_H_
 #define SYMBOLTABLE_H_
 
-#define TABLE_SIZE 1024;
+#define TABLE_SIZE 1024
 
 class Symboltable {
 private:
@@ -26,7 +29,6 @@ public:
 	Key* insert(Information* value);
 	Key* testInsert(Information* value, int testHashValue);
 	Information* lookup(Key* key);
-
 };
 
 #endif /* SYMBOLTABLE_H_ */

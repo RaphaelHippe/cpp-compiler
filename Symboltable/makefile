@@ -49,10 +49,8 @@ OBJS = $(OBJSDIR)/Symboltable.o \
 
 # Variante mit guten Makefile-Kenntnissen
 
-makeTestSymboltable: CreateDirectories InformationTarget TestSymboltableTarget
-	g++ -g objs/Information.o debug/TestSymboltable.o -o debug/SymboltableTest
-
-#SymboltableTarget: CreateDirectories $(OBJS)
+makeTestSymboltable: CreateDirectories EntryTarget InformationTarget KeyTarget ListTarget SymboltableTarget TokenTarget TestSymboltableTarget
+	g++ -g objs/Entry.o objs/Information.o objs/Key.o objs/List.o objs/Symboltable.o objs/Token.o debug/TestSymboltable.o -o debug/SymboltableTest
 
 # $@ name des object files = name auf der linken Seite vom Doppelpunkt des Targets
 # $< erste abhaengigkeit, $< das erste Element in der Liste der Abhaengigkeiten
@@ -67,9 +65,23 @@ makeTestSymboltable: CreateDirectories InformationTarget TestSymboltableTarget
 TestSymboltableTarget: $(TESTDIR)/TestSymboltable.cpp $(HEADERDIR)/Information.h
 	g++ -g  -c -Wall $(TESTDIR)/TestSymboltable.cpp -o $(BINDIRTEST)/TestSymboltable.o
 
+EntryTarget: src/Entry.cpp includes/Entry.h
+		g++ -g  -c -Wall src/Entry.cpp -o objs/Entry.o
+
 InformationTarget: src/Information.cpp includes/Information.h
 	g++ -g  -c -Wall src/Information.cpp -o objs/Information.o
 
+KeyTarget: src/Key.cpp includes/Key.h
+	g++ -g  -c -Wall src/Key.cpp -o objs/Key.o
+
+ListTarget: src/List.cpp includes/List.h
+	g++ -g  -c -Wall src/List.cpp -o objs/List.o
+
+SymboltableTarget: src/Symboltable.cpp includes/Symboltable.h
+		g++ -g  -c -Wall src/Symboltable.cpp -o objs/Symboltable.o
+
+TokenTarget: src/Token.cpp includes/Token.h
+	g++ -g  -c -Wall src/Token.cpp -o objs/Token.o
 
 # loeschen aller files im verzeichnis $(OBJSDIR) und $(BINDIRTEST) und neu compilieren
 

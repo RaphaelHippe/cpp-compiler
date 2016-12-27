@@ -1,16 +1,26 @@
 #include "../includes/Token.h"
 #include <iostream>
+#include <string.h>
 
 using namespace std;
 
-Token::Token(int type, int line, int column, int value, Information* inf)
+Token::Token(int type, int line, int column, Information* inf)
+{
+    // TODO: implement error type
+    this->type = type;
+    this->line = line;
+    this->column = column;
+    this->value = 0;
+    this->information = inf;
+}
+Token::Token(int type, int line, int column, int value)
 {
     // TODO: implement error type
     this->type = type;
     this->line = line;
     this->column = column;
     this->value = value;
-    this->information = inf;
+    this->information = NULL;
 }
 
 int Token::getLine()
@@ -37,10 +47,25 @@ Information* Token::getInformation()
 {
     return information;
 }
-// 
-// std::string Token::getTokenString(){
-//   return "Token xyz";
-// }
+
+char* Token::getTokenString(){
+  tokenText = "Token xyz";
+  return tokenText;
+}
+
+int Token::getTokenTextLength(){
+  tokenText += '\0';
+  char* pointer = tokenText;
+  int tokenTextLength = 0;
+
+  while (pointer != '\0') {
+    tokenTextLength++;
+    cout << "lul" << '\n';
+    cout << pointer << '\n';
+    pointer++;
+  }
+  return tokenTextLength;
+}
 
 // TODO: implement a getString method
 // Token identifier Line: x Column: y Lexem z

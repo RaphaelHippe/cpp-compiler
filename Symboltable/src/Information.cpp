@@ -29,8 +29,8 @@ void Information::setType(int type){
   myType = type;
 }
 
-char Information::getLexemPointer(){
-  return *lexemPointer;
+char* Information::getLexemPointer(){
+  return lexemPointer;
 }
 
 void Information::incrementLexemPointer(){

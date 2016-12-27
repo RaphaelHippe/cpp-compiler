@@ -20,10 +20,11 @@ Entry::~Entry() {
 }
 
 int Entry::addValue(Information* value){
-  myValue->resetLexemPointer();
-  if (value->compairLexem(myValue->getLexemPointer())) {
-    return 1;
-  } else if (myNext == NULL) {
+  // myValue->resetLexemPointer();
+  // if (value->compairLexem(myValue->getLexemPointer())) {
+  //   return 1;
+  // } else
+  if (myNext == NULL) {
     // If there is no next element -> create another
     myNext = new Entry(value);
     return 1;

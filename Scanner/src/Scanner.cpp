@@ -14,6 +14,7 @@ using namespace std;
 Scanner::Scanner() {
 	// buffer = new Buffer("../tests/testinput");
 	buffer = new Buffer("../tests/tryit.txt");
+	symTable = new Symboltable();
 	filedesc = open("out.txt", O_WRONLY | O_CREAT|O_TRUNC);
 	automat = new Automat();
 	this->counter = 0;
@@ -108,6 +109,15 @@ int Scanner::nextToken() {
 					//  myInformation = new Information(word);
 					Information* myInformation = new Information(word);
 					myInformation->printLexem();
+					Key* myKey = symTable->insert(myInformation);
+					Information* test = symTable->lookup(myKey);
+					test->printLexem();
+					// cout << "symTable " << symTable->lookup(myKey);
+					// Token* token = new Token(int type, int line, int column, int value, Information* inf);
+					Token* token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, myInformation);
+					// cout << token->getLine() << " Token Line \n";
+					// cout << token->getTokenTextLength() << "\n";
+					// write(filedesc, token->getTokenString(), 9);
 				}
 
 				// automat->checkLexem("test");
@@ -158,6 +168,7 @@ int Scanner::nextToken() {
 		}
 	// }
 	// t = new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());;
+			// write(filedesc, token.)
 	// return t;
 }
 

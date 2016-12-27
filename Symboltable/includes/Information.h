@@ -18,7 +18,7 @@ private:
 public:
 	Information(char word[]);
 	virtual ~Information();
-  char getLexemPointer();
+  char* getLexemPointer();
   void incrementLexemPointer();
   char getType();
   bool compairLexem(char word[]);

@@ -7,8 +7,9 @@
 
  #include "./../../Buffer/includes/Buffer.h"
  #include "./../../Automat/includes/Automat.h"
- // #include "./../../Symboltable/includes/Token.h"
+ #include "./../../Symboltable/includes/Token.h"
  #include "./../../Symboltable/includes/Information.h"
+ #include "../../Symboltable/includes/Symboltable.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,6 +24,7 @@ private:
   int counter;
   Buffer* buffer;
   Automat* automat;
+  Symboltable* symTable;
   int filedesc;
 public:
 	Scanner();
