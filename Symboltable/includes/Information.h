@@ -16,7 +16,7 @@ private:
   char* lexemPointer;
   char currentChar;
 public:
-	Information();
+	Information(char word[]);
 	virtual ~Information();
   char getLexemPointer();
   void incrementLexemPointer();
@@ -25,6 +25,7 @@ public:
   void setType(int type);
   int calcHashValue();
   void printLexem();
+  void resetLexemPointer();
 
 };
 

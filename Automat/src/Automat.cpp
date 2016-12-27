@@ -136,9 +136,9 @@ int Automat::checkLexem(char s[]){
 
 //
 int Automat::gettype(){
-  States myState = _tokenState;
-  _tokenState = INIT;
-  return myState;
+  // States myState = _tokenState;
+  // _tokenState = INIT;
+  return _tokenState;
 }
 int Automat::getline(){
   return _line;

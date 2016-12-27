@@ -8,17 +8,26 @@
 #include "../includes/Scanner.h"
 #include "../../Automat/includes/Automat.h"
 #include <iostream>
+#include "../../Symboltable/includes/Information.h"
 
 using namespace std;
 Scanner::Scanner() {
 	// buffer = new Buffer("../tests/testinput");
 	buffer = new Buffer("../tests/tryit.txt");
+	filedesc = open("out.txt", O_WRONLY | O_CREAT|O_TRUNC);
 	automat = new Automat();
 	this->counter = 0;
 }
 
-Scanner::~Scanner() {
-	// TODO Auto-generated destructor stub
+void Scanner::writeInt(long int value, int filedesc){
+	char intString[10000];
+	int j = 0;
+	sprintf(intString, "%ld", value);
+	char * pointer = intString;
+	while ( *(pointer+j) != '\0') {
+		write(filedesc, pointer+j, 1);
+		j++;
+	}
 }
 
 // returns token
@@ -74,20 +83,68 @@ int Scanner::nextToken() {
 				// automat->decreaseColumn();
 				cout << "Token(0): Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
 				cout << '\n';
-				// automat->checkLexem("test");
+				write(filedesc, "Token(0): Type:    ", 19);
+				writeInt(automat->gettype(), filedesc);
+				write(filedesc, " Line: ", 7);
+				writeInt(automat->getline(), filedesc);
+				write(filedesc, " Column: ", 9);
+				writeInt(automat->getcolumn() - counter, filedesc);
+				write(filedesc, " Counter: ", 10);
+				writeInt(counter, filedesc);
+				write(filedesc, " Raw Column: ", 13);
+				writeInt(automat->getcolumn(), filedesc);
+				write(filedesc, "\n", 1);
+
 				buffer->stepBack(1);
+
+				if (automat->gettype() == 1) {
+					// insert into sym table
+					buffer->stepBack(counter);
+					char word[counter + 1];
+					for (size_t i = 0; i < counter; i++) {
+						word[i] = buffer->getChar();
+					}
+						word[counter] = '\0';
+					//  myInformation = new Information(word);
+					Information* myInformation = new Information(word);
+					myInformation->printLexem();
+				}
+
+				// automat->checkLexem("test");
 				counter = 0;
 				return 1;
 			case 20:
 				// counter--;
 				cout << "Token(20): Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
 				cout << '\n';
+				write(filedesc, "Token(20): Type:   ", 19);
+				writeInt(automat->gettype(), filedesc);
+				write(filedesc, " Line: ", 7);
+				writeInt(automat->getline(), filedesc);
+				write(filedesc, " Column: ", 9);
+				writeInt(automat->getcolumn() - counter, filedesc);
+				write(filedesc, " Counter: ", 10);
+				writeInt(counter, filedesc);
+				write(filedesc, " Raw Column: ", 13);
+				writeInt(automat->getcolumn(), filedesc);
+				write(filedesc, "\n", 1);
 				// automat->checkLexem("test");
 				counter = 0;
 				return 1;
 			case -1:
 				cout << "Error-Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn() << c;
 				cout << '\n';
+				write(filedesc, "Error-Token: Type: ", 19);
+				writeInt(automat->gettype(), filedesc);
+				write(filedesc, " Line: ", 7);
+				writeInt(automat->getline(), filedesc);
+				write(filedesc, " Column: ", 9);
+				writeInt(automat->getcolumn() - counter, filedesc);
+				write(filedesc, " Counter: ", 10);
+				writeInt(counter, filedesc);
+				write(filedesc, " Raw Column: ", 13);
+				writeInt(automat->getcolumn(), filedesc);
+				write(filedesc, "\n", 1);
 				// automat->checkLexem("test");
 				counter = 0;
 				return 1;
@@ -102,4 +159,9 @@ int Scanner::nextToken() {
 	// }
 	// t = new Token(automat->gettype(), automat->getline(), automat->getcolumn(), automat->getvalue(), automat->getinformation());;
 	// return t;
+}
+
+Scanner::~Scanner() {
+	// TODO Auto-generated destructor stub
+	close(filedesc);
 }
