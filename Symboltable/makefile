@@ -1,25 +1,14 @@
-# Definition der Variablen
-
-# enthaelt die Header Files
 HEADERDIR = includes
-
-# enthaelt die Source Files
 SRCDIR = src
-
-# enthaelt die Obj Files zum Testen
 OBJSDIR = objs
-
-# enthaelt das ausfuehrbare File zum Testen
 BINDIRTEST = debug
 
 TESTDIR = test
-
-## hier alle Object Files eintragen, ausser das File mit der Mainmethode
-## darauf achten, dass letzte Zeile ohne "\" eingetragen wird
-
 OBJS = $(OBJSDIR)/Symboltable.o \
 	#$(OBJSDIR)/xx1.o \
 	#$(OBJSDIR)/xxn.o
+
+makeSymboltable: CreateDirectories EntryTarget InformationTarget KeyTarget ListTarget SymboltableTarget TokenTarget
 
 #executable Tests
 makeTestInformation: CreateDirectories InformationTarget TestInformationTarget

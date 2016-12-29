@@ -58,3 +58,15 @@
 #
 # $@ name des object files
 # $< erste abhaengigkeit
+
+
+# compilieren des Files Automat.cpp zu Automat.o,
+
+# in makeTestAutomat include all new objs ;)
+
+# compilieren des Files Automat.cpp zu Automat.o,
+# das Objekt-File ist abhängig von src/Automat.cpp und src/Automat.h
+# flag:
+# -c --> nur compilieren
+# -g --> debug Informationen erzeugen
+# -Wall --> alle meldungen erzeugen (Warning all)

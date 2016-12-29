@@ -18,6 +18,11 @@ OBJS = $(OBJDIR)/Scanner.o \
 	#$(OBJDIR)/xxn.o
 
 # Variante mit guten Makefile-Kenntnissen
+makeScanner: CreateDirectories $(OBJS) ScannerTest
+$(OBJDIR)/%.o :  $(SRCDIR)/%.cpp $(HEADERDIR)/%.h
+	@echo "g++ $*.cpp"
+	g++ -g  -c -Wall  -o $@  $<
+
 makeTestScanner: CreateDirectories $(OBJS) ScannerTest
 $(OBJDIR)/%.o :  $(SRCDIR)/%.cpp $(HEADERDIR)/%.h
 	@echo "g++ $*.cpp"

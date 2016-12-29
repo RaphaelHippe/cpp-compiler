@@ -10,60 +10,38 @@ OBJSDIR = objs
 DEBUGDIR = debug
 TESTSDIR = tests
 
-# in makeTestAutomat include all new objs! ;)
+makeAutomat: CreateDirectories SignTarget IntegerTarget IdentifierTarget InitstateTarget AutomatTarget
+
+#executable Tests
 makeTestAutomat: CreateDirectories SignTarget IntegerTarget IdentifierTarget InitstateTarget AutomatTarget TestAutomatTarget
 	g++ -g $(OBJSDIR)/Initstate.o $(OBJSDIR)/Signstate.o $(OBJSDIR)/Integerstate.o $(OBJSDIR)/Identifierstate.o $(OBJSDIR)/Automat.o $(DEBUGDIR)/TestAutomat.o -o $(DEBUGDIR)/AutomatTest
 
-# compilieren des Files Automat.cpp zu Automat.o,
-
-# in makeTestAutomat include all new objs ;)
-
-# compilieren des Files Automat.cpp zu Automat.o,
-# das Objekt-File ist abhängig von src/Automat.cpp und src/Automat.h
-# flag:
-# -c --> nur compilieren
-# -g --> debug Informationen erzeugen
-# -Wall --> alle meldungen erzeugen (Warning all)
-
-AutomatTarget: $(SRCDIR)/Automat.cpp includes/Automat.h
-	g++ -g  -c -Wall $(SRCDIR)/Automat.cpp -o $(OBJSDIR)/Automat.o
-
-# TestAutomat.o ist abhängig von tests/TestAutomat.cpp und $(SRCDIR)/Automat.h
 TestAutomatTarget: $(TESTSDIR)/TestAutomat.cpp $(INCLUDESDIR)/Automat.h
 	g++ -g  -c -Wall $(TESTSDIR)/TestAutomat.cpp -o $(DEBUGDIR)/TestAutomat.o
+
+#building Testfiles
+AutomatTarget: $(SRCDIR)/Automat.cpp includes/Automat.h
+	g++ -g  -c -Wall $(SRCDIR)/Automat.cpp -o $(OBJSDIR)/Automat.o
 
 IdentifierTarget: $(SRCDIR)/Identifierstate.cpp includes/Identifierstate.h
 	g++ -g  -c -Wall $(SRCDIR)/Identifierstate.cpp -o $(OBJSDIR)/Identifierstate.o
 
-# # TestAutomat.o ist abhängig von src/TestAutomat.cpp und src/Automat.h
-# TestInitstateTarget :  src/TestInitstate.cpp includes/Initstate.h
-# 	g++ -g  -c -Wall src/TestInitstate.cpp  -o debug/TestInitstate.o
-
-SignTarget: $(SRCDIR)/Signstate.cpp includes/Signstate.h
-	g++ -g  -c -Wall $(SRCDIR)/Signstate.cpp -o $(OBJSDIR)/Signstate.o
+InitstateTarget: $(SRCDIR)/Initstate.cpp includes/Initstate.h
+	g++ -g  -c -Wall $(SRCDIR)/Initstate.cpp -o $(OBJSDIR)/Initstate.o
 
 IntegerTarget: $(SRCDIR)/Integerstate.cpp includes/Integerstate.h
 	g++ -g  -c -Wall $(SRCDIR)/Integerstate.cpp -o $(OBJSDIR)/Integerstate.o
 
-StateTarget: $(SRCDIR)/State.cpp includes/State.h
-	g++ -g  -c -Wall $(SRCDIR)/State.cpp -o $(OBJSDIR)/State.o
-
-InitstateTarget: $(SRCDIR)/Initstate.cpp includes/Initstate.h
-	g++ -g  -c -Wall $(SRCDIR)/Initstate.cpp -o $(OBJSDIR)/Initstate.o
+SignTarget: $(SRCDIR)/Signstate.cpp includes/Signstate.h
+	g++ -g  -c -Wall $(SRCDIR)/Signstate.cpp -o $(OBJSDIR)/Signstate.o
 
 BuildExecutable:
 	g++ -g $(OBJSDIR)/Automat.o $(DEBUGDIR)/TestAutomat.o -o $(DEBUGDIR)/AutomatTest
-
-# # TestAutomat.o ist abhängig von $(SRCDIR)/TestAutomat.cpp und $(SRCDIR)/Automat.h
-# TestInitstateTarget :  $(SRCDIR)/TestInitstate.cpp includes/Initstate.h
-# 	g++ -g  -c -Wall $(SRCDIR)/TestInitstate.cpp  -o $(DEBUGDIR)/TestInitstate.o
-
 
 # loeschen aller files im verzeichnis obj und debug, dann neu erzeugen
 cleanAutomat:
 	rm -f $(OBJSDIR)/*.o
 	rm -f $(DEBUGDIR)/*
-	# $(MAKE) makeTestAutomat
 
 CreateDirectories:
 	rm -rf $(DEBUGDIR)
