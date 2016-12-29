@@ -52,18 +52,14 @@ OBJS = $(OBJSDIR)/Symboltable.o \
 makeTestSymboltable: CreateDirectories EntryTarget InformationTarget KeyTarget ListTarget SymboltableTarget TokenTarget TestSymboltableTarget
 	g++ -g objs/Entry.o objs/Information.o objs/Key.o objs/List.o objs/Symboltable.o objs/Token.o debug/TestSymboltable.o -o debug/SymboltableTest
 
-# $@ name des object files = name auf der linken Seite vom Doppelpunkt des Targets
-# $< erste abhaengigkeit, $< das erste Element in der Liste der Abhaengigkeiten
-# $@ --> linke Seite vom Doppelpunkt
-# $^ --> rechte Seite vom Doppelpunkt
-
-# $(OBJSDIR)/%.o :  $(SRCDIR)/%.cpp $(HEADERDIR)/%.h
-# 	g++ -g  -c -Wall  $<  -o $@
-
-
+makeTestInformation: CreateDirectories InformationTarget TestInformationTarget
+	g++ -g objs/Information.o debug/TestInformation.o -o debug/InformationTest
 
 TestSymboltableTarget: $(TESTDIR)/TestSymboltable.cpp $(HEADERDIR)/Information.h
 	g++ -g  -c -Wall $(TESTDIR)/TestSymboltable.cpp -o $(BINDIRTEST)/TestSymboltable.o
+
+TestInformationTarget: $(TESTDIR)/TestInformation.cpp $(HEADERDIR)/Information.h
+	g++ -g  -c -Wall $(TESTDIR)/TestInformation.cpp -o $(BINDIRTEST)/TestInformation.o
 
 EntryTarget: src/Entry.cpp includes/Entry.h
 		g++ -g  -c -Wall src/Entry.cpp -o objs/Entry.o

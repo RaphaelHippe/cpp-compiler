@@ -49,7 +49,9 @@ Information* Token::getInformation()
 }
 
 char* Token::getTokenString(){
-  tokenText = "Token xyz";
+  test = "lul";
+  test2 = "Token xyzss";
+  tokenText = strcat(test2, test);
   return tokenText;
 }
 

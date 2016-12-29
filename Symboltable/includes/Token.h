@@ -12,7 +12,10 @@ private:
     int type;
     long value;
     Information* information;
+    char* test;
+    char* test2;
     char* tokenText;
+
 
 public:
     Token(int type, int line, int column, Information* inf);

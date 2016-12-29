@@ -1,0 +1,7 @@
+# $@ name des object files = name auf der linken Seite vom Doppelpunkt des Targets
+# $< erste abhaengigkeit, $< das erste Element in der Liste der Abhaengigkeiten
+# $@ --> linke Seite vom Doppelpunkt
+# $^ --> rechte Seite vom Doppelpunkt
+
+# $(OBJSDIR)/%.o :  $(SRCDIR)/%.cpp $(HEADERDIR)/%.h
+# 	g++ -g  -c -Wall  $<  -o $@
