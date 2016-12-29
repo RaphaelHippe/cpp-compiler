@@ -1,9 +1,4 @@
-#include "../includes/Entry.h"
 #include "../includes/Information.h"
-#include "../includes/Key.h"
-#include "../includes/List.h"
-#include "../includes/Symboltable.h"
-#include "../includes/Token.h"
 
 int main(int argc, char **argv) {
 

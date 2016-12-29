@@ -21,46 +21,27 @@ OBJS = $(OBJSDIR)/Symboltable.o \
 	#$(OBJSDIR)/xx1.o \
 	#$(OBJSDIR)/xxn.o
 
+#executable Tests
+makeTestInformation: CreateDirectories InformationTarget TestInformationTarget
+	g++ -g objs/Information.o debug/TestInformation.o -o debug/InformationTest
 
-#
-#		Targets zum Bauen des Tests
-#
-
-# Variante mit geringen Makefile-Kenntnissen
-
-## Linken der Object-Files
-#makeTestSymboltable: $(OBJSDIR)/Symboltable.o $(OBJSDIR)/TestSymboltable.o
-#	g++ -g $(OBJSDIR)/Symboltable.o $(OBJSDIR)/TestSymboltable.o -o $(BINDIR)/SymboltableTest
-#   cp $(OBJSDIR)/Symboltable.o ../projectOBJs
-#
-#
-## compilieren der Source-files
-#
-#$(OBJSDIR)/Symboltable.o :  $(SRCDIR)/Symboltable.cpp $(HEADERDIR)/Symboltable.h
-#	@echo "g++ $*.cpp"
-#	g++ -g  -c -Wall  -o $(OBJSDIR)/Symboltable.o  $(SRCDIR)/Symboltable.cpp
-#
-#
-#$(OBJSDIR)/TestSymboltable.o :  $(SRCDIR)/TestSymboltable.cpp $(SRCDIR)/Symboltable.h
-#	@echo "g++ $*.cpp"
-#	g++ -g  -c -Wall  -o $(OBJSDIR)/TestSymboltable.o  $(SRCDIR)/TestSymboltable.cpp
-#
-
-
-# Variante mit guten Makefile-Kenntnissen
+makeTestKey: CreateDirectories EntryTarget InformationTarget KeyTarget ListTarget SymboltableTarget TestKeyTarget
+	g++ -g objs/Entry.o objs/Information.o objs/Key.o objs/List.o objs/Symboltable.o debug/TestKey.o -o debug/KeyTest
 
 makeTestSymboltable: CreateDirectories EntryTarget InformationTarget KeyTarget ListTarget SymboltableTarget TokenTarget TestSymboltableTarget
 	g++ -g objs/Entry.o objs/Information.o objs/Key.o objs/List.o objs/Symboltable.o objs/Token.o debug/TestSymboltable.o -o debug/SymboltableTest
 
-makeTestInformation: CreateDirectories InformationTarget TestInformationTarget
-	g++ -g objs/Information.o debug/TestInformation.o -o debug/InformationTest
+#building Testfiles
+TestInformationTarget: $(TESTDIR)/TestInformation.cpp $(HEADERDIR)/Information.h
+		g++ -g  -c -Wall $(TESTDIR)/TestInformation.cpp -o $(BINDIRTEST)/TestInformation.o
+
+TestKeyTarget: $(TESTDIR)/TestKey.cpp
+		g++ -g  -c -Wall $(TESTDIR)/TestKey.cpp -o $(BINDIRTEST)/TestKey.o
 
 TestSymboltableTarget: $(TESTDIR)/TestSymboltable.cpp $(HEADERDIR)/Information.h
 	g++ -g  -c -Wall $(TESTDIR)/TestSymboltable.cpp -o $(BINDIRTEST)/TestSymboltable.o
 
-TestInformationTarget: $(TESTDIR)/TestInformation.cpp $(HEADERDIR)/Information.h
-	g++ -g  -c -Wall $(TESTDIR)/TestInformation.cpp -o $(BINDIRTEST)/TestInformation.o
-
+#building real Files
 EntryTarget: src/Entry.cpp includes/Entry.h
 		g++ -g  -c -Wall src/Entry.cpp -o objs/Entry.o
 
