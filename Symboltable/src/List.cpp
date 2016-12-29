@@ -14,7 +14,7 @@ List::List() {
   head = NULL;
 }
 
-int List:addValue(Information* value){
+int List::addValue(Information* value){
   ++listSize;
   if (head == NULL) {
     // if list is empty make value the new head

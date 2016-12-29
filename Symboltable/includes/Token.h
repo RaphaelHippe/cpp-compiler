@@ -12,16 +12,22 @@ private:
     int type;
     long value;
     Information* information;
+    char* test;
+    char* test2;
+    char* tokenText;
+
 
 public:
-    Token(int, int, int, int, Information*);
+    Token(int type, int line, int column, Information* inf);
+    Token(int type, int line, int column, int value);
 
     int getLine();
     int getColumn();
     int getType();
     int getValue();
     Information* getInformation();
-    string getTokenString();
+    char* getTokenString();
+    int getTokenTextLength();
 
     enum Type
     {

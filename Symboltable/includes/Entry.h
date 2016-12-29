@@ -5,14 +5,15 @@
  *      Author: Raphael Hippe
  */
 
+ #include "../includes/Information.h"
+
 #ifndef Entry_H_
 #define Entry_H_
-
 
 class Entry {
 private:
   Information* myValue;
-  Entry* *myNext;
+  Entry* myNext;
 public:
 	Entry(Information* value);
 	virtual ~Entry();

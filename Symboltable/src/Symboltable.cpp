@@ -36,7 +36,7 @@ Key* Symboltable::insert(Information* value){
   return key;
 }
 
-Key* Symboltable::testInsertinsert(Information* value, int testHashValue){
+Key* Symboltable::testInsert(Information* value, int testHashValue){
   // create empty key and list
   Key* key = new Key();
   int position = 0;

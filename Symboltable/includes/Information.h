@@ -16,15 +16,16 @@ private:
   char* lexemPointer;
   char currentChar;
 public:
-	Information();
+	Information(char word[]);
 	virtual ~Information();
-  char getLexemPointer();
+  char* getLexemPointer();
   void incrementLexemPointer();
   char getType();
   bool compairLexem(char word[]);
   void setType(int type);
   int calcHashValue();
   void printLexem();
+  void resetLexemPointer();
 
 };
 

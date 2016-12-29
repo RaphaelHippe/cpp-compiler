@@ -21,3 +21,6 @@ return 1 for the special signs:
 *:
 =:=
 &&
+
+
+setzen wir word[] zurück?!

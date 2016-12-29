@@ -2,11 +2,7 @@
 
 int main(int argc, char **argv) {
 
-	// symTable = new Symboltable();
-	char word[4] = "abc";
+	char word[33] = "myInformation->printLexem works!";
 	Information* myInformation = new Information(word);
 	myInformation->printLexem();
-
-	return 1;
-
 }

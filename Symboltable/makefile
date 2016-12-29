@@ -7,7 +7,7 @@ HEADERDIR = includes
 SRCDIR = src
 
 # enthaelt die Obj Files zum Testen
-OBJDIR = objs
+OBJSDIR = objs
 
 # enthaelt das ausfuehrbare File zum Testen
 BINDIRTEST = debug
@@ -17,62 +17,53 @@ TESTDIR = test
 ## hier alle Object Files eintragen, ausser das File mit der Mainmethode
 ## darauf achten, dass letzte Zeile ohne "\" eingetragen wird
 
-OBJS = $(OBJDIR)/Symboltable.o \
-	#$(OBJDIR)/xx1.o \
-	#$(OBJDIR)/xxn.o
+OBJS = $(OBJSDIR)/Symboltable.o \
+	#$(OBJSDIR)/xx1.o \
+	#$(OBJSDIR)/xxn.o
 
+#executable Tests
+makeTestInformation: CreateDirectories InformationTarget TestInformationTarget
+	g++ -g objs/Information.o debug/TestInformation.o -o debug/InformationTest
 
-#
-#		Targets zum Bauen des Tests
-#
+makeTestKey: CreateDirectories EntryTarget InformationTarget KeyTarget ListTarget SymboltableTarget TestKeyTarget
+	g++ -g objs/Entry.o objs/Information.o objs/Key.o objs/List.o objs/Symboltable.o debug/TestKey.o -o debug/KeyTest
 
-# Variante mit geringen Makefile-Kenntnissen
+makeTestSymboltable: CreateDirectories EntryTarget InformationTarget KeyTarget ListTarget SymboltableTarget TokenTarget TestSymboltableTarget
+	g++ -g objs/Entry.o objs/Information.o objs/Key.o objs/List.o objs/Symboltable.o objs/Token.o debug/TestSymboltable.o -o debug/SymboltableTest
 
-## Linken der Object-Files
-#makeTestSymboltable: $(OBJDIR)/Symboltable.o $(OBJDIR)/TestSymboltable.o
-#	g++ -g $(OBJDIR)/Symboltable.o $(OBJDIR)/TestSymboltable.o -o $(BINDIR)/SymboltableTest
-#   cp $(OBJDIR)/Symboltable.o ../projectOBJs
-#
-#
-## compilieren der Source-files
-#
-#$(OBJDIR)/Symboltable.o :  $(SRCDIR)/Symboltable.cpp $(HEADERDIR)/Symboltable.h
-#	@echo "g++ $*.cpp"
-#	g++ -g  -c -Wall  -o $(OBJDIR)/Symboltable.o  $(SRCDIR)/Symboltable.cpp
-#
-#
-#$(OBJDIR)/TestSymboltable.o :  $(SRCDIR)/TestSymboltable.cpp $(SRCDIR)/Symboltable.h
-#	@echo "g++ $*.cpp"
-#	g++ -g  -c -Wall  -o $(OBJDIR)/TestSymboltable.o  $(SRCDIR)/TestSymboltable.cpp
-#
+#building Testfiles
+TestInformationTarget: $(TESTDIR)/TestInformation.cpp $(HEADERDIR)/Information.h
+		g++ -g  -c -Wall $(TESTDIR)/TestInformation.cpp -o $(BINDIRTEST)/TestInformation.o
 
+TestKeyTarget: $(TESTDIR)/TestKey.cpp
+		g++ -g  -c -Wall $(TESTDIR)/TestKey.cpp -o $(BINDIRTEST)/TestKey.o
 
-# Variante mit guten Makefile-Kenntnissen
-
-makeTestSymboltable: CreateDirectories SymboltableTarget TestSymboltableTarget
-	g++ -g $(OBJDIR)/*.o $(BINDIRTEST)/TestSymboltable.o  -o $(BINDIRTEST)/SymboltableTest
-
-SymboltableTarget: CreateDirectories $(OBJS)
-
-# $@ name des object files = name auf der linken Seite vom Doppelpunkt des Targets
-# $< erste abhaengigkeit, $< das erste Element in der Liste der Abhaengigkeiten
-# $@ --> linke Seite vom Doppelpunkt
-# $^ --> rechte Seite vom Doppelpunkt
-
-$(OBJDIR)/%.o :  $(SRCDIR)/%.cpp $(HEADERDIR)/%.h
-	g++ -g  -c -Wall  $<  -o $@
-
-
-
-TestSymboltableTarget: CreateDirectories $(TESTDIR)/TestSymboltable.cpp $(HEADERDIR)/Symboltable.h
+TestSymboltableTarget: $(TESTDIR)/TestSymboltable.cpp $(HEADERDIR)/Information.h
 	g++ -g  -c -Wall $(TESTDIR)/TestSymboltable.cpp -o $(BINDIRTEST)/TestSymboltable.o
 
+#building real Files
+EntryTarget: src/Entry.cpp includes/Entry.h
+		g++ -g  -c -Wall src/Entry.cpp -o objs/Entry.o
 
+InformationTarget: src/Information.cpp includes/Information.h
+	g++ -g  -c -Wall src/Information.cpp -o objs/Information.o
 
-# loeschen aller files im verzeichnis $(OBJDIR) und $(BINDIRTEST) und neu compilieren
+KeyTarget: src/Key.cpp includes/Key.h
+	g++ -g  -c -Wall src/Key.cpp -o objs/Key.o
+
+ListTarget: src/List.cpp includes/List.h
+	g++ -g  -c -Wall src/List.cpp -o objs/List.o
+
+SymboltableTarget: src/Symboltable.cpp includes/Symboltable.h
+		g++ -g  -c -Wall src/Symboltable.cpp -o objs/Symboltable.o
+
+TokenTarget: src/Token.cpp includes/Token.h
+	g++ -g  -c -Wall src/Token.cpp -o objs/Token.o
+
+# loeschen aller files im verzeichnis $(OBJSDIR) und $(BINDIRTEST) und neu compilieren
 
 cleanSymboltable:
-	rm -rf $(OBJDIR)/*.o
+	rm -rf $(OBJSDIR)/*.o
 	rm -rf $(BINDIRTEST)/*
 	$(MAKE) makeTestSymboltable
 

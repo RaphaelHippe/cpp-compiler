@@ -1,0 +1,35 @@
+# $@ name des object files = name auf der linken Seite vom Doppelpunkt des Targets
+# $< erste abhaengigkeit, $< das erste Element in der Liste der Abhaengigkeiten
+# $@ --> linke Seite vom Doppelpunkt
+# $^ --> rechte Seite vom Doppelpunkt
+
+# $(OBJSDIR)/%.o :  $(SRCDIR)/%.cpp $(HEADERDIR)/%.h
+# 	g++ -g  -c -Wall  $<  -o $@
+
+
+#
+#		Targets zum Bauen des Tests
+#
+
+# Variante mit geringen Makefile-Kenntnissen
+
+## Linken der Object-Files
+#makeTestSymboltable: $(OBJSDIR)/Symboltable.o $(OBJSDIR)/TestSymboltable.o
+#	g++ -g $(OBJSDIR)/Symboltable.o $(OBJSDIR)/TestSymboltable.o -o $(BINDIR)/SymboltableTest
+#   cp $(OBJSDIR)/Symboltable.o ../projectOBJs
+#
+#
+## compilieren der Source-files
+#
+#$(OBJSDIR)/Symboltable.o :  $(SRCDIR)/Symboltable.cpp $(HEADERDIR)/Symboltable.h
+#	@echo "g++ $*.cpp"
+#	g++ -g  -c -Wall  -o $(OBJSDIR)/Symboltable.o  $(SRCDIR)/Symboltable.cpp
+#
+#
+#$(OBJSDIR)/TestSymboltable.o :  $(SRCDIR)/TestSymboltable.cpp $(SRCDIR)/Symboltable.h
+#	@echo "g++ $*.cpp"
+#	g++ -g  -c -Wall  -o $(OBJSDIR)/TestSymboltable.o  $(SRCDIR)/TestSymboltable.cpp
+#
+
+
+# Variante mit guten Makefile-Kenntnissen
