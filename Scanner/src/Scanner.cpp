@@ -108,10 +108,10 @@ int Scanner::nextToken() {
 						word[counter] = '\0';
 					//  myInformation = new Information(word);
 					Information* myInformation = new Information(word);
-					myInformation->printLexem();
+					// myInformation->printLexem();
 					Key* myKey = symTable->insert(myInformation);
 					Information* test = symTable->lookup(myKey);
-					test->printLexem();
+					// test->printLexem();
 					// cout << "symTable " << symTable->lookup(myKey);
 					// Token* token = new Token(int type, int line, int column, int value, Information* inf);
 					Token* token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, myInformation);

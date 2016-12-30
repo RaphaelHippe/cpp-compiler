@@ -8,6 +8,9 @@
 #include "../includes/Entry.h"
 #include "../includes/Information.h"
 #include <stdio.h>
+#include <iostream>
+
+using namespace std;
 
 Entry::Entry(Information* value) {
 	// TODO Auto-generated constructor stub
@@ -20,11 +23,12 @@ Entry::~Entry() {
 }
 
 int Entry::addValue(Information* value){
-  // myValue->resetLexemPointer();
-  // if (value->compairLexem(myValue->getLexemPointer())) {
-  //   return 1;
-  // } else
-  if (myNext == NULL) {
+  myValue->resetLexemPointer();
+  value->resetLexemPointer();
+  if (value->compairLexem(myValue->getLexemPointer())) {
+    // return 0 since this is the entry with the same lexem
+    return 0;
+  } else if (myNext == NULL) {
     // If there is no next element -> create another
     myNext = new Entry(value);
     return 1;
