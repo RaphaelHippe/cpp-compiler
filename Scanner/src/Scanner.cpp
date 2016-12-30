@@ -1,12 +1,6 @@
-/*
- * Scanner.cpp
- *
- *  Created on: Sep 26, 2012
- *      Author: knad0001
- */
-
 #include "../includes/Scanner.h"
 #include "../../Automat/includes/Automat.h"
+#include <cstring>
 #include <iostream>
 #include "../../Symboltable/includes/Information.h"
 
@@ -29,6 +23,35 @@ void Scanner::writeInt(long int value, int filedesc){
 		write(filedesc, pointer+j, 1);
 		j++;
 	}
+}
+
+char* Scanner::translateType(int type){
+
+	switch (type) {
+		// 1 === Identifier
+		case 1:
+			translatedType = "Identifier     ";
+			break;
+		// 2 === Integer
+		case 2:
+			translatedType = "Integer        ";
+			break;
+		// 3 === Sign
+		case 7:
+			translatedType = "PLUS           ";
+			break;
+		case 14:
+			translatedType = "ASSIGNMENT     ";
+			break;
+		case 15:
+			translatedType = "WEIRDTHING     ";
+			break;
+		case 17:
+			translatedType = "ANDAND         ";
+			break;
+	}
+
+	return translatedType;
 }
 
 // returns token
@@ -83,17 +106,14 @@ int Scanner::nextToken() {
 				counter--;
 				// automat->decreaseColumn();
 				cout << "Token(0): Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
+				cout << translateType(automat->gettype());
 				cout << '\n';
-				write(filedesc, "Token(0): Type:    ", 19);
-				writeInt(automat->gettype(), filedesc);
+				write(filedesc, "Token ", 6);
+				write(filedesc, translateType(automat->gettype()), 15);
 				write(filedesc, " Line: ", 7);
 				writeInt(automat->getline(), filedesc);
 				write(filedesc, " Column: ", 9);
 				writeInt(automat->getcolumn() - counter, filedesc);
-				write(filedesc, " Counter: ", 10);
-				writeInt(counter, filedesc);
-				write(filedesc, " Raw Column: ", 13);
-				writeInt(automat->getcolumn(), filedesc);
 				write(filedesc, "\n", 1);
 
 				buffer->stepBack(1);
@@ -127,35 +147,18 @@ int Scanner::nextToken() {
 				// counter--;
 				cout << "Token(20): Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn();
 				cout << '\n';
-				write(filedesc, "Token(20): Type:   ", 19);
-				writeInt(automat->gettype(), filedesc);
+				write(filedesc, "Token ", 6);
+				write(filedesc, translateType(automat->gettype()), 15);
 				write(filedesc, " Line: ", 7);
 				writeInt(automat->getline(), filedesc);
 				write(filedesc, " Column: ", 9);
 				writeInt(automat->getcolumn() - counter, filedesc);
-				write(filedesc, " Counter: ", 10);
-				writeInt(counter, filedesc);
-				write(filedesc, " Raw Column: ", 13);
-				writeInt(automat->getcolumn(), filedesc);
 				write(filedesc, "\n", 1);
-				// automat->checkLexem("test");
 				counter = 0;
 				return 1;
 			case -1:
 				cout << "Error-Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn() << c;
 				cout << '\n';
-				write(filedesc, "Error-Token: Type: ", 19);
-				writeInt(automat->gettype(), filedesc);
-				write(filedesc, " Line: ", 7);
-				writeInt(automat->getline(), filedesc);
-				write(filedesc, " Column: ", 9);
-				writeInt(automat->getcolumn() - counter, filedesc);
-				write(filedesc, " Counter: ", 10);
-				writeInt(counter, filedesc);
-				write(filedesc, " Raw Column: ", 13);
-				writeInt(automat->getcolumn(), filedesc);
-				write(filedesc, "\n", 1);
-				// automat->checkLexem("test");
 				counter = 0;
 				return 1;
 			case -99:

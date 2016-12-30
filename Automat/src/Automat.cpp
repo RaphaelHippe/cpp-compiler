@@ -41,6 +41,78 @@ void Automat::setState(int stateresult) {
       _state = NEWLINE;
       // _tokenState = NEWLINE;
       break;
+    case 30:
+      _state = INIT;
+      _tokenState = PLUS;
+      break;
+    case 31:
+      _state = INIT;
+      _tokenState = MINUS;
+      break;
+    case 32:
+      _state = INIT;
+      _tokenState = COLON;
+      break;
+    case 33:
+      _state = INIT;
+      _tokenState = STAR;
+      break;
+    case 34:
+      _state = INIT;
+      _tokenState = SMALLER;
+      break;
+    case 35:
+      _state = INIT;
+      _tokenState = GREATER;
+      break;
+    case 36:
+      _state = INIT;
+      _tokenState = EQUALS;
+      break;
+    case 37:
+      _state = INIT;
+      _tokenState = ASSIGNMENT;
+      break;
+    case 38:
+      _state = INIT;
+      _tokenState = WEIRDTHING;
+      break;
+    case 39:
+      _state = INIT;
+      _tokenState = EXCLAMATION;
+      break;
+    case 40:
+      _state = INIT;
+      _tokenState = ANDAND;
+      break;
+    case 41:
+      _state = INIT;
+      _tokenState = SEMICOLON;
+      break;
+    case 42:
+      _state = INIT;
+      _tokenState = STARTBRACKETA;
+      break;
+    case 43:
+      _state = INIT;
+      _tokenState = ENDBRACKETA;
+      break;
+    case 44:
+      _state = INIT;
+      _tokenState = STARTBRACKETB;
+      break;
+    case 45:
+      _state = INIT;
+      _tokenState = ENDBRACKETB;
+      break;
+    case 46:
+      _state = INIT;
+      _tokenState = STARTBRACKETC;
+      break;
+    case 47:
+      _state = INIT;
+      _tokenState = ENDBRACKETC;
+      break;
     default:
     break;
   }
@@ -70,7 +142,12 @@ int Automat::handle(char c){
       break;
   }
   setState(stateresult);
-
+  if (stateresult >= 30 && stateresult <= 47) {
+    stateresult = 20;
+    if (stateresult == 32 || stateresult == 33 || stateresult == 36) {
+      stateresult = 0;
+    }
+  }
   if (stateresult == 23) {
     // new line in comment
     _column = 1;
@@ -80,61 +157,11 @@ int Automat::handle(char c){
   if (stateresult != 0 && stateresult != 14 &&
       stateresult != -99 && stateresult != 23 &&
       stateresult != 21) {
-        // cout << "\nstateresult: " << stateresult << " char: " << c << "\n";
     _column++;
   }
-  // cout << "Automat Stateresult: " << stateresult << "\n";
   return stateresult;
 }
 
-int Automat::checkLexem(char s[]){
-  // _state = INIT;
-  // return 1;
-  // if, IF,
-  // while, WHILE
-  // &&
-  // int result = 0;
-  //
-  // if (_state == INTEGER) {
-  //   // bau nen Iteger
-  // }
-  //
-  // if (_state == IDENTIFIER) {
-  //   // bau nen Identifier
-  //   if (s == 'while' || s == 'WHILE') {
-  //     // baue WHILE lexem
-  //   } else if (s == 'if' || s == 'IF') {
-  //     // baue IF Lexem
-  //   } else {
-  //     // baue normales Lexem
-  //   }
-  //
-  // }
-  //
-  // if (_state == SIGN) {
-  //   /* code */
-  //   if (s[0] == '&') {
-  //     if (s[1] == '&') {
-  //       //bau Lexem
-  //     } else {
-  //       //s[0] --> Error
-  //     }
-  //   }
-  // }
-  //
-  // // if (_state == ERROR) {
-  // //   /* code */
-  // // }
-  //
-  // _state == INIT;
-  // return result;
-}
-
-// TODO: IF und WHILE handlen (checkLexem())
-
-// TODO: getter für Token richtig bauen
-
-//
 int Automat::gettype(){
   // States myState = _tokenState;
   // _tokenState = INIT;
@@ -149,9 +176,3 @@ int Automat::getcolumn(){
 void Automat::decreaseColumn(){
   _column--;
 }
-// int Automat::getvalue(){
-//   return 1;
-// }
-// Information* Automat::getinformation(){
-//   return NULL;
-// }

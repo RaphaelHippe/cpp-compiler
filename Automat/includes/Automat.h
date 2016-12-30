@@ -1,9 +1,3 @@
-/*
- * Automat.h
- *
- *  Created on: Jul 5, 2012
- *      Author: knad0001
- */
 #include "./../../Symboltable/includes/Information.h"
 #include "Initstate.h"
 #include "Identifierstate.h"
@@ -12,7 +6,6 @@
 
 #ifndef Automat_H_
 #define Automat_H_
-
 
 class Automat {
 private:
@@ -23,7 +16,25 @@ private:
 		SIGN,
 		UNDEFINED,
 		DEFINED,
-		NEWLINE
+		NEWLINE,
+		PLUS,
+		MINUS,
+		COLON,
+		STAR,
+		SMALLER,
+		GREATER,
+		EQUALS,
+		ASSIGNMENT,
+		WEIRDTHING,
+		EXCLAMATION,
+		ANDAND,
+		SEMICOLON,
+		STARTBRACKETA,
+		ENDBRACKETA,
+		STARTBRACKETB,
+		ENDBRACKETB,
+		STARTBRACKETC,
+		ENDBRACKETC
 	};
 	States _state;
 	States _tokenState;
@@ -43,8 +54,6 @@ public:
 	int getline();
 	int getcolumn();
 	void decreaseColumn();
-  // int getvalue();
-	// Information* getinformation();
 };
 
 #endif /* Automat_H_ */

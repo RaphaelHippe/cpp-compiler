@@ -25,7 +25,9 @@ private:
   Buffer* buffer;
   Automat* automat;
   Symboltable* symTable;
+  char* translatedType;
   int filedesc;
+  char* translateType(int type);
 public:
 	Scanner();
 	virtual ~Scanner();
