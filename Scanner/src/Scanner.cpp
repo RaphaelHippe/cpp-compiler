@@ -9,7 +9,7 @@ Scanner::Scanner() {
 	// buffer = new Buffer("../tests/testinput");
 	buffer = new Buffer("../tests/tryit.txt");
 	symTable = new Symboltable();
-	filedesc = open("out.txt", O_WRONLY | O_CREAT|O_TRUNC);
+	filedesc = open("out.txt", O_WRONLY | O_CREAT|O_TRUNC, 0666);
 	automat = new Automat();
 	this->counter = 0;
 }
