@@ -7,8 +7,9 @@ int main(int argc, char **argv) {
 
 	Buffer*  buffer;
 
-	buffer = new Buffer("../tests/testinput");
+	buffer = new Buffer(argv[1]);
 
+	cout << argv[1] << '\n';
 	char c = '1';
 
 	int i = 0;

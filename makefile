@@ -33,4 +33,4 @@ symboltableOBJs:
 
 
 scanner:
-	$(MAKE) -C $(SCANNERDIR) makeTestScanner
+	$(MAKE) -C $(SCANNERDIR) makeScanner
