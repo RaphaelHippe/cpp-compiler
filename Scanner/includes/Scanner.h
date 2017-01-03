@@ -1,15 +1,8 @@
-/*
- * Scanner.h
- *
- *  Created on: Sep 26, 2012
- *      Author: knad0001
- */
-
  #include "./../../Buffer/includes/Buffer.h"
  #include "./../../Automat/includes/Automat.h"
  #include "./../../Symboltable/includes/Token.h"
  #include "./../../Symboltable/includes/Information.h"
- #include "../../Symboltable/includes/Symboltable.h"
+ #include "./../../Symboltable/includes/Symboltable.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,7 +22,8 @@ private:
   int filedesc;
   char* translateType(int type);
 public:
-	Scanner();
+	Scanner(char* argv, char* argv2);
+  Scanner();
 	virtual ~Scanner();
 	// Token* nextToken();
 	int nextToken();

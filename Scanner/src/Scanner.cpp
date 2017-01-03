@@ -1,15 +1,24 @@
 #include "../includes/Scanner.h"
 #include "../../Automat/includes/Automat.h"
+#include "../../Symboltable/includes/Information.h"
 #include <cstring>
 #include <iostream>
-#include "../../Symboltable/includes/Information.h"
 
 using namespace std;
-Scanner::Scanner() {
-	// buffer = new Buffer("../tests/testinput");
-	buffer = new Buffer("../tests/tryit.txt");
+Scanner::Scanner(char* argv, char* argv2) {
+
+	if (argv == NULL) {
+		argv = "../tests/tryit.txt";
+	}
+
+	if (argv2 == NULL) {
+		argv2 = "out.txt";
+	}
+
+	buffer = new Buffer(argv);
+	filedesc = open(argv2, O_WRONLY | O_CREAT|O_TRUNC, 0666);
+
 	symTable = new Symboltable();
-	filedesc = open("out.txt", O_WRONLY | O_CREAT|O_TRUNC, 0666);
 	automat = new Automat();
 	this->counter = 0;
 }
