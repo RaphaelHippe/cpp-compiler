@@ -17,3 +17,7 @@ Scanner/objs
 # Symboltabelle
 Symboltable/debug
 Symboltable/objs
+
+#main
+main/objs
+main/dist/main

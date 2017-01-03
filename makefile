@@ -7,7 +7,7 @@ BUFFERDIR = Buffer
 SYMBOLTABLEDIR = Symboltable
 SCANNERDIR = Scanner
 
-all: mainTarget
+all: CreateDirectories mainTarget
 	g++ -g Automat/objs/*.o Buffer/objs/*.o  Scanner/objs/*.o Symboltable/objs/*.o main/objs/main.o -o main/dist/main
 # rm 	remove
 # -f	force, ohne nachfragen
@@ -38,3 +38,7 @@ symboltableOBJs:
 
 scannerOBJTarget:
 	$(MAKE) -C $(SCANNERDIR) ScannerOBJTarget
+
+CreateDirectories:
+	rm -rf main/objs
+	mkdir main/objs
