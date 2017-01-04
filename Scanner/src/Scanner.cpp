@@ -9,6 +9,7 @@ Scanner::Scanner(char* argv, char* argv2) {
 
 	if (argv == NULL) {
 		argv = "../tests/tryit.txt";
+		argv2 = "out.txt";
 	}
 
 	if (argv2 == NULL) {
