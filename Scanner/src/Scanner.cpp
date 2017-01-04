@@ -50,14 +50,56 @@ char* Scanner::translateType(int type){
 		case 7:
 			translatedType = "PLUS           ";
 			break;
+		case 8:
+			translatedType = "MINUS          ";
+			break;
+		case 9:
+			translatedType = "COLON          ";
+			break;
+		case 10:
+			translatedType = "STAR           ";
+			break;
+		case 11:
+			translatedType = "SMALLER        ";
+			break;
+		case 12:
+			translatedType = "GREATER        ";
+			break;
+		case 13:
+			translatedType = "EQUALS         ";
+			break;
 		case 14:
 			translatedType = "ASSIGNMENT     ";
 			break;
 		case 15:
 			translatedType = "WEIRDTHING     ";
 			break;
+		case 16:
+			translatedType = "EXCLAMATION    ";
+			break;
 		case 17:
 			translatedType = "ANDAND         ";
+			break;
+		case 18:
+			translatedType = "SEMICOLON      ";
+			break;
+		case 19:
+			translatedType = "STARTBRACKETA  ";
+			break;
+		case 20:
+			translatedType = "ENDBRACKETA    ";
+			break;
+		case 21:
+			translatedType = "STARTBRACKETB  ";
+			break;
+		case 22:
+			translatedType = "ENDBRACKETB    ";
+			break;
+		case 23:
+			translatedType = "STARTBRACKETC  ";
+			break;
+		case 24:
+			translatedType = "ENDBRACKETC    ";
 			break;
 	}
 
