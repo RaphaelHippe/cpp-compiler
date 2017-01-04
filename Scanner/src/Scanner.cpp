@@ -167,7 +167,6 @@ int Scanner::nextToken() {
 				writeInt(automat->getline(), filedesc);
 				write(filedesc, " Column: ", 9);
 				writeInt(automat->getcolumn() - counter, filedesc);
-				write(filedesc, "\n", 1);
 
 				buffer->stepBack(1);
 
@@ -191,7 +190,22 @@ int Scanner::nextToken() {
 					// cout << token->getLine() << " Token Line \n";
 					// cout << token->getTokenTextLength() << "\n";
 					// write(filedesc, token->getTokenString(), 9);
+					write(filedesc, " ", 1);
+					write(filedesc, word, counter);
 				}
+
+				if (automat->gettype() == 2) {
+					buffer->stepBack(counter);
+					char number[counter + 1];
+					for (size_t i = 0; i < counter; i++) {
+						number[i] = buffer->getChar();
+					}
+						number[counter] = '\0';
+						write(filedesc, " ", 1);
+						write(filedesc, number, counter);
+				}
+
+				write(filedesc, "\n", 1);
 
 				// automat->checkLexem("test");
 				counter = 0;

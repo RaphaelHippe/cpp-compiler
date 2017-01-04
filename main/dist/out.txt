@@ -1,5 +1,6 @@
-Token Integer         Line: 1 Column: 1
-Token STAR            Line: 2 Column: 1
-Token Identifier      Line: 4 Column: 1
-Token STAR            Line: 5 Column: 1
-Token STAR            Line: 6 Column: 1
+Token Identifier      Line: 1 Column: 1 hallo
+Token Integer         Line: 2 Column: 1 123
+Token Integer         Line: 2 Column: 5 4234234
+Token Identifier      Line: 3 Column: 1 hallo123
+Token Integer         Line: 4 Column: 1 123
+Token Identifier      Line: 4 Column: 4 test
