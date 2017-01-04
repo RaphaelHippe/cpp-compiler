@@ -20,6 +20,7 @@ Scanner::Scanner(char* argv, char* argv2) {
 	filedesc = open(argv2, O_WRONLY | O_CREAT|O_TRUNC, 0666);
 
 	symTable = new Symboltable();
+	symTable->initSymbols();
 	automat = new Automat();
 	this->counter = 0;
 }

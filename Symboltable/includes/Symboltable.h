@@ -29,6 +29,7 @@ public:
 	Key* insert(Information* value);
 	Key* testInsert(Information* value, int testHashValue);
 	Information* lookup(Key* key);
+  void initSymbols();
 };
 
 #endif /* SYMBOLTABLE_H_ */
