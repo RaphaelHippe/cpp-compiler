@@ -7,34 +7,35 @@ using namespace std;
 
 class Token {
 private:
-    int line;
-    int column;
-    int type;
-    long value;
-    Information* information;
-    char* test;
-    char* test2;
-    char* tokenText;
+int line;
+int column;
+int type;
+long value;
+Information* information;
+char* test;
+char* test2;
+char* tokenText;
 
 
 public:
-    Token(int type, int line, int column, Information* inf);
-    Token(int type, int line, int column, int value);
+Token(int type, int line, int column);
+Token(int type, int line, int column, Information* inf);
+Token(int type, int line, int column, int value);
 
-    int getLine();
-    int getColumn();
-    int getType();
-    int getValue();
-    Information* getInformation();
-    char* getTokenString();
-    int getTokenTextLength();
+int getLine();
+int getColumn();
+int getType();
+int getValue();
+Information* getInformation();
+char* getTokenString();
+int getTokenTextLength();
 
-    enum Type
-    {
+enum Type
+{
         SIGN = 0,
         INTEGER,
         IDENTIFIER,
         IF,
         WHILE
-    };
+};
 };

@@ -1,26 +1,7 @@
-Token Integer         Line: 1 Column: 1 1
-Token Identifier      Line: 1 Column: 3 l0v3
-Token Identifier      Line: 1 Column: 8 u
-Token Identifier      Line: 2 Column: 1 klsfd
-Token Identifier      Line: 3 Column: 1 kajsd
+Token Identifier      Line: 1 Column: 1 asd
+Token Integer         Line: 2 Column: 1 123
+Token Identifier      Line: 3 Column: 1 asd
+Token Integer         Line: 4 Column: 1 123
 Token Identifier      Line: 5 Column: 1 asd
-Token Identifier      Line: 6 Column: 1 sad
-Token Identifier      Line: 6 Column: 9 sd
-Token Identifier      Line: 7 Column: 1 fsdf
-Token Identifier      Line: 9 Column: 3 as
-Token Identifier      Line: 10 Column: 3 f
-Token Identifier      Line: 10 Column: 5 sdfds
-Token Identifier      Line: 11 Column: 3 f
-Token PLUS            Line: 11 Column: 7
-Token PLUS            Line: 11 Column: 8
-Token ANDAND          Line: 12 Column: 8
-Token STARTBRACKETA   Line: 13 Column: 8
-Token STARTBRACKETB   Line: 14 Column: 8
-Token STARTBRACKETC   Line: 16 Column: 8
-Token Identifier      Line: 17 Column: 8 alksdjklad
-Token Integer         Line: 19 Column: 8 2374
-Token Identifier      Line: 20 Column: 8 asdu
-Token Identifier      Line: 21 Column: 8 q
-Token ENDBRACKETC     Line: 23 Column: 8
-Token ENDBRACKETB     Line: 24 Column: 8
-Token ENDBRACKETA     Line: 25 Column: 8
+Token Integer         Line: 6 Column: 1 123
+Token PLUS            Line: 8 Column: 1

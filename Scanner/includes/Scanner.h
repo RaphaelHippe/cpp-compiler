@@ -25,8 +25,8 @@ public:
 	Scanner(char* argv, char* argv2);
   Scanner();
 	virtual ~Scanner();
-	// Token* nextToken();
-	int nextToken();
+	Token* nextToken();
+	// int nextToken();
   void writeInt(long int value, int filedesc);
 };
 
