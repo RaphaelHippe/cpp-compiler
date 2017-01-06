@@ -19,6 +19,17 @@ Symboltable::Symboltable() {
   currentChar = 'a';
 }
 
+void Symboltable::initSymbols(){
+  Information* whileInfo = new Information("while");
+  Information* WHILEInfo = new Information("WHILE");
+  Information* ifInfo = new Information("if");
+  Information* IFInfo = new Information("IF");
+  this->insert(whileInfo);
+  this->insert(WHILEInfo);
+  this->insert(ifInfo);
+  this->insert(IFInfo);
+}
+
 Key* Symboltable::insert(Information* value){
   // create empty key and list
   Key* key = new Key();
