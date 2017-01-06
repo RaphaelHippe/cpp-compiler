@@ -8,31 +8,20 @@
 using namespace std;
 Scanner::Scanner(char* argv, char* argv2) {
 
-<<<<<<< HEAD
 	if (argv == NULL) {
 		argv = "../tests/tryit.txt";
 		argv2 = "out.txt";
 	} else if (argv2 == NULL) {
 		argv2 = "out.txt";
 	}
-=======
-								if (argv == NULL) {
-																argv = "../tests/tryit.txt";
-																argv2 = "out.txt";
-								}
 
-								if (argv2 == NULL) {
-																argv2 = "out.txt";
-								}
->>>>>>> 247e4ef59e726ab3bb3448bf458c53eef1f76895
+ 	buffer = new Buffer(argv);
+	filedesc = open(argv2, O_WRONLY | O_CREAT|O_TRUNC, 0666);
 
-								buffer = new Buffer(argv);
-								filedesc = open(argv2, O_WRONLY | O_CREAT|O_TRUNC, 0666);
-
-								symTable = new Symboltable();
-								symTable->initSymbols();
-								automat = new Automat();
-								this->counter = 0;
+	symTable = new Symboltable();
+	symTable->initSymbols();
+	automat = new Automat();
+	this->counter = 0;
 }
 
 void Scanner::writeInt(long int value, int filedesc){
