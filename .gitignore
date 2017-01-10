@@ -13,6 +13,7 @@ Buffer/objs
 # Scanner
 Scanner/debug
 Scanner/objs
+Scanner/output
 
 # Symboltabelle
 Symboltable/debug
@@ -22,3 +23,8 @@ Symboltable/objs
 main/objs
 main/dist
 main/output
+
+#Main
+Main/objs
+Main/dist
+Main/output

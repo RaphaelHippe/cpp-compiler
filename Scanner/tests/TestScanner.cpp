@@ -10,6 +10,6 @@ int main(int argc, char **argv) {
 	do {
 		cout << "Scanning next Token!";
 		cout << '\n';
-	} while(scanner->nextToken() == 1);
+	} while(scanner->nextToken() != NULL);
 
 }

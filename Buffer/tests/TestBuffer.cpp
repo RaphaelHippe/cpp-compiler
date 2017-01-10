@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
 	if (argv[1] != NULL) {
 		buffer = new Buffer(argv[1]);
 	} else {
-		buffer = new Buffer("../input/tryit.txt");
+		buffer = new Buffer("../input/in.txt");
 	}
 
 	char c = '1';

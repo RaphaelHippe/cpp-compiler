@@ -8,7 +8,7 @@ SYMBOLTABLEDIR = Symboltable
 SCANNERDIR = Scanner
 
 all: CreateDirectories mainTarget
-	g++ -g Automat/objs/*.o Buffer/objs/*.o  Scanner/objs/*.o Symboltable/objs/*.o main/objs/main.o -o main/dist/main
+	g++ -g Automat/objs/*.o Buffer/objs/*.o  Scanner/objs/*.o Symboltable/objs/*.o Main/objs/Main.o -o Main/dist/Main
 # rm 	remove
 # -f	force, ohne nachfragen
 clean:
@@ -21,8 +21,8 @@ clean:
 makeMain: automatOBJs bufferOBJs symboltableOBJs scannerOBJTarget
 	g++ -g $(OBJSDIR)/Buffer.o $(DEBUGDIR)/TestBuffer.o -o $(DEBUGDIR)/BufferTest
 
-mainTarget : automatOBJs bufferOBJs symboltableOBJs scannerOBJTarget main/src/main.cpp
-	g++ -g  -c -Wall  main/src/main.cpp -o main/objs/main.o
+mainTarget : automatOBJs bufferOBJs symboltableOBJs scannerOBJTarget Main/src/Main.cpp
+	g++ -g  -c -Wall  Main/src/Main.cpp -o Main/objs/Main.o
 
 automatOBJs:
 	$(MAKE) -C $(AUTOMATDIR) AutomatOBJTarget
@@ -40,9 +40,9 @@ scannerOBJTarget:
 	$(MAKE) -C $(SCANNERDIR) ScannerOBJTarget
 
 CreateDirectories:
-	rm -rf main/objs
-	rm -rf main/dist
-	rm -rf main/output
-	mkdir main/objs
-	mkdir main/dist
-	mkdir main/output
+	rm -rf Main/objs
+	rm -rf Main/dist
+	rm -rf Main/output
+	mkdir Main/objs
+	mkdir Main/dist
+	mkdir Main/output

@@ -9,8 +9,8 @@ using namespace std;
 Scanner::Scanner(char* argv, char* argv2) {
 
 	if (argv == NULL) {
-		argv = "../input/tryit.txt";
-		argv2 = "out.txt";
+		argv = "../input/in.txt";
+		argv2 = "../output/out.txt";
 	} else if (argv2 == NULL) {
 		argv2 = "out.txt";
 	}
