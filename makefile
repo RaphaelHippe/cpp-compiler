@@ -41,4 +41,8 @@ scannerOBJTarget:
 
 CreateDirectories:
 	rm -rf main/objs
+	rm -rf main/dist
+	rm -rf main/output
 	mkdir main/objs
+	mkdir main/dist
+	mkdir main/output

@@ -7,11 +7,13 @@ int main(int argc, char **argv) {
 
 	Buffer*  buffer;
 
-	buffer = new Buffer(argv[1]);
+	if (argv[1] != NULL) {
+		buffer = new Buffer(argv[1]);
+	} else {
+		buffer = new Buffer("../input/tryit.txt");
+	}
 
-	cout << argv[1] << '\n';
 	char c = '1';
-
 	int i = 0;
 
 	while (c != '\0') {

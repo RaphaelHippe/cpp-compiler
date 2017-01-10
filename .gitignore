@@ -20,4 +20,5 @@ Symboltable/objs
 
 #main
 main/objs
-main/dist/main
+main/dist
+main/output

@@ -9,7 +9,7 @@ using namespace std;
 Scanner::Scanner(char* argv, char* argv2) {
 
 	if (argv == NULL) {
-		argv = "../tests/tryit.txt";
+		argv = "../input/tryit.txt";
 		argv2 = "out.txt";
 	} else if (argv2 == NULL) {
 		argv2 = "out.txt";
