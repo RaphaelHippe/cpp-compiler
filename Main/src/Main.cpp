@@ -9,9 +9,11 @@ int main(int argc, char **argv) {
 	Scanner* scanner;
 	scanner = new Scanner(argv[1], argv[2]);
 
+	cout << "Lets get this party started!";
+	cout << '\n';
 	do {
-		cout << "Scanning next Token!";
-		cout << '\n';
+		// cout << "Scanning next Token!";
+		// cout << '\n';
 	} while(scanner->nextToken() != NULL);
 
 }

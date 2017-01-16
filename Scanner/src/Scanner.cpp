@@ -1,29 +1,28 @@
 #include "../includes/Scanner.h"
 #include "../../Automat/includes/Automat.h"
 #include "../../Symboltable/includes/Information.h"
-#include <cstring>
 #include <iostream>
-#include <sstream>
-
+#include <error.h>
+#include <errno.h>
 using namespace std;
 Scanner::Scanner(char* argv, char* argv2) {
 
-	if (argv == NULL) {
-		argv = "../input/in.txt";
-		argv2 = "../output/out.txt";
-	} else if (argv2 == NULL) {
-		argv2 = "out.txt";
-	}
+								if (argv == NULL) {
+																argv = "../input/in.txt";
+																argv2 = "../output/out.txt";
+								} else if (argv2 == NULL) {
+																argv2 = "out.txt";
+								}
 
-	// TODO: maybe a small check if argv and argv2 are actually ending in .txt or something?
+								// TODO: maybe a small check if argv and argv2 are actually ending in .txt or something?
 
- 	buffer = new Buffer(argv);
-	filedesc = open(argv2, O_WRONLY | O_CREAT|O_TRUNC, 0666);
+								buffer = new Buffer(argv);
+								filedesc = open(argv2, O_WRONLY | O_CREAT|O_TRUNC, 0666);
 
-	symTable = new Symboltable();
-	symTable->initSymbols();
-	automat = new Automat();
-	this->counter = 0;
+								symTable = new Symboltable();
+								symTable->initSymbols();
+								automat = new Automat();
+								this->counter = 0;
 }
 
 void Scanner::writeInt(long int value, int filedesc){
@@ -129,10 +128,8 @@ Token* Scanner::nextToken() {
 								switch (automat_result) {
 								case 24:
 																// cout << "End of Comment \n";
+																token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter);
 																counter = 0;
-																// token = new Token(1,1,1
-																token = NULL;
-																// token = new Token(automat->gettype(), automat->getline(), automat->getcolumn());
 																// return 1;
 																break;
 								case 0:
@@ -165,26 +162,20 @@ Token* Scanner::nextToken() {
 																}
 
 																if (automat->gettype() == 2) {
+
 																								buffer->stepBack(counter);
 																								char number[counter];
 																								for (size_t i = 0; i < counter; i++) {
 																																number[i] = buffer->getChar();
 																								}
-																								stringstream str(number);
-																								int x;
-																								str >> x;
-																								if (!str) {
-																																// The conversion failed.
-																																cout << "conversion failed!! \n";
-																																//  x = 0; ?
-																																token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, 0);
-
-																								} else {
-																																cout << "conversion should work!! \n";
-																																token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, x);
+																								long value = strtol(number, NULL, 10);
+																								if (errno == ERANGE) {
+																																error(0, ERANGE, "LINE: %d Column: %d", automat->getline(), automat->getcolumn() - counter);
+																																errno = 0;
+																																// TODO: CHECK WHAT TYPE ERROR IS
+																																token = new Token(0, automat->getline(), automat->getcolumn() - counter);
 																								}
-																								//  number[counter] = '\0';
-																								// 1 3 2 4 5
+																								token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, value);
 																								write(filedesc, " ", 1);
 																								write(filedesc, number, counter);
 																}
@@ -203,20 +194,17 @@ Token* Scanner::nextToken() {
 																write(filedesc, "\n", 1);
 																counter = 0;
 																// this is an error token so far - we need to figure out what the value / information is for a sign ;)
-																// token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter);
-																token = NULL;
+																token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter);
 																break;
 								// return 1;
 								case -1:
-																cout << "Error-Token: Type: " << automat->gettype() << " Line: " << automat->getline() << " Column: " << automat->getcolumn() - counter << " Counter: " << counter << " raw column: " << automat->getcolumn() << c;
-																cout << '\n';
+																fprintf(stderr, "Error: Type: %d Line: %d Column: %d \n", automat->gettype(), automat->getline(), automat->getcolumn() - counter);
+																token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter);
 																counter = 0;
-																// token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter);
-																token = NULL;
 																break;
 								// return 1;
 								case -99:
-																cout << "End of File. Exiting...";
+																cout << "End of Party. Good Night, sleep well ;)";
 																cout << '\n';
 																token = NULL;
 																break;

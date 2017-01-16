@@ -32,8 +32,8 @@ int Initstate::handle(char c){
     return 22;
   } else if(c == '\n') {
     // new line
-    cout << "new line!";
-    cout << '\n';
+    // cout << "new line!";
+    // cout << '\n';
     return 14;
   } else if(c == '\0') {
     // end of file
