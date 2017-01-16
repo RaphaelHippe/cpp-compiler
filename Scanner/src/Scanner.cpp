@@ -126,13 +126,14 @@ Token* Scanner::nextToken() {
 																// -99 -> End of File
 								} while (automat_result != 0 && automat_result != 20 && automat_result != -1 && automat_result != -99 && automat_result != 24);
 								switch (automat_result) {
-								case 24:
+								case 24: {
 																// cout << "End of Comment \n";
 																token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter);
 																counter = 0;
 																// return 1;
-																break;
-								case 0:
+								}
+								break;
+								case 0: {
 																if (c == '\n' || c == ' ') {
 																								counter++;
 																}
@@ -155,7 +156,6 @@ Token* Scanner::nextToken() {
 																								word[counter] = '\0';
 																								Information* myInformation = new Information(word);
 																								Key* myKey = symTable->insert(myInformation);
-																								Information* test = symTable->lookup(myKey);
 																								token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, myInformation);
 																								write(filedesc, " ", 1);
 																								write(filedesc, word, counter);
@@ -181,10 +181,20 @@ Token* Scanner::nextToken() {
 																}
 																write(filedesc, "\n", 1);
 																counter = 0;
-																break;
+								}
+								break;
 								// return 1;
-								case 20:
+								case 20: {
 																// counter--;
+																// write chars into token....
+																// buffer->stepBack(counter);
+																// char word[counter + 1];
+																// for (size_t i = 0; i < counter; i++) {
+																//         word[i] = buffer->getChar();
+																// }
+																// word[counter] = '\0';
+																// Information* myInformation = new Information(word);
+																// token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, myInformation);
 																write(filedesc, "Token ", 6);
 																write(filedesc, translateType(automat->gettype()), 15);
 																write(filedesc, " Line: ", 7);
@@ -193,26 +203,36 @@ Token* Scanner::nextToken() {
 																writeInt(automat->getcolumn() - counter, filedesc);
 																write(filedesc, "\n", 1);
 																counter = 0;
-																// this is an error token so far - we need to figure out what the value / information is for a sign ;)
-																token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter);
-																break;
+								}
+								break;
 								// return 1;
-								case -1:
+								case -1: {
 																fprintf(stderr, "Error: Type: %d Line: %d Column: %d \n", automat->gettype(), automat->getline(), automat->getcolumn() - counter);
-																token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter);
+																// write error lexem into token
+																buffer->stepBack(counter);
+																char word[counter + 1];
+																for (size_t i = 0; i < counter; i++) {
+																        word[i] = buffer->getChar();
+																}
+																word[counter] = '\0';
+																Information* myInformation = new Information(word);
+																token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, myInformation);
 																counter = 0;
-																break;
+								}
+								break;
 								// return 1;
-								case -99:
+								case -99: {
 																cout << "End of Party. Good Night, sleep well ;)";
 																cout << '\n';
 																token = NULL;
-																break;
+								}
+								break;
 								// return 0;
-								default:
+								default: {
 																cout << "Unexpected Error. Exiting...";
 																cout << '\n';
 																token = NULL;
+								}
 																// return 0;
 								}
 								return token;
