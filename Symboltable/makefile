@@ -64,4 +64,4 @@ CreateDirectories:
 
 ## objs fuer GesamtProjekt neu erzeugen
 SymboltableOBJTarget:
-	$(MAKE) SymboltableTarget
+	$(MAKE) makeSymboltable

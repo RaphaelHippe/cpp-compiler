@@ -8,7 +8,7 @@ INCLUDESDIR = includes
 SRCDIR = src
 OBJSDIR = objs
 DEBUGDIR = debug
-TESTSDIR = tests
+TESTSDIR = test
 
 makeAutomat: CreateDirectories SignTarget IntegerTarget IdentifierTarget InitstateTarget AutomatTarget
 
