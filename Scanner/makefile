@@ -3,7 +3,7 @@ HEADERDIR = includes
 SRCDIR = src
 OBJDIR = objs
 BINDIRTEST = debug
-TESTDIR = tests
+TESTDIR = test
 
 AUTOMATDIR = ../Automat
 BUFFERDIR = ../Buffer

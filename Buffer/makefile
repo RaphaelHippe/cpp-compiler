@@ -3,7 +3,7 @@ INCLUDESDIR = includes
 SRCDIR = src
 OBJSDIR = objs
 DEBUGDIR = debug
-TESTSDIR = tests
+TESTSDIR = test
 
 makeBuffer: CreateDirectories BufferTarget
 
