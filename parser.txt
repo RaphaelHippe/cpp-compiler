@@ -1,0 +1,61 @@
+// # = EPSILON = Leer
+
+First(PROG) := First(DECLS) || First(STATEMENTS) || # ====== int || identifier || write || read || { || if || while || #
+
+First(DECLS) := First(DECL) || # ====== int || #
+
+First(DECL) := int
+
+First(ARRAY) := [ || #
+
+First(STATEMENTS) := First(STATEMENT) || # ======= identifier || write || read || { || if || while || #
+
+First(STATEMENT) := identifier || write || read || { || if || while
+
+First(EXP) := First(EXP2) ======= ( || identifier || integer || - || !
+
+First(EXP2) := ( || identifier || integer || - || !
+
+First(INDEX) := [ || #
+
+First(OP_EXP) := First(OP) || # ===== + || - || * || : || < || > || = || =:= || && || #
+
+First(OP) := + || - || * || : || < || > || = || =:= || &&
+
+
+Follow(PROG) := # (Ende)
+
+Follow(DECLS) := First(STATEMENTS) ====== identifier || write || read || { || if || while || #
+
+Follow(DECL) := ;
+
+Follow(ARRAY) := identifier
+
+Follow(STATEMENTS) := } || Follow(PROG) ======= } || # (Ende)
+
+Follow(STATEMENT) := ; || else ======= ; || else
+
+Follow(EXP) := Follow(STATEMENT) || ) || ] || Follow(OP_EXP) ======== ; || else || ) || ]
+
+Follow(EXP2) := First(OP_EXP) ====== + || - || * || : || < || > || = || =:= || && || #
+
+Follow(INDEX) := ) || := || Follow(EXP2) ====== ) || := || + || - || * || : || < || > || = || =:= || && || #
+
+Follow(OP_EXP) := Follow(EXP) ========= ; || else || ) || ]
+
+Follow(OP) := First(EXP) ====== ( || identifier || integer || - || !
+
+
+function PROG(){
+  DECLS danach STATEMENTS
+}
+
+Gibt jede Methode ein eine Knoten zurück
+
+Parsetree
+Node: Children oder Terminal oder Typ(S. 40)
+Leaf: Node ohne Children, können dafür SymtabEntry haben
+
+Parse ruft PROG auf => gibt Node(2) =
+
+Rückgabewert = Knoten
