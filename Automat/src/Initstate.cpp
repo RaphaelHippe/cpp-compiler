@@ -27,7 +27,7 @@ int Initstate::handle(char c){
              c == '&' || c == '=' || c == ':' || c == '*') {
     /* Character is a sign - set Signstate */
     return 12;
-  } else if(c == ' ') {
+  } else if(c == ' ' || c == '\t') {
     // space
     return 22;
   } else if(c == '\n') {
