@@ -1,10 +1,9 @@
 #include "../includes/Scanner.h"
 #include "../../Automat/includes/Automat.h"
 #include "../../Symboltable/includes/Information.h"
-#include <iostream>
 #include <error.h>
 #include <errno.h>
-using namespace std;
+
 Scanner::Scanner(char* argv, char* argv2) {
 
 								if (argv == NULL) {
@@ -39,15 +38,12 @@ void Scanner::writeInt(long int value, int filedesc){
 char* Scanner::translateType(int type){
 
 								switch (type) {
-								// 1 === Identifier
 								case 1:
 																translatedType = "Identifier     ";
 																break;
-								// 2 === Integer
 								case 2:
 																translatedType = "Integer        ";
 																break;
-								// 3 === Sign
 								case 7:
 																translatedType = "PLUS           ";
 																break;
@@ -107,9 +103,7 @@ char* Scanner::translateType(int type){
 								return translatedType;
 }
 
-// returns token
 Token* Scanner::nextToken() {
-// int Scanner::nextToken() {
 								char c;
 								int automat_result;
 								Token* token;
@@ -120,25 +114,25 @@ Token* Scanner::nextToken() {
 																								counter++;
 																}
 																automat_result = automat->handle(c);
-																// 0 -> checkLexem und Step Back
-																// 20 -> checkLexem kein Step Back
+																// 0 -> Lexem to Token und Step Back
+																// 20 -> Lexem to Token und kein Step Back
 																// -1 -> Error Token
 																// -99 -> End of File
 								} while (automat_result != 0 && automat_result != 20 && automat_result != -1 && automat_result != -99 && automat_result != 24);
+
 								switch (automat_result) {
 								case 24: {
-																// cout << "End of Comment \n";
+																// 24 = End of Comment
 																token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter);
 																counter = 0;
-																// return 1;
 								}
 								break;
 								case 0: {
-																if (c == '\n' || c == ' ') {
-																								counter++;
+																//TODO: Comment why we do this
+																if (c != '\n' && c != ' ') {
+																								counter--;
 																}
-																counter--;
-																// automat->decreaseColumn();
+
 																write(filedesc, "Token ", 6);
 																write(filedesc, translateType(automat->gettype()), 15);
 																write(filedesc, " Line: ", 7);
@@ -146,21 +140,23 @@ Token* Scanner::nextToken() {
 																write(filedesc, " Column: ", 9);
 																writeInt(automat->getcolumn() - counter, filedesc);
 																buffer->stepBack(1);
-																if (automat->gettype() == 1) {
-																								// insert into sym table
-																								buffer->stepBack(counter);
-																								char word[counter + 1];
-																								for (size_t i = 0; i < counter; i++) {
-																																word[i] = buffer->getChar();
-																								}
-																								word[counter] = '\0';
-																								Information* myInformation = new Information(word);
-																								Key* myKey = symTable->insert(myInformation);
-																								token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, myInformation);
-																								write(filedesc, " ", 1);
-																								write(filedesc, word, counter);
-																}
 
+																// If type == 1 (Identifier) => insert into sym table
+																// if (automat->gettype() == 1) {
+																// 								buffer->stepBack(counter);
+																// 								char word[counter + 1];
+																// 								for (size_t i = 0; i < counter; i++) {
+																// 																word[i] = buffer->getChar();
+																// 								}
+																// 								word[counter] = '\0';
+																// 								Information* myInformation = new Information(word);
+																// 								Key* myKey = symTable->insert(myInformation);
+																// 								token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, myInformation);
+																// 								write(filedesc, " ", 1);
+																// 								write(filedesc, word, counter);
+																// }
+
+																// Integer
 																if (automat->gettype() == 2) {
 
 																								buffer->stepBack(counter);
@@ -178,7 +174,26 @@ Token* Scanner::nextToken() {
 																								token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, value);
 																								write(filedesc, " ", 1);
 																								write(filedesc, number, counter);
+																}else{
+																	buffer->stepBack(counter);
+																	char word[counter + 1];
+																	for (size_t i = 0; i < counter; i++) {
+																									word[i] = buffer->getChar();
+																	}
+																	word[counter] = '\0';
+																	Information* myInformation = new Information(word);
+
+																	// wenn es ein Identifier ist => in Symboltabelle eintragen
+																	if (automat->gettype() == 1) {
+																		Key* myKey = symTable->insert(myInformation);
+																	}
+
+																	token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, myInformation);
+																	write(filedesc, " ", 1);
+																	write(filedesc, word, counter);
+
 																}
+
 																write(filedesc, "\n", 1);
 																counter = 0;
 								}
