@@ -10,6 +10,10 @@ Automat/objs
 Buffer/debug
 Buffer/objs
 
+# Parser
+Parser/debug
+Parser/objs
+
 # Scanner
 Scanner/debug
 Scanner/objs
