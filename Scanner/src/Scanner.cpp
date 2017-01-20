@@ -212,7 +212,7 @@ Token* Scanner::nextToken() {
 																buffer->stepBack(counter);
 																char word[counter + 1];
 																for (size_t i = 0; i < counter; i++) {
-																        word[i] = buffer->getChar();
+																								word[i] = buffer->getChar();
 																}
 																word[counter] = '\0';
 																Information* myInformation = new Information(word);
