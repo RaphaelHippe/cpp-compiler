@@ -21,6 +21,7 @@ private:
   char* translatedType;
   int filedesc;
   char* translateType(int type);
+  int automatTypeToTokenType(int type);
 public:
   Scanner(char* argv, char* argv2);
 	virtual ~Scanner();

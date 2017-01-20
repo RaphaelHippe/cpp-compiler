@@ -41,7 +41,7 @@ void Information::resetLexemPointer(){
   lexemPointer = lexem;
 }
 
-char Information::getType(){
+int Information::getType(){
   return myType;
 }
 

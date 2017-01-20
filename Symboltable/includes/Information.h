@@ -20,7 +20,7 @@ public:
 	virtual ~Information();
   char* getLexemPointer();
   void incrementLexemPointer();
-  char getType();
+  int getType();
   bool compairLexem(char word[]);
   void setType(int type);
   int calcHashValue();

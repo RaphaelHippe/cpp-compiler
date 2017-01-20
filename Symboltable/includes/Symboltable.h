@@ -6,9 +6,10 @@
  *  Edited:
  *      Author: Raphael Hippe
  */
- #include "../includes/List.h"
- #include "../includes/Key.h"
- #include "../includes/Information.h"
+ #include "List.h"
+ #include "Key.h"
+ #include "Information.h"
+ #include "Token.h"
 
 #ifndef SYMBOLTABLE_H_
 #define SYMBOLTABLE_H_

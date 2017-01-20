@@ -1,11 +1,9 @@
-hallo+++
-:==:=&&&
-aweaweawe
-aweawe
-aa
-weaw
-e
- 123123
+int hallo;
+int peter;
+int[5]a;
 
- 123213
- `
+hallo := 5;
+peter := hallo + 10;
+while(hallo < peter) {
+  hallo := hallo + 1;
+  }
