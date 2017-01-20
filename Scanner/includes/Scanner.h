@@ -22,8 +22,7 @@ private:
   int filedesc;
   char* translateType(int type);
 public:
-	Scanner(char* argv, char* argv2);
-  Scanner();
+  Scanner(char* argv, char* argv2);
 	virtual ~Scanner();
 	Token* nextToken();
 	// int nextToken();

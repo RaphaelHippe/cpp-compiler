@@ -5,13 +5,22 @@
  *      Author: Raphael Hippe
  */
 
+#pragma once
+
+#include "Node.h"
+#include "IntegerN.h"
+
 #ifndef Arr_H_
 #define Arr_H_
 
-class Arr {
+class Arr : public Node {
 private:
+  IntegerN* integer;
 public:
   Arr();
+  void addNode(IntegerN* integer);
+  void typeCheck();
+  void makeCode();
   virtual ~Arr();
 };
 

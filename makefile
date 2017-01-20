@@ -9,7 +9,7 @@ SCANNERDIR = Scanner
 PARSERRDIR = Parser
 
 all: CreateDirectories mainTarget
-	g++ -g Automat/objs/*.o Buffer/objs/*.o  Scanner/objs/*.o Symboltable/objs/*.o Parser/objs/*.o Main/objs/Main.o -o Main/dist/Main
+	g++ -g Automat/objs/*.o Buffer/objs/*.o Symboltable/objs/*.o Scanner/objs/*.o Parser/objs/*.o Main/objs/Main.o -o Main/dist/Main
 # rm 	remove
 # -f	force, ohne nachfragen
 clean:

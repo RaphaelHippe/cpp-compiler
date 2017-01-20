@@ -1,10 +1,7 @@
 #include "../includes/Leaf.h"
-#include <iostream>
 
-using namespace std;
-Leaf::Leaf() {
-  // _context = context;
-}
+void Leaf::addNode(){}
 
-Leaf::~Leaf() {
-}
+void Leaf::typeCheck(){}
+
+void Leaf::makeCode(){}

@@ -5,13 +5,22 @@
  *      Author: Raphael Hippe
  */
 
+#pragma once
+
+#include "Leaf.h"
+#include "./../../Symboltable/includes/Token.h"
+
 #ifndef Op_H_
 #define Op_H_
 
-class Op {
+class Op : Leaf {
 private:
+  Token* token;
 public:
-  Op();
+  Op(Token* token);
+  virtual void addNode();
+  void typeCheck();
+  void makeCode();
   virtual ~Op();
 };
 

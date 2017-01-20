@@ -5,13 +5,22 @@
  *      Author: Raphael Hippe
  */
 
+#pragma once
+
+#include "Node.h"
+#include "Exp.h"
+
 #ifndef Index_H_
 #define Index_H_
 
-class Index {
+class Index : public Node {
 private:
+  Exp* exp;
 public:
   Index();
+  void addNode(Exp* exp);
+  virtual void typeCheck();
+  virtual void makeCode();
   virtual ~Index();
 };
 

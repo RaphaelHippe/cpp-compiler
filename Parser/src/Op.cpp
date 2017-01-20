@@ -2,9 +2,22 @@
 #include <iostream>
 
 using namespace std;
-Op::Op() {
-  // _context = context;
+Op::Op(Token* token) {
+  this->token = token;
 }
+
+void Op::addNode(){
+
+}
+
+void Op::typeCheck(){
+
+}
+
+void Op::makeCode(){
+
+}
+
 
 Op::~Op() {
 }

@@ -1,10 +1,13 @@
 #include "../includes/ExpII.h"
-#include <iostream>
 
-using namespace std;
-ExpII::ExpII() {
-  // _context = context;
+void ExpII::addNode(){
+
 }
 
-ExpII::~ExpII() {
+void ExpII::typeCheck(){
+
+}
+
+void ExpII::makeCode(){
+
 }

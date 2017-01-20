@@ -5,14 +5,19 @@
  *      Author: Raphael Hippe
  */
 
+#pragma once
+
+#include "Node.h"
+
 #ifndef ExpII_H_
 #define ExpII_H_
 
-class ExpII {
+class ExpII : public Node {
 private:
 public:
-  ExpII();
-  virtual ~ExpII();
+  virtual void addNode();
+  virtual void typeCheck();
+  virtual void makeCode();
 };
 
 #endif /* ExpII_H_ */

@@ -5,14 +5,19 @@
  *      Author: Raphael Hippe
  */
 
+#pragma once
+
+#include "Node.h"
+
 #ifndef Statement_H_
 #define Statement_H_
 
-class Statement {
+class Statement : public Node {
 private:
 public:
-  Statement();
-  virtual ~Statement();
+  virtual void addNode();
+  virtual void typeCheck();
+  virtual void makeCode();
 };
 
 #endif /* Statement_H_ */

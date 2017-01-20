@@ -1,3 +1,4 @@
+#pragma once
 /*
  * Automat.h
  *
@@ -5,13 +6,26 @@
  *      Author: Raphael Hippe
  */
 
+
+#include "Node.h"
+#include "Exp.h"
+#include "Op.h"
+
 #ifndef OpExp_H_
 #define OpExp_H_
 
-class OpExp {
+class Exp;
+
+class OpExp : public Node{
 private:
+  Exp* exp;
+  Op* op;
 public:
   OpExp();
+  void addNode(Op* op);
+  void addNode(Exp* exp);
+  virtual void typeCheck();
+  virtual void makeCode();
   virtual ~OpExp();
 };
 

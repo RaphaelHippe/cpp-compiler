@@ -5,14 +5,19 @@
  *      Author: Raphael Hippe
  */
 
+#pragma once
+
+#include "Node.h"
+
 #ifndef Leaf_H_
 #define Leaf_H_
 
-class Leaf {
+class Leaf : public Node {
 private:
 public:
-  Leaf();
-  virtual ~Leaf();
+  virtual void addNode();
+  virtual void typeCheck();
+  virtual void makeCode();
 };
 
 #endif /* Leaf_H_ */
