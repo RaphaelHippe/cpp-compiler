@@ -56,11 +56,12 @@ private:
   Statements* statements();
   bool error;
   bool checkToken(int otherType);
+  void syntaxError();
 public:
   Parser(char* argv, char* argv2);
   virtual ~Parser();
   void nextToken();
-  int parse();
+  Parsetree* parse();
 };
 
 #endif /* Parser_H_ */

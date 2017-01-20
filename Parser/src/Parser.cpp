@@ -11,13 +11,17 @@ void Parser::nextToken(){
         token = scanner->nextToken();
 }
 
-int Parser::parse(){
+Parsetree* Parser::parse(){
         nextToken();
-        if (token == NULL) {
-                return 0;
-        } else {
-                return 1;
+        Prog* myProg = prog();
+        if (token != NULL) {
+          syntaxError();
         }
+        if (error) {
+          delete myProg;
+          return NULL;
+        }
+        return new Parsetree(myProg);
 }
 
 Arr* Parser::arr(){
@@ -29,14 +33,15 @@ Arr* Parser::arr(){
                         }
                         myArr->addNode(new IntegerN(token));
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 if (!checkToken(Token::SQUAREBRACKETCLOSE)) {
-                        // Syntax Error
+                        syntaxError();
                 }
                 return myArr;
         } else {
                 // Epsilon
+                return new ArrEpsilon();
         }
         return NULL;
 }
@@ -53,7 +58,7 @@ Decl* Parser::decl(){
                 }
                 myDecl->addNode(new Identifier(token));
         } else {
-                // Syntax Error
+                syntaxError();
         }
         return myDecl;
 }
@@ -71,12 +76,11 @@ Decls* Parser::decls(){
                         }
                         myDecls->addNode(decls());
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 return myDecls;
         } else {
-                // Epsilon Node (Extra Klasse ?!)
-                return new Decls();
+                return new DeclsEpsilon();
         }
 }
 
@@ -95,7 +99,7 @@ Exp* Parser::exp(){
                 myExp->addNode(opExp());
                 return myExp;
         } else {
-                // syntax error
+                syntaxError();
         }
         return NULL;
 }
@@ -108,14 +112,14 @@ ExpII* Parser::expII(){
                 }
                 myExpII->addNode(exp());
                 if (!checkToken(Token::BRACKETCLOSE)) {
-                        // Syntax Error
+                        syntaxError();
                 }
                 return myExpII;
         } else if(checkToken(Token::IDENTIFIER)) {
                 ExpIIIndex* myExpII = new ExpIIIndex();
                 myExpII->addNode(new Identifier(token));
                 if (error) {
-                  return myExpII;
+                        return myExpII;
                 }
                 myExpII->addNode(index());
                 return myExpII;
@@ -123,25 +127,27 @@ ExpII* Parser::expII(){
                 ExpIIInteger* myExpII = new ExpIIInteger();
                 myExpII->addNode(new IntegerN(token));
                 if (error) {
-                  return myExpII;
+                        return myExpII;
                 }
                 return myExpII;
         } else if(checkToken(Token::MINUS)) {
                 ExpIINegative* myExpII = new ExpIINegative();
                 if (error) {
-                  return myExpII;
+                        return myExpII;
                 }
                 myExpII->addNode(expII());
                 return myExpII;
         } else if(checkToken(Token::EXMARK)) {
                 ExpIINot* myExpII = new ExpIINot();
                 if (error) {
-                  return myExpII;
+                        return myExpII;
                 }
                 myExpII->addNode(expII());
                 return myExpII;
         } else {
                 // Syntax error - not reachable ?!
+                syntaxError();
+
         }
         return NULL;
 }
@@ -151,17 +157,18 @@ Index* Parser::index(){
                 Index* myIndex = new Index();
                 myIndex->addNode(exp());
                 if (!checkToken(Token::SQUAREBRACKETCLOSE)) {
-                  // Syntax Error
+                        syntaxError();
                 }
                 return myIndex;
         } else {
                 // Epsilon
+                return new IndexEpsilon();
         }
 }
 
 Op* Parser::op(){
-    Op* myOp = new Op(token);
-    return myOp;
+        Op* myOp = new Op(token);
+        return myOp;
 }
 
 OpExp* Parser::opExp(){
@@ -172,16 +179,17 @@ OpExp* Parser::opExp(){
             checkToken(Token::ANDAND)) {
                 OpExp* myOpExp = new OpExp();
                 if (error) {
-                  return myOpExp;
+                        return myOpExp;
                 }
                 myOpExp->addNode(op());
                 if (error) {
-                  return myOpExp;
+                        return myOpExp;
                 }
                 myOpExp->addNode(exp());
                 return myOpExp;
         } else {
                 // Epsilon
+                return new OpExpEpsilon();
         }
         return NULL;
 }
@@ -210,7 +218,7 @@ Statement* Parser::statement(){
                         }
                         myStatement->addNode(exp());
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 return myStatement;
         } else if (checkToken(Token::WRITE)) {
@@ -221,10 +229,10 @@ Statement* Parser::statement(){
                         }
                         myStatement->addNode(exp());
                         if (!checkToken(Token::BRACKETCLOSE)) {
-                                // Syntax Error
+                                syntaxError();
                         }
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 return myStatement;
         } else if (checkToken(Token::READ)) {
@@ -233,17 +241,17 @@ Statement* Parser::statement(){
                         if (checkToken(Token::IDENTIFIER)) {
                                 myStatement->addNode(new Identifier(token));
                         } else {
-                                // Syntax Error
+                                syntaxError();
                         }
                         if (error) {
                                 return myStatement;
                         }
                         myStatement->addNode(index());
                         if (!checkToken(Token::BRACKETCLOSE)) {
-                                // Syntax Error
+                                syntaxError();
                         }
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 return myStatement;
         } else if (checkToken(Token::CURLYBRACKETOPEN)) {
@@ -253,7 +261,7 @@ Statement* Parser::statement(){
                 }
                 myStatement->addNode(statements());
                 if (!checkToken(Token::CURLYBRACKETCLOSE)) {
-                        // Syntax Error
+                        syntaxError();
                 }
                 return myStatement;
         } else if (checkToken(Token::IF)) {
@@ -264,7 +272,7 @@ Statement* Parser::statement(){
                         }
                         myStatement->addNode(exp());
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 if (checkToken(Token::BRACKETCLOSE)) {
                         if (error) {
@@ -272,7 +280,7 @@ Statement* Parser::statement(){
                         }
                         myStatement->addNode(statement());
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 if (checkToken(Token::ELSE)) {
                         if (error) {
@@ -280,7 +288,7 @@ Statement* Parser::statement(){
                         }
                         myStatement->addNode(statement());
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 return myStatement;
         } else if (checkToken(Token::WHILE)) {
@@ -291,7 +299,7 @@ Statement* Parser::statement(){
                         }
                         myStatement->addNode(exp());
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 if (checkToken(Token::BRACKETCLOSE)) {
                         if (error) {
@@ -299,11 +307,11 @@ Statement* Parser::statement(){
                         }
                         myStatement->addNode(statement());
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 return myStatement;
         } else {
-                // Syntax Error
+                syntaxError();
         }
         return NULL;
 }
@@ -323,16 +331,24 @@ Statements* Parser::statements(){
                         }
                         myStatements->addNode(statements());
                 } else {
-                        // Syntax Error
+                        syntaxError();
                 }
                 return myStatements;
         } else {
                 // Epsilon
+                return new StatementsEpsilon();
         }
 }
 
 bool Parser::checkToken(int otherType){
         return (token != NULL && token->getType() == otherType);
+}
+
+void Parser::syntaxError(){
+        if (token != NULL && !error) {
+                cout << "Syntax-Error: Line: " << token->getLine() << " Column: " << token->getColumn() << " Token Name\n";
+        }
+        error = true;
 }
 
 Parser::~Parser() {
