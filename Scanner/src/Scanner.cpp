@@ -199,7 +199,7 @@ Token* Scanner::nextToken() {
 																																error(0, ERANGE, "LINE: %d Column: %d", automat->getline(), automat->getcolumn() - counter);
 																																errno = 0;
 																																// TODO: CHECK WHAT TYPE ERROR IS
-																																token = new Token(0, automat->getline(), automat->getcolumn() - counter);
+																																token = new Token(Token::ERROR, automat->getline(), automat->getcolumn() - counter);
 																								}
 																								token = new Token(Token::INTEGER, automat->getline(), automat->getcolumn() - counter, value);
 																								write(filedesc, " ", 1);
