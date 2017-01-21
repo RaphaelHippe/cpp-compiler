@@ -23,6 +23,7 @@ Information::Information(char word[]) {
   }
   lexemPointer = lexem;
   myType = NULL;
+  this->type = NOTYPE;
 }
 
 void Information::setType(int type){
@@ -39,6 +40,18 @@ void Information::incrementLexemPointer(){
 
 void Information::resetLexemPointer(){
   lexemPointer = lexem;
+}
+
+string Information::getLexem(){
+  return lexem;
+}
+
+NodeType Information::getNodeType(){
+  return type;
+}
+
+void Information::setNodeType(NodeType type){
+  this->type = type;
 }
 
 int Information::getType(){

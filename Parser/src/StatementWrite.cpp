@@ -3,21 +3,33 @@
 
 using namespace std;
 StatementWrite::StatementWrite() {
-  // _context = context;
+  this->exp = NULL;
+  this->type = NOTYPE;
 }
 
 void StatementWrite::addNode(Exp* exp){
   this->exp = exp;
 }
 
-void StatementWrite::typeCheck(){
+Exp* StatementWrite::getExp(){
+  return exp;
+}
 
+NodeType StatementWrite::getType(){
+  return this->type;
+}
+
+void StatementWrite::typeCheck(){
+  if (getError()) {
+    return;
+  }
+  exp->typeCheck();
 }
 
 void StatementWrite::makeCode(){
 
 }
 
-
 StatementWrite::~StatementWrite() {
+  delete exp;
 }

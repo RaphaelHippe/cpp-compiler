@@ -17,12 +17,16 @@ class Decls : public Node {
 private:
   Decl* decl;
   Decls* decls;
+  NodeType type;
 public:
   Decls();
   void addNode(Decl* decl);
   void addNode(Decls* decls);
-  void typeCheck();
-  void makeCode();
+  Decl* getDecl();
+  Decls* getDecls();
+  virtual NodeType getType();
+  virtual void typeCheck();
+  virtual void makeCode();
   virtual ~Decls();
 };
 

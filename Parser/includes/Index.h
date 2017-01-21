@@ -16,9 +16,12 @@
 class Index : public Node {
 private:
   Exp* exp;
+  NodeType type;
 public:
   Index();
   void addNode(Exp* exp);
+  Exp* getExp();
+  virtual NodeType getType();
   virtual void typeCheck();
   virtual void makeCode();
   virtual ~Index();

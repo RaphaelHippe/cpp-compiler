@@ -1,23 +1,33 @@
 #include "../includes/StatementBracket.h"
-#include <iostream>
 
-using namespace std;
 StatementBracket::StatementBracket() {
-  // _context = context;
+  this->statements = NULL;
+  this->type = NOTYPE;
 }
 
 void StatementBracket::addNode(Statements* statements){
   this->statements = statements;
 }
 
-void StatementBracket::typeCheck(){
+Statements* Statements::getStatements(){
+  return statements;
+}
 
+NodeType Statements::getType(){
+  return this->type;
+}
+
+void StatementBracket::typeCheck(){
+  if (getError()) {
+    return;
+  }
+  statements->typeCheck();
 }
 
 void StatementBracket::makeCode(){
 
 }
 
-
 StatementBracket::~StatementBracket() {
+  delete statements;
 }

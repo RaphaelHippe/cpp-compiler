@@ -6,6 +6,7 @@ StatementIfElse::StatementIfElse() {
   this->exp = NULL;
   this->statement1 = NULL;
   this->statement2 = NULL;
+  this->type = NOTYPE;
 }
 
 void StatementIfElse::addNode(Exp* exp){
@@ -20,8 +21,43 @@ void StatementIfElse::addNode(Statement* statement){
   }
 }
 
-void StatementIfElse::typeCheck(){
+Exp* StatementIfElse::getExp(){
+  return exp;
+}
 
+Statement* StatementIfElse::getStatement1(){
+  return statement1;
+}
+
+Statement* StatementIfElse::getStatement2(){
+  return statement2;
+}
+
+NodeType StatementIfElse::getType(){
+  return this->type;
+}
+
+void StatementIfElse::typeCheck(){
+  if (getError()) {
+    return;
+  }
+  exp->typeCheck();
+  if (getError()) {
+    return;
+  }
+  statement1->typeCheck();
+  if (getError()) {
+    return;
+  }
+  statement2->typeCheck();
+  if (getError()) {
+    return;
+  }
+  if (exp->getType() == ERROR) {
+    this->type = ERROR;
+  } else {
+    this->type = NOTYPE;
+  }
 }
 
 void StatementIfElse::makeCode(){
@@ -30,4 +66,7 @@ void StatementIfElse::makeCode(){
 
 
 StatementIfElse::~StatementIfElse() {
+  delete exp;
+  delete statement1;
+  delete statement2;
 }

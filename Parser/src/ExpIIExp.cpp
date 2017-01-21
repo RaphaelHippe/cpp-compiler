@@ -3,15 +3,29 @@
 
 using namespace std;
 ExpIIExp::ExpIIExp() {
-  // _context = context;
+  this->exp = NULL;
+  this->type = NOTYPE;
 }
 
 void ExpIIExp::addNode(Exp* exp){
   this->exp = exp;
 }
 
-void ExpIIExp::typeCheck(){
+Exp* ExpIIExp::getExp(){
+  return exp;
+}
 
+NodeType ExpIIExp::getType(){
+  return this->type;
+}
+
+
+void ExpIIExp::typeCheck(){
+  if (getError()) {
+    return;
+  }
+  exp->typeCheck();
+  this->type = exp->getType();
 }
 
 void ExpIIExp::makeCode(){
@@ -20,4 +34,5 @@ void ExpIIExp::makeCode(){
 
 
 ExpIIExp::~ExpIIExp() {
+  delete exp;
 }

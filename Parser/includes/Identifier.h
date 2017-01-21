@@ -18,7 +18,11 @@ private:
   Token* token;
 public:
   Identifier(Token* token);
-  virtual ~Identifier();
+  std::string getLexem();
+  int getLine();
+  int getColumn();
+  NodeType getType();
+  void setType(NodeType type);
 };
 
 #endif /* Identifier_H_ */

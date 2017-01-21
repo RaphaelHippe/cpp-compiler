@@ -17,10 +17,14 @@ class Decl : public Node{
 private:
   Arr* arr;
   Identifier* identifier;
+  NodeType type;
 public:
   Decl();
   void addNode(Arr* arr);
   void addNode(Identifier* identifier);
+  Arr* getArr();
+  Identifier* getIdentifier();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~Decl();

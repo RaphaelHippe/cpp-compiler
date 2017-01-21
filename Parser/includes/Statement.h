@@ -17,6 +17,7 @@ private:
 public:
   virtual void addNode();
   virtual void typeCheck();
+  virtual NodeType getType();
   virtual void makeCode();
 };
 

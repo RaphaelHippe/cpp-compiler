@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "NodeTypes.h"
 #include <stdio.h>
 
 #ifndef Node_H_

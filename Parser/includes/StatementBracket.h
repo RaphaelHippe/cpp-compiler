@@ -16,9 +16,12 @@
 class StatementBracket : public Statement {
 private:
   Statements* statements;
+  NodeType type;
 public:
   StatementBracket();
   void addNode(Statements* statements);
+  Statements* getStatements();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~StatementBracket();

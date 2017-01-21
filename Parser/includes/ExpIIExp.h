@@ -16,9 +16,12 @@
 class ExpIIExp : public ExpII {
 private:
   Exp* exp;
+  NodeType type;
 public:
   ExpIIExp();
   void addNode(Exp* exp);
+  Exp* getExp();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~ExpIIExp();

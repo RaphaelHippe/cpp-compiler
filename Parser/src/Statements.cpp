@@ -1,9 +1,9 @@
 #include "../includes/Statements.h"
-#include <iostream>
 
-using namespace std;
 Statements::Statements() {
-  // _context = context;
+  this->statement = NULL;
+  this->statements = NULL;
+  this->type = NOTYPE;
 }
 
 void Statements::addNode(Statement* statement){
@@ -14,8 +14,27 @@ void Statements::addNode(Statements* statements){
   this->statements = statements;
 }
 
-void Statements::typeCheck(){
+Statement* Statements::getStatement(){
+  return statement;
+}
 
+Statements* Statements::getStatements(){
+  return statements;
+}
+
+NodeType Statements::getType(){
+  return this->type;
+}
+
+void Statements::typeCheck(){
+  if (getError()) {
+    return;
+  }
+  statement->typeCheck();
+  if (getError()) {
+    return;
+  }
+  statements->typeCheck();
 }
 
 void Statements::makeCode(){
@@ -24,4 +43,6 @@ void Statements::makeCode(){
 
 
 Statements::~Statements() {
+  delete statement;
+  delete statements;
 }

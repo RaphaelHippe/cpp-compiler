@@ -3,21 +3,30 @@
 
 using namespace std;
 ExpIIInteger::ExpIIInteger() {
-  // _context = context;
+  this->integer = NULL;
+  this->type = NOTYPE;
 }
 
 void ExpIIInteger::addNode(IntegerN* integer){
   this->integer = integer;
 }
 
-void ExpIIInteger::typeCheck(){
+IntegerN* ExpIIInteger::getInteger(){
+  return integer;
+}
 
+NodeType ExpIIInteger::getType(){
+  return this->type;
+}
+
+void ExpIIInteger::typeCheck(){
+  this->type = INT;
 }
 
 void ExpIIInteger::makeCode(){
 
 }
 
-
 ExpIIInteger::~ExpIIInteger() {
+  delete integer;
 }

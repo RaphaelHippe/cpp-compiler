@@ -16,9 +16,12 @@
 class ExpIIInteger : public ExpII {
 private:
   IntegerN* integer;
+  NodeType type;
 public:
   ExpIIInteger();
   void addNode(IntegerN* integer);
+  IntegerN* getInteger();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~ExpIIInteger();

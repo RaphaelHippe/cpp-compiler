@@ -15,9 +15,12 @@
 class ExpIINot : public ExpII {
 private:
   ExpII* expII;
+  NodeType type;
 public:
   ExpIINot();
   void addNode(ExpII* expII);
+  ExpII* getExpII();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~ExpIINot();

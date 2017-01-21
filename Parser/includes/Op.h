@@ -16,12 +16,16 @@
 class Op : Leaf {
 private:
   Token* token;
+  NodeType type;
 public:
   Op(Token* token);
   virtual void addNode();
+  std::string getLexem();
+  int getLine();
+  int getColumn();
+  NodeType getType();
   void typeCheck();
   void makeCode();
-  virtual ~Op();
 };
 
 #endif /* Op_H_ */

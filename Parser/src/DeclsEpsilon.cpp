@@ -3,7 +3,7 @@
 
 using namespace std;
 DeclsEpsilon::DeclsEpsilon() {
-  // _context = context;
+  this->type = NOTYPE;
 }
 
 void DeclsEpsilon::typeCheck(){
@@ -12,7 +12,4 @@ void DeclsEpsilon::typeCheck(){
 
 void DeclsEpsilon::makeCode(){
 
-}
-
-DeclsEpsilon::~DeclsEpsilon() {
 }

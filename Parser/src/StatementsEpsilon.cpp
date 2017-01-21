@@ -1,19 +1,13 @@
 #include "../includes/StatementsEpsilon.h"
-#include <iostream>
 
-using namespace std;
 StatementsEpsilon::StatementsEpsilon() {
-  // _context = context;
+  this->type = NOTYPE;
 }
 
-void StatementsEpsilon::typeCheck(){
 
+void StatementsEpsilon::typeCheck(){
 }
 
 void StatementsEpsilon::makeCode(){
 
-}
-
-
-StatementsEpsilon::~StatementsEpsilon() {
 }

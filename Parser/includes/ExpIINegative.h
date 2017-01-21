@@ -15,9 +15,12 @@
 class ExpIINegative : public ExpII {
 private:
   ExpII* expII;
+  NodeType type;
 public:
   ExpIINegative();
   void addNode(ExpII* expII);
+  ExpII* getExpII();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~ExpIINegative();

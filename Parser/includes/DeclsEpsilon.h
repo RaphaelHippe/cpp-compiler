@@ -14,11 +14,11 @@
 
 class DeclsEpsilon : public Decls {
 private:
+  NodeType type;
 public:
   DeclsEpsilon();
   void typeCheck();
   void makeCode();
-  virtual ~DeclsEpsilon();
 };
 
 #endif /* DeclsEpsilon_H_ */

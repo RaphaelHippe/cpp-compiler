@@ -14,11 +14,11 @@
 
 class IndexEpsilon : public Index {
 private:
+  NodeType type;
 public:
   IndexEpsilon();
   void typeCheck();
   void makeCode();
-  virtual ~IndexEpsilon();
 };
 
 #endif /* IndexEpsilon_H_ */

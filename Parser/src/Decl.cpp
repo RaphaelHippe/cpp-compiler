@@ -3,7 +3,9 @@
 
 using namespace std;
 Decl::Decl() {
-  // _context = context;
+  this->arr = NULL;
+  this->identifier = NULL;
+  this->type = NOTYPE;
 }
 
 void Decl::addNode(Arr* arr){
@@ -14,8 +16,37 @@ void Decl::addNode(Identifier* identifier){
   this->identifier = identifier;
 }
 
-void Decl::typeCheck(){
+Arr* Decl::getArr(){
+  return arr;
+}
 
+Identifier* Decl::getIdentifier(){
+  return identifier;
+}
+
+NodeType Decl::getType(){
+  return type;
+}
+
+
+void Decl::typeCheck(){
+  if (getError()) {
+    return;
+  }
+  arr->typeCheck();
+  if (identifier->getType() != NOTYPE) {
+    cerr << "Error: Line: " << identifier->getLine() << " Column: " << identifier->getColumn() << " Identifier already defined.\n";
+    this->type = ERROR;
+    setError();
+  } else if (arr->getType() == ERROR) {
+    this->type = ERROR;
+  } else {
+    if (arr->getType() == ARRAY) {
+      identifier->setType(INTARRAY);
+    } else {
+      identifier->setType(INT);
+    }
+  }
 }
 
 void Decl::makeCode(){
@@ -23,4 +54,6 @@ void Decl::makeCode(){
 }
 
 Decl::~Decl() {
+  delete arr;
+  delete identifier;
 }

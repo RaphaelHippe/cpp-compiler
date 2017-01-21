@@ -20,10 +20,14 @@ class Exp : public Node {
 private:
   ExpII* expII;
   OpExp* opExp;
+  NodeType type;
 public:
   Exp();
   void addNode(ExpII* expII);
   void addNode(OpExp* opExp);
+  ExpII* getExpII();
+  OpExp* getOpExp();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~Exp();

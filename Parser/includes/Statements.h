@@ -17,10 +17,14 @@ class Statements : public Node {
 private:
   Statement* statement;
   Statements* statements;
+  NodeType type;
 public:
   Statements();
   void addNode(Statement* statement);
   void addNode(Statements* statements);
+  Statement* getStatement();
+  Statements* getStatements();
+  virtual NodeType getType();
   virtual void typeCheck();
   virtual void makeCode();
   virtual ~Statements();

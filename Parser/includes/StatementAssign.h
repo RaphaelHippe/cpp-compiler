@@ -20,11 +20,16 @@ private:
   Identifier* identifier;
   Index* index;
   Exp* exp;
+  NodeType type;
 public:
   StatementAssign();
   void addNode(Identifier* identifier);
   void addNode(Index* index);
   void addNode(Exp* exp);
+  Identifier* getIdentifier();
+  Index* getIndex();
+  Exp* getExp();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~StatementAssign();

@@ -16,11 +16,14 @@
 class Arr : public Node {
 private:
   IntegerN* integer;
+  NodeType type;
 public:
   Arr();
   void addNode(IntegerN* integer);
-  void typeCheck();
-  void makeCode();
+  IntegerN* getInteger();
+  virtual NodeType getType();
+  virtual void typeCheck();
+  virtual void makeCode();
   virtual ~Arr();
 };
 

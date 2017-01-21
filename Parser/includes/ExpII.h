@@ -16,6 +16,7 @@ class ExpII : public Node {
 private:
 public:
   virtual void addNode();
+  virtual NodeType getType();
   virtual void typeCheck();
   virtual void makeCode();
 };

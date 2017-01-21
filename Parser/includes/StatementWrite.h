@@ -17,9 +17,12 @@
 class StatementWrite : public Statement {
 private:
   Exp* exp;
+  NodeType type;
 public:
   StatementWrite();
   void addNode(Exp* exp);
+  Exp* getExp();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~StatementWrite();

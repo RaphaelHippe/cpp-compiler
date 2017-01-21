@@ -3,7 +3,9 @@
 
 using namespace std;
 Prog::Prog() {
-  // _context = context;
+  this->decls = NULL;
+  this->statements = NULL;
+  this->type = NOTYPE;
 }
 
 void Prog::addNode(Decls* decls){
@@ -14,8 +16,24 @@ void Prog::addNode(Statements* statements){
   this->statements = statements;
 }
 
-void Prog::typeCheck(){
+Decls* Prog::getDecls(){
+  return decls;
+}
 
+Statements* Prog::getStatements(){
+  return statements;
+}
+
+NodeType Prog::getType(){
+  return this->type;
+}
+
+void Prog::typeCheck(){
+  decls->typeCheck();
+  if (getError()) {
+    return;
+  }
+  statements->typeCheck();
 }
 
 void Prog::makeCode(){
@@ -24,4 +42,6 @@ void Prog::makeCode(){
 
 
 Prog::~Prog() {
+  delete decls;
+  delete statements;
 }

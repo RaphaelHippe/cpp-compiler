@@ -14,11 +14,11 @@
 
 class StatementsEpsilon : public Statements {
 private:
+  NodeType type;
 public:
   StatementsEpsilon();
   void typeCheck();
   void makeCode();
-  virtual ~StatementsEpsilon();
 };
 
 #endif /* StatementsEpsilon_H_ */

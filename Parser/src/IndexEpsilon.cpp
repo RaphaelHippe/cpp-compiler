@@ -3,7 +3,7 @@
 
 using namespace std;
 IndexEpsilon::IndexEpsilon() {
-  // _context = context;
+  this->type = NOTYPE;
 }
 
 void IndexEpsilon::typeCheck(){
@@ -12,8 +12,4 @@ void IndexEpsilon::typeCheck(){
 
 void IndexEpsilon::makeCode(){
 
-}
-
-
-IndexEpsilon::~IndexEpsilon() {
 }

@@ -18,6 +18,7 @@ private:
   Prog* prog;
 public:
   Parsetree(Prog* prog);
+  bool typeCheck();
   virtual ~Parsetree();
 };
 

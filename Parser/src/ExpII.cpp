@@ -11,3 +11,7 @@ void ExpII::typeCheck(){
 void ExpII::makeCode(){
 
 }
+
+NodeType ExpII::getType(){
+  return NOTYPE;
+}

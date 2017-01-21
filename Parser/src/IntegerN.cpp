@@ -6,5 +6,14 @@ IntegerN::IntegerN(Token* token) {
   this->token = token;
 }
 
-IntegerN::~IntegerN() {
+int IntegerN::getValue(){
+  return token->getValue();
+}
+
+int IntegerN::getLine(){
+  return token->getLine();
+}
+
+int IntegerN::getColumn(){
+  return token->getColumn();
 }

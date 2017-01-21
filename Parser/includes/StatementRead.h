@@ -18,10 +18,14 @@ class StatementRead : public Statement {
 private:
   Identifier* identifier;
   Index* index;
+  NodeType type;
 public:
   StatementRead();
   void addNode(Identifier* identifier);
   void addNode(Index* index);
+  Identifier* getIdentifier();
+  Index* getIndex();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~StatementRead();

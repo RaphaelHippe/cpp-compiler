@@ -5,9 +5,11 @@
  *      Author: Raphael Hippe
  */
 
+#include "../../Parser/includes/NodeTypes.h"
+#include <string>
+
 #ifndef Information_H_
 #define Information_H_
-
 
 class Information {
 private:
@@ -15,10 +17,12 @@ private:
   int myType;
   char* lexemPointer;
   char currentChar;
+  NodeType type;
 public:
 	Information(char word[]);
 	virtual ~Information();
   char* getLexemPointer();
+  std::string getLexem();
   void incrementLexemPointer();
   int getType();
   bool compairLexem(char word[]);
@@ -26,6 +30,9 @@ public:
   int calcHashValue();
   void printLexem();
   void resetLexemPointer();
+
+  NodeType getNodeType();
+  void setNodeType(NodeType type);
 
 };
 

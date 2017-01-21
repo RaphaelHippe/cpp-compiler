@@ -18,7 +18,9 @@ private:
   Token* token;
 public:
   IntegerN(Token* token);
-  virtual ~IntegerN();
+  int getValue();
+  int getLine();
+  int getColumn();
 };
 
 #endif /* IntegerN_H_ */

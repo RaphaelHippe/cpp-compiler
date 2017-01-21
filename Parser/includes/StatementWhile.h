@@ -17,10 +17,14 @@ class StatementWhile : public Statement {
 private:
   Exp* exp;
   Statement* statement;
+  NodeType type;
 public:
   StatementWhile();
   void addNode(Exp* exp);
   void addNode(Statement* statement);
+  Exp* getExp();
+  Statement* getStatement();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~StatementWhile();

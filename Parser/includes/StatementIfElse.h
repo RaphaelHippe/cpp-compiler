@@ -18,10 +18,15 @@ private:
   Exp* exp;
   Statement* statement1;
   Statement* statement2;
+  NodeType type;
 public:
   StatementIfElse();
   void addNode(Exp* exp);
   void addNode(Statement* statement);
+  Exp* getExp();
+  Statement* getStatement1();
+  Statement* getStatement2();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~StatementIfElse();

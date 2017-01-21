@@ -6,5 +6,22 @@ Identifier::Identifier(Token* token) {
   this->token = token;
 }
 
-Identifier::~Identifier() {
+std::string Identifier::getLexem(){
+  return token->getInformation()->getLexem();
+}
+
+int Identifier::getLine(){
+  return token->getLine();
+}
+
+int Identifier::getColumn(){
+  return token->getColumn();
+}
+
+NodeType Identifier::getType(){
+  return token->getInformation()->getNodeType();
+}
+
+void Identifier::setType(NodeType type){
+  token->getInformation()->setNodeType(type);
 }

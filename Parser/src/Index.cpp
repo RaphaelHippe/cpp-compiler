@@ -3,21 +3,38 @@
 
 using namespace std;
 Index::Index() {
-  // _context = context;
+  this->exp = NULL;
+  this->type = NOTYPE;
 }
 
 void Index::addNode(Exp* exp){
   this->exp = exp;
 }
 
-void Index::typeCheck(){
+Exp* Index::getExp(){
+  return exp;
+}
 
+NodeType Index::getType(){
+  return this->type;
+}
+
+void Index::typeCheck(){
+  if (getError()) {
+    return;
+  }
+  exp->typeCheck();
+  if (exp->getType() == ERROR) {
+    this->type = ERROR;
+  } else {
+    this->type = ARRAY;
+  }
 }
 
 void Index::makeCode(){
 
 }
 
-
 Index::~Index() {
+  delete exp;
 }

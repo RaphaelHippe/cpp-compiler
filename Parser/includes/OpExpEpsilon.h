@@ -14,11 +14,11 @@
 
 class OpExpEpsilon : public OpExp {
 private:
+  NodeType type;
 public:
   OpExpEpsilon();
   void typeCheck();
   void makeCode();
-  virtual ~OpExpEpsilon();
 };
 
 #endif /* OpExpEpsilon_H_ */

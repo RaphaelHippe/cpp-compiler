@@ -14,11 +14,11 @@
 
 class ArrEpsilon : public Arr {
 private:
+  NodeType type;
 public:
   ArrEpsilon();
-  virtual void typeCheck();
-  virtual void makeCode();
-  virtual ~ArrEpsilon();
+  void typeCheck();
+  void makeCode();
 };
 
 #endif /* Arr_H_ */

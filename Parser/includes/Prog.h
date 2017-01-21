@@ -17,12 +17,16 @@ class Prog : public Node {
 private:
   Decls* decls;
   Statements* statements;
+  NodeType type;
 public:
   Prog();
   virtual ~Prog();
 
   void addNode(Decls* decls);
   void addNode(Statements* statements);
+  Decls* getDecls();
+  Statements* getStatements();
+  NodeType getType();
   void typeCheck();
   void makeCode();
 };

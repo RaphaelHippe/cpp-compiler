@@ -19,10 +19,14 @@ class ExpIIIndex : public ExpII {
 private:
   Identifier* identifier;
   Index* index;
+  NodeType type;
 public:
   ExpIIIndex();
   void addNode(Identifier* identifier);
   void addNode(Index* index);
+  Identifier* getIdentifier();
+  Index* getIndex();
+  NodeType getType();
   void typeCheck();
   void makeCode();
   virtual ~ExpIIIndex();
