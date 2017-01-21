@@ -220,7 +220,7 @@ Token* Scanner::nextToken() {
 																	Key* myKey = symTable->insert(myInformation);
 																	Information* info = symTable->lookup(myKey);
 																	// Get Token Type from symTable --> information
-																	token = new Token(info->getType(), automat->getline(), automat->getcolumn() - counter, myInformation);
+																	token = new Token(info->getType(), automat->getline(), automat->getcolumn() - counter, info);
 																	write(filedesc, " ", 1);
 																	write(filedesc, word, counter);
 
@@ -243,7 +243,7 @@ Token* Scanner::nextToken() {
 																Information* myInformation = new Information(word);
 																Key* myKey = symTable->insert(myInformation);
 																Information* info = symTable->lookup(myKey);
-																token = new Token(info->getType(), automat->getline(), automat->getcolumn() - counter, myInformation);
+																token = new Token(info->getType(), automat->getline(), automat->getcolumn() - counter, info);
 																write(filedesc, "Token ", 6);
 																write(filedesc, translateType(automat->gettype()), 15);
 																write(filedesc, " Line: ", 7);
