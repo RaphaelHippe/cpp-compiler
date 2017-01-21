@@ -390,6 +390,9 @@ void Parser::syntaxError(){
         if (token != NULL && !error) {
                 cout << "Syntax-Error: Line: " << token->getLine() << " Column: " << token->getColumn() << " Token Name\n";
         }
+        if (token == NULL) {
+          cout << "Token NULL \n";
+        }
         error = true;
 }
 

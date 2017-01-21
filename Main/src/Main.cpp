@@ -10,6 +10,15 @@ int main(int argc, char **argv) {
 	cout << "Lets get this party started!";
 	cout << '\n';
 
-	parser->parse();
+	Parsetree* tree = parser->parse();
 
+	if (tree != NULL) {
+		if (!tree->typeCheck()) {
+			cout << "typeCheck done - no errors \n";
+		} else {
+			cout << "typeCheck done - errors \n";
+		}
+	} else {
+		cout << "No Tree!\n";
+	}
 }

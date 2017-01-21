@@ -47,7 +47,7 @@ void StatementAssign::typeCheck(){
                 return;
         }
         if (identifier->getType() == NOTYPE) {
-                cerr << "Error: Line: " << identifier->getLine() << " Column: " << identifier->getColumn() << " Identifier not defined.\n";
+                cerr << "Error: Line: " << identifier->getLine() << " Column: " << identifier->getColumn() << " Identifier is not defined.\n";
                 this->type = ERROR;
                 setError();
         } else if (exp->getType() == INT && (identifier->getType() == INT && index->getType() == NOTYPE)

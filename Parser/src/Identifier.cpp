@@ -23,5 +23,6 @@ NodeType Identifier::getType(){
 }
 
 void Identifier::setType(NodeType type){
+  cout << "set int type\n";
   token->getInformation()->setNodeType(type);
 }

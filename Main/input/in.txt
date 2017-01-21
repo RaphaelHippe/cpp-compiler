@@ -1,22 +1,2 @@
-int hallo;
-int peter;
-int[5]a;
-int x;
-
-x := 0;
-hallo := 5;
-peter := hallo + 10;
-while(hallo < peter) {
-  hallo := hallo + 1;
-  };
-
-while(x < 4){
-  a[x] := (2 * x) + 13;
-};
-
-
-if(a[2] > 10) {
-  peter := 23;
-} else {
-  peter := 88;
-}
+int a;
+a := 4;
