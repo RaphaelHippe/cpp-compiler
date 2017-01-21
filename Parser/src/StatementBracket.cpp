@@ -9,11 +9,11 @@ void StatementBracket::addNode(Statements* statements){
   this->statements = statements;
 }
 
-Statements* Statements::getStatements(){
+Statements* StatementBracket::getStatements(){
   return statements;
 }
 
-NodeType Statements::getType(){
+NodeType StatementBracket::getType(){
   return this->type;
 }
 
