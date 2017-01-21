@@ -219,8 +219,9 @@ Token* Scanner::nextToken() {
 																	}
 																	Key* myKey = symTable->insert(myInformation);
 																	Information* info = symTable->lookup(myKey);
+																	cout << "info " << info->getNodeType() << "\n";
 																	// Get Token Type from symTable --> information
-																	token = new Token(info->getType(), automat->getline(), automat->getcolumn() - counter, myInformation);
+																	token = new Token(info->getType(), automat->getline(), automat->getcolumn() - counter, info);
 																	write(filedesc, " ", 1);
 																	write(filedesc, word, counter);
 
