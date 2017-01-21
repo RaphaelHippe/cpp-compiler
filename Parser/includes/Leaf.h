@@ -17,7 +17,7 @@ private:
 public:
   virtual void addNode();
   virtual void typeCheck();
-  virtual void makeCode();
+  virtual void makeCode(std::ofstream &code);
 };
 
 #endif /* Leaf_H_ */

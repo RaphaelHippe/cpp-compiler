@@ -18,7 +18,7 @@ private:
 public:
   StatementsEpsilon();
   void typeCheck();
-  void makeCode();
+  void makeCode(std::ofstream &code);
 };
 
 #endif /* StatementsEpsilon_H_ */

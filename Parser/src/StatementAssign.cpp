@@ -1,7 +1,5 @@
 #include "../includes/StatementAssign.h"
-#include <iostream>
 
-using namespace std;
 StatementAssign::StatementAssign() {
         this->identifier = NULL;
         this->index = NULL;
@@ -60,8 +58,11 @@ void StatementAssign::typeCheck(){
         }
 }
 
-void StatementAssign::makeCode(){
-
+void StatementAssign::makeCode(std::ofstream &code){
+  exp->makeCode(code);
+  code << "LA " << "$" << identifier->getLexem() << "\n";
+  index->makeCode(code);
+  code << "STR" << "\n";
 }
 
 

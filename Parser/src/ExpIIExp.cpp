@@ -1,7 +1,5 @@
 #include "../includes/ExpIIExp.h"
-#include <iostream>
 
-using namespace std;
 ExpIIExp::ExpIIExp() {
   this->exp = NULL;
   this->type = NOTYPE;
@@ -28,8 +26,8 @@ void ExpIIExp::typeCheck(){
   this->type = exp->getType();
 }
 
-void ExpIIExp::makeCode(){
-
+void ExpIIExp::makeCode(std::ofstream &code){
+  exp->makeCode(code);
 }
 
 

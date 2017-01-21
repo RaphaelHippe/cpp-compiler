@@ -18,7 +18,7 @@ private:
 public:
   OpExpEpsilon();
   void typeCheck();
-  void makeCode();
+  void makeCode(std::ofstream &code);
 };
 
 #endif /* OpExpEpsilon_H_ */

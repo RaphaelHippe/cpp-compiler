@@ -28,7 +28,7 @@ public:
   Statement* getStatement2();
   NodeType getType();
   void typeCheck();
-  void makeCode();
+  void makeCode(std::ofstream &code);
   virtual ~StatementIfElse();
 };
 

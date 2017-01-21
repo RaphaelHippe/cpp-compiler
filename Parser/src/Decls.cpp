@@ -1,7 +1,5 @@
 #include "../includes/Decls.h"
-#include <iostream>
 
-using namespace std;
 Decls::Decls() {
         this->decl = NULL;
         this->decls = NULL;
@@ -39,8 +37,9 @@ void Decls::typeCheck(){
         decls->typeCheck();
 }
 
-void Decls::makeCode(){
-
+void Decls::makeCode(std::ofstream &code){
+  decl->makeCode(code);
+  decls->makeCode(code);
 }
 
 Decls::~Decls() {

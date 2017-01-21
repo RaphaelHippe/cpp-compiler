@@ -26,7 +26,7 @@ public:
   Decls* getDecls();
   virtual NodeType getType();
   virtual void typeCheck();
-  virtual void makeCode();
+  virtual void makeCode(std::ofstream &code);
   virtual ~Decls();
 };
 

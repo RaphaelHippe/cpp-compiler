@@ -1,7 +1,5 @@
 #include "../includes/Index.h"
-#include <iostream>
 
-using namespace std;
 Index::Index() {
   this->exp = NULL;
   this->type = NOTYPE;
@@ -31,8 +29,9 @@ void Index::typeCheck(){
   }
 }
 
-void Index::makeCode(){
-
+void Index::makeCode(std::ofstream &code){
+  exp->makeCode(code);
+  code << "ADD\n";
 }
 
 Index::~Index() {

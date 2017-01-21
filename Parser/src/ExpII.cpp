@@ -8,7 +8,7 @@ void ExpII::typeCheck(){
 
 }
 
-void ExpII::makeCode(){
+void ExpII::makeCode(std::ofstream &code){
 
 }
 

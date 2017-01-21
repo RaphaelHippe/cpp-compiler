@@ -1,7 +1,5 @@
 #include "../includes/OpExp.h"
-#include <iostream>
 
-using namespace std;
 OpExp::OpExp() {
         this->op = NULL;
         this->exp = NULL;
@@ -40,8 +38,9 @@ void OpExp::typeCheck(){
         this->type = exp->getType();
 }
 
-void OpExp::makeCode(){
-
+void OpExp::makeCode(std::ofstream &code){
+        exp->makeCode(code);
+        op->makeCode(code);
 }
 
 

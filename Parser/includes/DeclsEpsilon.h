@@ -18,7 +18,7 @@ private:
 public:
   DeclsEpsilon();
   void typeCheck();
-  void makeCode();
+  void makeCode(std::ofstream &code);
 };
 
 #endif /* DeclsEpsilon_H_ */

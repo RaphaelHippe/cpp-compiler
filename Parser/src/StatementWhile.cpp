@@ -1,7 +1,5 @@
 #include "../includes/StatementWhile.h"
-#include <iostream>
 
-using namespace std;
 StatementWhile::StatementWhile() {
         this->exp = NULL;
         this->statement = NULL;
@@ -44,8 +42,15 @@ void StatementWhile::typeCheck(){
         }
 }
 
-void StatementWhile::makeCode(){
-
+void StatementWhile::makeCode(std::ofstream &code){
+  int label1 = getLabelCount();
+  int label2 = getLabelCount();
+  code << "#" << "label" << label1 << " NOP\n";
+  exp->makeCode(code);
+  code << "JIN " << "#" << "label" << label2 << "\n";
+  statement->makeCode(code);
+  code << "JIN " << "#" << "label" << label1 << "\n";
+  code << "#" << "label" << label2 << " NOP\n";
 }
 
 StatementWhile::~StatementWhile() {

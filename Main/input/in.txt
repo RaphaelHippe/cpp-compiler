@@ -1,13 +1,11 @@
-int a;
-
-int [3] b ;
-
-a := 5;
-
-a:= a + 1;
-
-if(a < 10) {
-          a:= a + 1;
-} else {
-  a:= a + 1;
+int f;
+int k;
+int n;
+read(n);
+k := 0;
+f := 1;
+while(k < n) {
+k := k + 1;
+f := f * k;
 };
+write(f);

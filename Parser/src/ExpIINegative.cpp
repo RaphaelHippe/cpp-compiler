@@ -1,7 +1,5 @@
 #include "../includes/ExpIINegative.h"
-#include <iostream>
 
-using namespace std;
 ExpIINegative::ExpIINegative() {
   this->expII = NULL;
   this->type = NOTYPE;
@@ -27,8 +25,10 @@ void ExpIINegative::typeCheck(){
   this->type = expII->getType();
 }
 
-void ExpIINegative::makeCode(){
-
+void ExpIINegative::makeCode(std::ofstream &code){
+  code << "LC " << 0 << "\n";
+  expII->makeCode(code);
+  code << "SUB\n";
 }
 
 ExpIINegative::~ExpIINegative() {

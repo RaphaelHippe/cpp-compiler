@@ -7,8 +7,10 @@
 
 #pragma once
 
-#include "NodeTypes.h"
 #include <stdio.h>
+#include <fstream>
+#include <iostream>
+#include "NodeTypes.h"
 
 #ifndef Node_H_
 #define Node_H_
@@ -20,8 +22,8 @@ private:
 public:
   virtual void addNode();
   virtual void typeCheck();
-  virtual void makeCode();
-  static int getLabelcount();
+  virtual void makeCode(std::ofstream &code);
+  static int getLabelCount();
   static bool getError();
   static void setError();
 };

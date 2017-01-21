@@ -18,7 +18,7 @@ private:
 public:
   ArrEpsilon();
   void typeCheck();
-  void makeCode();
+  void makeCode(std::ofstream &code);
 };
 
 #endif /* Arr_H_ */

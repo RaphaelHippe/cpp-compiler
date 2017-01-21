@@ -396,4 +396,5 @@ void Parser::syntaxError(){
 }
 
 Parser::~Parser() {
+  delete scanner;
 }

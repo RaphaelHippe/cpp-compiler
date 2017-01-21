@@ -24,8 +24,8 @@ void StatementBracket::typeCheck(){
   statements->typeCheck();
 }
 
-void StatementBracket::makeCode(){
-
+void StatementBracket::makeCode(std::ofstream &code){
+  statements->makeCode(code);
 }
 
 StatementBracket::~StatementBracket() {

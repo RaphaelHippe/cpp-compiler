@@ -1,7 +1,5 @@
 #include "../includes/Decl.h"
-#include <iostream>
 
-using namespace std;
 Decl::Decl() {
   this->arr = NULL;
   this->identifier = NULL;
@@ -49,8 +47,9 @@ void Decl::typeCheck(){
   }
 }
 
-void Decl::makeCode(){
-
+void Decl::makeCode(std::ofstream &code){
+  code << "DS " << "$" << identifier->getLexem() << " ";
+  arr->makeCode(code);
 }
 
 Decl::~Decl() {

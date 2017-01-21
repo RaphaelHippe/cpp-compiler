@@ -18,7 +18,7 @@ public:
   virtual void addNode();
   virtual NodeType getType();
   virtual void typeCheck();
-  virtual void makeCode();
+  virtual void makeCode(std::ofstream &code);
 };
 
 #endif /* ExpII_H_ */

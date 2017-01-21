@@ -28,7 +28,7 @@ public:
   Index* getIndex();
   NodeType getType();
   void typeCheck();
-  void makeCode();
+  void makeCode(std::ofstream &code);
   virtual ~ExpIIIndex();
 };
 

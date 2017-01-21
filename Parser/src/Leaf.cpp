@@ -4,4 +4,4 @@ void Leaf::addNode(){}
 
 void Leaf::typeCheck(){}
 
-void Leaf::makeCode(){}
+void Leaf::makeCode(std::ofstream &code){}

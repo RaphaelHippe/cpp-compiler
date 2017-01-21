@@ -1,7 +1,5 @@
 #include "../includes/Op.h"
-#include <iostream>
 
-using namespace std;
 Op::Op(Token* token) {
         this->token = token;
         switch (this->token->getType()) {
@@ -61,6 +59,36 @@ void Op::typeCheck(){
 
 }
 
-void Op::makeCode(){
-
+void Op::makeCode(std::ofstream &code){
+  switch (this->type) {
+    case OPPLUS:
+      code << "ADD\n";
+      break;
+    case OPMINUS:
+      code << "SUB\n";
+      break;
+    case OPMULT:
+      code << "MUL\n";
+      break;
+    case OPDIV:
+      code << "DIV\n";
+      break;
+    case OPLESS:
+      code << "LES\n";
+      break;
+    case OPGREATER:
+      // code << "ADD\n";
+      break;
+    case OPEQUAL:
+      code << "EQU\n";
+      break;
+    case OPUNEQUAL:
+      code << "EQU\n";
+      break;
+    case OPAND:
+      code << "AND\n";
+      break;
+    default:
+    break;
+  }
 }
