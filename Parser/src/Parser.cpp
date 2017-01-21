@@ -388,10 +388,9 @@ bool Parser::checkToken(int otherType){
 
 void Parser::syntaxError(){
         if (token != NULL && !error) {
-                cout << "Syntax-Error: Line: " << token->getLine() << " Column: " << token->getColumn() << " Token Name\n";
-        }
-        if (token == NULL) {
-          cout << "Token NULL \n";
+                cerr << "Syntax-Error: Line: " << token->getLine() << " Column: " << token->getColumn() << " Token Name\n";
+        } else if (!error) {
+          cerr << "Syntax Error: Unknown token detected. \n";
         }
         error = true;
 }

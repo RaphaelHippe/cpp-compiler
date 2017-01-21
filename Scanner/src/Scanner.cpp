@@ -152,7 +152,7 @@ Token* Scanner::nextToken() {
 								case 24: {
 																// 24 = End of Comment
 																// WAS IST DAS?
-																cout << "24?!" << automat->gettype() << automat->getline() << automat->getcolumn() - counter << " \n";
+																cout << "24?! t: " << automat->gettype() << " l: " << automat->getline() << " c " << automat->getcolumn() - counter << " \n";
 																token = new Token(automatTypeToTokenType(automat->gettype()), automat->getline(), automat->getcolumn() - counter);
 																counter = 0;
 								}
