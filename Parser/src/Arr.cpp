@@ -1,7 +1,5 @@
 #include "../includes/Arr.h"
-#include <iostream>
 
-using namespace std;
 Arr::Arr() {
   this->integer = NULL;
   this->type = NOTYPE;
@@ -29,8 +27,8 @@ void Arr::typeCheck(){
   }
 }
 
-void Arr::makeCode(){
-
+void Arr::makeCode(std::ofstream &code){
+  code << integer->getValue() << "\n";
 }
 
 Arr::~Arr() {

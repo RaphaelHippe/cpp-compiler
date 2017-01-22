@@ -152,7 +152,7 @@ Token* Scanner::nextToken() {
 								case 24: {
 																// 24 = End of Comment
 																// WAS IST DAS?
-																cout << "24?!" << automat->gettype() << automat->getline() << automat->getcolumn() - counter << " \n";
+																cout << "24?! t: " << automat->gettype() << " l: " << automat->getline() << " c " << automat->getcolumn() - counter << " \n";
 																token = new Token(automatTypeToTokenType(automat->gettype()), automat->getline(), automat->getcolumn() - counter);
 																counter = 0;
 								}
@@ -244,7 +244,7 @@ Token* Scanner::nextToken() {
 																Information* myInformation = new Information(word);
 																Key* myKey = symTable->insert(myInformation);
 																Information* info = symTable->lookup(myKey);
-																token = new Token(info->getType(), automat->getline(), automat->getcolumn() - counter, myInformation);
+																token = new Token(info->getType(), automat->getline(), automat->getcolumn() - counter, info);
 																write(filedesc, "Token ", 6);
 																write(filedesc, translateType(automat->gettype()), 15);
 																write(filedesc, " Line: ", 7);

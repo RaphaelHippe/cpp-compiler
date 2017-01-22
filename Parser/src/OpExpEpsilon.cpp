@@ -8,6 +8,6 @@ void OpExpEpsilon::typeCheck(){
 
 }
 
-void OpExpEpsilon::makeCode(){
+void OpExpEpsilon::makeCode(std::ofstream &code){
 
 }

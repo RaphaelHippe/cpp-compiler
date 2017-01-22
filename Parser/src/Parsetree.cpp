@@ -9,5 +9,12 @@ bool Parsetree::typeCheck(){
   return prog->getError();
 }
 
+void Parsetree::makeCode(std::string codePath){
+  code.open(codePath.c_str());
+  prog->makeCode(code);
+}
+
 Parsetree::~Parsetree() {
+  delete prog;
+  code.close();
 }

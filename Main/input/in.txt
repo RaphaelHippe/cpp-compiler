@@ -1,0 +1,14 @@
+<<<<<<< HEAD
+=======
+int f;
+int k;
+int n;
+read(n);
+k := 0;
+f := 1;
+while(k < n) {
+k := k + 1;
+f := f * k;
+};
+write(f);
+>>>>>>> a5a545366743b5ff81e664a6354b2ec71d01d885

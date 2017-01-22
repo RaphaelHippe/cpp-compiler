@@ -1,7 +1,5 @@
 #include "../includes/StatementIfElse.h"
-#include <iostream>
 
-using namespace std;
 StatementIfElse::StatementIfElse() {
   this->exp = NULL;
   this->statement1 = NULL;
@@ -60,8 +58,16 @@ void StatementIfElse::typeCheck(){
   }
 }
 
-void StatementIfElse::makeCode(){
-
+void StatementIfElse::makeCode(std::ofstream &code){
+  exp->makeCode(code);
+  int label1 = getLabelCount();
+  int label2 = getLabelCount();
+  code << "JIN " << "#" << "label" << label1 << "\n";
+  statement1->makeCode(code);
+  code << "JMP " << "#" << "label" << label2 << "\n";
+  code << "#" << "label" << label1 << " NOP\n";
+  statement2->makeCode(code);
+  code << "#" << "label" << label2 << " NOP\n";
 }
 
 

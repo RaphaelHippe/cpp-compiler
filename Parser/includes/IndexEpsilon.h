@@ -18,7 +18,7 @@ private:
 public:
   IndexEpsilon();
   void typeCheck();
-  void makeCode();
+  void makeCode(std::ofstream &code);
 };
 
 #endif /* IndexEpsilon_H_ */

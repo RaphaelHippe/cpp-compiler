@@ -1,7 +1,5 @@
 #include "../includes/Prog.h"
-#include <iostream>
 
-using namespace std;
 Prog::Prog() {
   this->decls = NULL;
   this->statements = NULL;
@@ -36,8 +34,10 @@ void Prog::typeCheck(){
   statements->typeCheck();
 }
 
-void Prog::makeCode(){
-
+void Prog::makeCode(std::ofstream &code){
+  decls->makeCode(code);
+  statements->makeCode(code);
+  code << "STP";
 }
 
 

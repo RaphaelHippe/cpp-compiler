@@ -25,7 +25,7 @@ public:
   int getColumn();
   NodeType getType();
   void typeCheck();
-  void makeCode();
+  void makeCode(std::ofstream &code);
 };
 
 #endif /* Op_H_ */

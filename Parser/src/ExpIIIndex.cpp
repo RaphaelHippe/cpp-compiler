@@ -1,7 +1,5 @@
 #include "../includes/ExpIIIndex.h"
-#include <iostream>
 
-using namespace std;
 ExpIIIndex::ExpIIIndex() {
         this->identifier = NULL;
         this->index = NULL;
@@ -48,8 +46,10 @@ void ExpIIIndex::typeCheck(){
         }
 }
 
-void ExpIIIndex::makeCode(){
-
+void ExpIIIndex::makeCode(std::ofstream &code){
+  code << "LA " << "$" << identifier->getLexem() << "\n";
+  index->makeCode(code);
+  code << "LV\n";
 }
 
 ExpIIIndex::~ExpIIIndex() {

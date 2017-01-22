@@ -8,6 +8,6 @@ StatementsEpsilon::StatementsEpsilon() {
 void StatementsEpsilon::typeCheck(){
 }
 
-void StatementsEpsilon::makeCode(){
-
+void StatementsEpsilon::makeCode(std::ofstream &code){
+  code << "NOP\n";
 }

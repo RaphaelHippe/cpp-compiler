@@ -1,7 +1,5 @@
 #include "../includes/Exp.h"
-#include <iostream>
 
-using namespace std;
 Exp::Exp() {
         this->expII = NULL;
         this->opExp = NULL;
@@ -47,8 +45,9 @@ void Exp::typeCheck(){
         }
 }
 
-void Exp::makeCode(){
-
+void Exp::makeCode(std::ofstream &code){
+  expII->makeCode(code);
+  opExp->makeCode(code);
 }
 
 Exp::~Exp() {

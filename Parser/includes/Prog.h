@@ -28,7 +28,7 @@ public:
   Statements* getStatements();
   NodeType getType();
   void typeCheck();
-  void makeCode();
+  void makeCode(std::ofstream &code);
 };
 
 #endif /* Prog_H_ */

@@ -1,7 +1,5 @@
 #include "../includes/StatementRead.h"
-#include <iostream>
 
-using namespace std;
 StatementRead::StatementRead() {
         this->identifier = NULL;
         this->index = NULL;
@@ -47,8 +45,11 @@ void StatementRead::typeCheck(){
         }
 }
 
-void StatementRead::makeCode(){
-
+void StatementRead::makeCode(std::ofstream &code){
+  code << "REA\n";
+  code << "LA " << "$" << identifier->getLexem() << "\n";
+  index->makeCode(code);
+  code << "STR" << "\n";
 }
 
 

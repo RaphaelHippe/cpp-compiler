@@ -7,10 +7,10 @@ void Node::addNode() {}
 
 void Node::typeCheck() {}
 
-void Node::makeCode() {}
+void Node::makeCode(std::ofstream &code) {}
 
 
-int Node::getLabelcount(){
+int Node::getLabelCount(){
   return labelCount++;
 }
 

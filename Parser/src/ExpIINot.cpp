@@ -1,7 +1,5 @@
 #include "../includes/ExpIINot.h"
-#include <iostream>
 
-using namespace std;
 ExpIINot::ExpIINot() {
         this->expII = NULL;
         this->type = NOTYPE;
@@ -31,8 +29,9 @@ void ExpIINot::typeCheck(){
         }
 }
 
-void ExpIINot::makeCode(){
-
+void ExpIINot::makeCode(std::ofstream &code){
+  expII->makeCode(code);
+  code << "NOT\n";
 }
 
 ExpIINot::~ExpIINot() {

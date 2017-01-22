@@ -29,7 +29,7 @@ public:
   OpExp* getOpExp();
   NodeType getType();
   void typeCheck();
-  void makeCode();
+  void makeCode(std::ofstream &code);
   virtual ~Exp();
 };
 

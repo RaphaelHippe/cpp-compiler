@@ -18,7 +18,7 @@ public:
   virtual void addNode();
   virtual void typeCheck();
   virtual NodeType getType();
-  virtual void makeCode();
+  virtual void makeCode(std::ofstream &code);
 };
 
 #endif /* Statement_H_ */

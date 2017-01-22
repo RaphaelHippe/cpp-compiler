@@ -1,7 +1,5 @@
 #include "../includes/StatementWrite.h"
-#include <iostream>
 
-using namespace std;
 StatementWrite::StatementWrite() {
   this->exp = NULL;
   this->type = NOTYPE;
@@ -26,8 +24,9 @@ void StatementWrite::typeCheck(){
   exp->typeCheck();
 }
 
-void StatementWrite::makeCode(){
-
+void StatementWrite::makeCode(std::ofstream &code){
+  exp->makeCode(code);
+  code << "PRI\n";
 }
 
 StatementWrite::~StatementWrite() {

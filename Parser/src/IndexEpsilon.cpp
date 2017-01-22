@@ -10,6 +10,6 @@ void IndexEpsilon::typeCheck(){
 
 }
 
-void IndexEpsilon::makeCode(){
+void IndexEpsilon::makeCode(std::ofstream &code){
 
 }

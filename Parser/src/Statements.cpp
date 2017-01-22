@@ -37,8 +37,9 @@ void Statements::typeCheck(){
   statements->typeCheck();
 }
 
-void Statements::makeCode(){
-
+void Statements::makeCode(std::ofstream &code){
+  statement->makeCode(code);
+  statements->makeCode(code);
 }
 
 
