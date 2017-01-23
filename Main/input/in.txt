@@ -7,5 +7,4 @@ f := 1;
 while(k < n) {
 k := k + 1;
 f := f * k;
-};
-write(f);
+write(f);};
