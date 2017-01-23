@@ -32,6 +32,10 @@ Token::Token(int type, int line, int column)
         this->information = NULL;
 }
 
+std::string Token::getLexem(){
+        return this->information->getLexem();
+};
+
 int Token::getLine()
 {
         return line;

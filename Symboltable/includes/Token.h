@@ -26,6 +26,7 @@ int getLine();
 int getColumn();
 int getType();
 int getValue();
+std::string getLexem();
 Information* getInformation();
 char* getTokenString();
 int getTokenTextLength();

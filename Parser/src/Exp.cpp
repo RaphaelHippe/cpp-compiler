@@ -46,8 +46,20 @@ void Exp::typeCheck(){
 }
 
 void Exp::makeCode(std::ofstream &code){
-  expII->makeCode(code);
-  opExp->makeCode(code);
+        if (opExp->getType() == NOTYPE) {
+                expII->makeCode(code);
+        } else if (opExp->getOp()->getType() == OPGREATER) {
+                opExp->makeCode(code);
+                expII->makeCode(code);
+                code << "LES\n";
+        } else if (opExp->getOp()->getType() == OPUNEQUAL) {
+                expII->makeCode(code);
+                opExp->makeCode(code);
+                code << "NOT\n";
+        } else {
+                expII->makeCode(code);
+                opExp->makeCode(code);
+        }
 }
 
 Exp::~Exp() {

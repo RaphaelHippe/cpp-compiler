@@ -44,12 +44,14 @@ void StatementAssign::typeCheck(){
         if (getError()) {
                 return;
         }
+        index->typeCheck();
         if (identifier->getType() == NOTYPE) {
                 cerr << "Error: Line: " << identifier->getLine() << " Column: " << identifier->getColumn() << " Identifier is not defined.\n";
                 this->type = ERROR;
                 setError();
-        } else if (exp->getType() == INT && (identifier->getType() == INT && index->getType() == NOTYPE)
-                   || (identifier->getType() == INTARRAY && index->getType() == ARRAY)) {
+        } else if ((exp->getType() == INT
+                    && (identifier->getType() == INT && index->getType() == NOTYPE)
+                    || (identifier->getType() == INTARRAY && index->getType() == ARRAY))) {
                 this->type = NOTYPE;
         } else {
                 cerr << "Error: Line: " << identifier->getLine() << " Column: " << identifier->getColumn() << " Types are incompatible.\n";
@@ -59,10 +61,10 @@ void StatementAssign::typeCheck(){
 }
 
 void StatementAssign::makeCode(std::ofstream &code){
-  exp->makeCode(code);
-  code << "LA " << "$" << identifier->getLexem() << "\n";
-  index->makeCode(code);
-  code << "STR" << "\n";
+        exp->makeCode(code);
+        code << "LA " << "$" << identifier->getLexem() << "\n";
+        index->makeCode(code);
+        code << "STR" << "\n";
 }
 
 

@@ -5,9 +5,12 @@
 using namespace std;
 Parser::Parser(char* argv, char* argv2){
         scanner = new Scanner(argv, argv2);
+        this->token = NULL;
+        this->prevToken = NULL;
 }
 
 void Parser::nextToken(){
+        prevToken = token;
         token = scanner->nextToken();
 }
 
@@ -166,13 +169,13 @@ ExpII* Parser::expII(){
 
 Index* Parser::index(){
         if (checkToken(Token::SQUAREBRACKETOPEN)) {
-          nextToken();
+                nextToken();
                 Index* myIndex = new Index();
                 myIndex->addNode(exp());
                 if (!checkToken(Token::SQUAREBRACKETCLOSE)) {
                         syntaxError();
                 } else {
-                  nextToken();
+                        nextToken();
 
                 }
                 return myIndex;
@@ -387,14 +390,18 @@ bool Parser::checkToken(int otherType){
 }
 
 void Parser::syntaxError(){
-        if (token != NULL && !error) {
-                cerr << "Syntax-Error: Line: " << token->getLine() << " Column: " << token->getColumn() << " Token Name\n";
+        if (prevToken != NULL && !error) {
+                cerr << "Syntax-Error: Line: " << prevToken->getLine() << " Column: " << prevToken->getColumn() << " " << string(prevToken->getLexem()) << "\n";
+        } else if (token != NULL && !error) {
+                cerr << "Syntax-Error: Line: " << token->getLine() << " Column: " << token->getColumn() << " " << string(token->getLexem()) << "\n";
         } else if (!error) {
-          cerr << "Syntax Error: Unknown token detected. \n";
+                cerr << "Syntax Error: Unknown token detected. \n";
         }
         error = true;
 }
 
 Parser::~Parser() {
-  delete scanner;
+        delete scanner;
+        delete token;
+        delete prevToken;
 }

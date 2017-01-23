@@ -77,7 +77,6 @@ void Op::makeCode(std::ofstream &code){
       code << "LES\n";
       break;
     case OPGREATER:
-      // code << "ADD\n";
       break;
     case OPEQUAL:
       code << "EQU\n";

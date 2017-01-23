@@ -42,6 +42,7 @@
 class Parser {
 private:
   Token* token;
+  Token* prevToken;
   Scanner* scanner;
   Arr* arr();
   Decl* decl();
