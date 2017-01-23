@@ -138,24 +138,29 @@ Token* Scanner::nextToken() {
 								do {
 																// Lesen bis zum Lexem
 																c = buffer->getChar();
-																if (c != '\0' && c != '\n' && c != ' ') {
-																								counter++;
-																}
 																automat_result = automat->handle(c);
+																if (c != '\0' && c != '\n' && c != ' ') {
+																	counter++;
+																}
+
 																// 0 -> Lexem to Token und Step Back
 																// 20 -> Lexem to Token und kein Step Back
 																// -1 -> Error Token
 																// -99 -> End of File
-								} while (automat_result != 0 && automat_result != 20 && automat_result != -1 && automat_result != -99 && automat_result != 24);
+																if (automat_result == 24) {
+																	counter = 0;
+																}
+
+								} while (automat_result != 0 && automat_result != 20 && automat_result != -1 && automat_result != -99);
 
 								switch (automat_result) {
-								case 24: {
-																// 24 = End of Comment
-																// WAS IST DAS?
-																cout << "24?! t: " << automat->gettype() << " l: " << automat->getline() << " c " << automat->getcolumn() - counter << " \n";
-																token = new Token(automatTypeToTokenType(automat->gettype()), automat->getline(), automat->getcolumn() - counter);
-																counter = 0;
-								}
+								// case 24: {
+								// 								// 24 = End of Comment
+								// 								// WAS IST DAS?
+								// 								cout << "24?! t: " << automat->gettype() << " l: " << automat->getline() << " c " << automat->getcolumn() - counter << " \n";
+								// 								token = new Token(automatTypeToTokenType(automat->gettype()), automat->getline(), automat->getcolumn() - counter);
+								// 								counter = 0;
+								// }
 								break;
 								case 0: {
 																//TODO: Comment why we do this
@@ -170,21 +175,6 @@ Token* Scanner::nextToken() {
 																write(filedesc, " Column: ", 9);
 																writeInt(automat->getcolumn() - counter, filedesc);
 																buffer->stepBack(1);
-
-																// If type == 1 (Identifier) => insert into sym table
-																// if (automat->gettype() == 1) {
-																// 								buffer->stepBack(counter);
-																// 								char word[counter + 1];
-																// 								for (size_t i = 0; i < counter; i++) {
-																// 																word[i] = buffer->getChar();
-																// 								}
-																// 								word[counter] = '\0';
-																// 								Information* myInformation = new Information(word);
-																// 								Key* myKey = symTable->insert(myInformation);
-																// 								token = new Token(automat->gettype(), automat->getline(), automat->getcolumn() - counter, myInformation);
-																// 								write(filedesc, " ", 1);
-																// 								write(filedesc, word, counter);
-																// }
 
 																// Integer
 																if (automat->gettype() == 2) {
@@ -231,7 +221,6 @@ Token* Scanner::nextToken() {
 																counter = 0;
 								}
 								break;
-								// return 1;
 								case 20: {
 																// counter--;
 																// write chars into token....
@@ -255,7 +244,6 @@ Token* Scanner::nextToken() {
 																counter = 0;
 								}
 								break;
-								// return 1;
 								case -1: {
 																fprintf(stderr, "Error: Type: %d Line: %d Column: %d \n", automat->gettype(), automat->getline(), automat->getcolumn() - counter);
 																// write error lexem into token
@@ -270,20 +258,17 @@ Token* Scanner::nextToken() {
 																counter = 0;
 								}
 								break;
-								// return 1;
 								case -99: {
 																cout << "End of Party. Good Night, sleep well ;)";
 																cout << '\n';
 																token = NULL;
 								}
 								break;
-								// return 0;
 								default: {
 																cout << "Unexpected Error. Exiting...";
 																cout << '\n';
 																token = NULL;
 								}
-																// return 0;
 								}
 								return token;
 }
