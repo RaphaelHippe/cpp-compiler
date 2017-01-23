@@ -128,7 +128,6 @@ int Scanner::automatTypeToTokenType(int type){
 		default: cout << "TRANSLATION ERROR \n";
 						 return -1;
 	}
-
 }
 
 Token* Scanner::nextToken() {
@@ -154,14 +153,6 @@ Token* Scanner::nextToken() {
 								} while (automat_result != 0 && automat_result != 20 && automat_result != -1 && automat_result != -99);
 
 								switch (automat_result) {
-								// case 24: {
-								// 								// 24 = End of Comment
-								// 								// WAS IST DAS?
-								// 								cout << "24?! t: " << automat->gettype() << " l: " << automat->getline() << " c " << automat->getcolumn() - counter << " \n";
-								// 								token = new Token(automatTypeToTokenType(automat->gettype()), automat->getline(), automat->getcolumn() - counter);
-								// 								counter = 0;
-								// }
-								break;
 								case 0: {
 																//TODO: Comment why we do this
 																if (c != '\n' && c != ' ') {
@@ -195,6 +186,7 @@ Token* Scanner::nextToken() {
 																								write(filedesc, " ", 1);
 																								write(filedesc, number, counter);
 																}else{
+																// Alles neben Integer
 																	buffer->stepBack(counter);
 																	char word[counter + 1];
 																	for (size_t i = 0; i < counter; i++) {
@@ -203,13 +195,15 @@ Token* Scanner::nextToken() {
 																	word[counter] = '\0';
 																	Information* myInformation = new Information(word);
 
-																	// wenn es ein Identifier ist => in Symboltabelle eintragen
+																	// Identifier => in Symboltabelle eintragen
 																	if (automat->gettype() == 1) {
 																		myInformation->setType(Token::IDENTIFIER);
 																	}
+
 																	Key* myKey = symTable->insert(myInformation);
 																	Information* info = symTable->lookup(myKey);
 																	cout << "info " << info->getNodeType() << "\n";
+
 																	// Get Token Type from symTable --> information
 																	token = new Token(info->getType(), automat->getline(), automat->getcolumn() - counter, info);
 																	write(filedesc, " ", 1);
@@ -222,7 +216,6 @@ Token* Scanner::nextToken() {
 								}
 								break;
 								case 20: {
-																// counter--;
 																// write chars into token....
 																buffer->stepBack(counter);
 																char word[counter + 1];
