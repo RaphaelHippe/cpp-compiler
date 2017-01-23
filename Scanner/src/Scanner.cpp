@@ -103,33 +103,6 @@ char* Scanner::translateType(int type){
 								return translatedType;
 }
 
-int Scanner::automatTypeToTokenType(int type){
-	switch (type) {
-		case 10: return Token::INTEGER;
-		case 11: return Token::IDENTIFIER;
-		case 30: return Token::PLUS;
-		case 31: return Token::MINUS;
-		case 32: return Token::COLON;
-		case 33: return Token::STAR;
-		case 34: return Token::SMALLER;
-		case 35: return Token::GREATER;
-		case 36: return Token::EQUALS;
-		case 37: return Token::ASSIGNMENT;
-		case 38: return Token::WEIRDTHING;
-		case 39: return Token::EXMARK;
-		case 40: return Token::ANDAND;
-		case 41: return Token::SEMICOLON;
-		case 42: return Token::BRACKETOPEN;
-		case 43: return Token::BRACKETCLOSE;
-		case 44: return Token::CURLYBRACKETOPEN;
-		case 45: return Token::CURLYBRACKETCLOSE;
-		case 46: return Token::SQUAREBRACKETOPEN;
-		case 47: return Token::SQUAREBRACKETCLOSE;
-		default: cout << "TRANSLATION ERROR \n";
-						 return -1;
-	}
-}
-
 Token* Scanner::nextToken() {
 								char c;
 								int automat_result;
@@ -202,8 +175,6 @@ Token* Scanner::nextToken() {
 
 																	Key* myKey = symTable->insert(myInformation);
 																	Information* info = symTable->lookup(myKey);
-																	cout << "info " << info->getNodeType() << "\n";
-
 																	// Get Token Type from symTable --> information
 																	token = new Token(info->getType(), automat->getline(), automat->getcolumn() - counter, info);
 																	write(filedesc, " ", 1);

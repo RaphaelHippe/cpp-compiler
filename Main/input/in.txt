@@ -1,6 +1,10 @@
-int a;
-:*abc*:
-int b;
-:*abc*:
-int c;
-:*abc
+int f;
+int k;
+int n;
+read(n);
+k := 0;
+f := 1;
+while(k < n) {
+k := k + 1;
+f := f * k;
+write(f);};

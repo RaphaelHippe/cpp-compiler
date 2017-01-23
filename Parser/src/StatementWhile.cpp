@@ -49,7 +49,7 @@ void StatementWhile::makeCode(std::ofstream &code){
   exp->makeCode(code);
   code << "JIN " << "#" << "label" << label2 << "\n";
   statement->makeCode(code);
-  code << "JIN " << "#" << "label" << label1 << "\n";
+  code << "JMP " << "#" << "label" << label1 << "\n";
   code << "#" << "label" << label2 << " NOP\n";
 }
 
