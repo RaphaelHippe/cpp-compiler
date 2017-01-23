@@ -31,7 +31,7 @@ void OpExp::typeCheck(){
                 return;
         }
         op->typeCheck();
-        if (getError) {
+        if (getError()) {
                 return;
         }
         exp->typeCheck();
