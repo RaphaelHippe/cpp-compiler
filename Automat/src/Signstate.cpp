@@ -14,6 +14,9 @@ Signstate::~Signstate() {
 
 int Signstate::handle(char c){
   // logic of the state....
+  if (c == '\0') {
+    return -99;
+  }
 
   if (comment == 1) {
     // Im Kommentar
