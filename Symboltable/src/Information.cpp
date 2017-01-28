@@ -1,10 +1,3 @@
-/*
- * Information.cpp
- *
- *  Created on: Jul 17, 2016
- *      Author: Raphael Hippe
- */
-
 #include "../includes/Information.h"
 #include <iostream>
 #include <stdio.h>

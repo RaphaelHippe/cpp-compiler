@@ -1,10 +1,3 @@
-/*
- * Key.h
- *
- *  Created on: Jul 17, 2016
- *      Author: Raphael Hippe
- */
-
 #ifndef Key_H_
 #define Key_H_
 

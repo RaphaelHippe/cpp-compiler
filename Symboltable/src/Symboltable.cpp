@@ -1,17 +1,7 @@
-/*
- * Symboltable.cpp
- *
- *  Created on: Sep 26, 2012
- *      Author: knad0001
- *  Edited:
- *      Author: Raphael Hippe
- */
-
 #include "../includes/Symboltable.h"
 #include <stdio.h>
 
 Symboltable::Symboltable() {
-	// TODO Auto-generated constructor stub
   table = new List [TABLE_SIZE];
   myKey = new Key();
   myHashValue = 0;

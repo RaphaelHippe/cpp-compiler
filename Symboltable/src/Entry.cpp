@@ -1,19 +1,10 @@
-/*
- * Entry.cpp
- *
- *  Created on: Jul 17, 2016
- *      Author: Raphael Hippe
- */
-
 #include "../includes/Entry.h"
-#include "../includes/Information.h"
 #include <stdio.h>
 #include <iostream>
 
 using namespace std;
 
 Entry::Entry(Information* value) {
-	// TODO Auto-generated constructor stub
   myValue = value;
   myNext = NULL;
 }

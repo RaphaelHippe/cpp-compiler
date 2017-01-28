@@ -1,14 +1,5 @@
-/*
- * Symboltable.h
- *
- *  Created on: Sep 26, 2012
- *      Author: knad0001
- *  Edited:
- *      Author: Raphael Hippe
- */
  #include "../includes/List.h"
  #include "../includes/Key.h"
- #include "../includes/Information.h"
 
 #ifndef SYMBOLTABLE_H_
 #define SYMBOLTABLE_H_

@@ -1,15 +1,7 @@
-/*
- * List.cpp
- *
- *  Created on: Jul 17, 2016
- *      Author: Raphael Hippe
- */
-
 #include "../includes/List.h"
 #include <stdio.h>
 
 List::List() {
-	// TODO Auto-generated constructor stub
   listSize = 0;
   head = NULL;
 }
