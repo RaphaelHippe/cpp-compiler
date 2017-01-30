@@ -102,26 +102,24 @@ char* Scanner::translateType(int type){
 }
 
 Token* Scanner::nextToken() {
-	char c;
-	int automat_result;
-	Token* token;
-		do {
-			// Lesen bis zum Lexem
-			c = buffer->getChar();
-			automat_result = automat->handle(c);
-				if (c != '\0' && c != '\n' && c != ' ') {
-					counter++;
-				}
 
-																// 0 -> Lexem to Token und Step Back
-																// 20 -> Lexem to Token und kein Step Back
-																// -1 -> Error Token
-																// -99 -> End of File
-				if (automat_result == 24) {
-					counter = 0;
-				}
+char c;
+int automat_result;
+Token* token;
 
-		} while (automat_result != 0 && automat_result != 20 && automat_result != -1 && automat_result != -99);
+	do {
+		c = buffer->getChar();
+		automat_result = automat->handle(c);
+
+		if (c != '\0' && c != '\n' && c != ' ') {
+			counter++;
+		}
+
+		if (automat_result == 24) {
+			counter = 0;
+		}
+
+	} while (automat_result != 0 && automat_result != 20 && automat_result != -1 && automat_result != -99);
 
 								switch (automat_result) {
 								case 0: {
