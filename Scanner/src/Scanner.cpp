@@ -6,22 +6,20 @@
 
 Scanner::Scanner(char* argv, char* argv2) {
 
-								if (argv == NULL) {
-																argv = "../input/in.txt";
-																argv2 = "../output/out.txt";
-								} else if (argv2 == NULL) {
-																argv2 = "out.txt";
-								}
+	if (argv == NULL) {
+		argv = "../input/in.txt";
+		argv2 = "../output/out.txt";
+	} else if (argv2 == NULL) {
+		argv2 = "out.txt";
+	}
 
-								// TODO: maybe a small check if argv and argv2 are actually ending in .txt or something?
+	buffer = new Buffer(argv);
+	filedesc = open(argv2, O_WRONLY | O_CREAT|O_TRUNC, 0666);
 
-								buffer = new Buffer(argv);
-								filedesc = open(argv2, O_WRONLY | O_CREAT|O_TRUNC, 0666);
-
-								symTable = new Symboltable();
-								symTable->initSymbols();
-								automat = new Automat();
-								this->counter = 0;
+	symTable = new Symboltable();
+	symTable->initSymbols();
+	automat = new Automat();
+	this->counter = 0;
 }
 
 void Scanner::writeInt(long int value, int filedesc){
